@@ -25,7 +25,9 @@ class LoginViewController: UIViewController {
 		super.viewDidLoad()
 		
 	}
-
+	
+	
+	
 	func createURLWithComponents(host: String = Constants.host, path: String, queryItems: [URLQueryItem]? = nil) -> URL? {
 		var urlComponents = URLComponents()
 		urlComponents.scheme = "https"
