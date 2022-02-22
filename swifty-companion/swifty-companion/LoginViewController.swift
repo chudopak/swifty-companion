@@ -20,21 +20,121 @@ struct Constants {
 	static let redirectURI = "swifty-companion://oauth-callback"
 }
 
+struct User: Codable {
+	var id:     Int?
+	var login:  String?
+	var displayname: String?
+	var url:    String?
+	var location: String?
+	var wallet: Int?
+	var correction_point: Int?
+	var image_url: String?
+	var cursus_users: [Cursus]?
+	var projects_users: [Project]?
+	var campus: [Campus]?
+}
+
+struct Cursus: Codable {
+	var level: Double
+	var skills: [Skill]
+}
+
+struct Skill: Codable {
+	var name: String
+	var level: Double
+}
+
+struct Project: Codable {
+	var final_mark: Int?
+	var project: ProjectDetails
+	var cursus_ids: [Int]
+	var status: String
+	var validated: Bool?
+  
+  enum CodingKeys: String, CodingKey {
+	case validated = "validated?"
+	case final_mark, project, cursus_ids, status
+  }
+}
+
+struct ProjectDetails: Codable {
+	var id: Int
+  var name: String
+	var slug: String
+	var parent_id: Int?
+}
+
+struct Campus: Codable {
+	var name: String
+}
+
 enum CompleteStatus {
 	case fail
 	case success
 }
 
+struct Token: Codable {
+  var access_token: String
+  var token_type: StringLiteralType
+  var expires_in: Int
+  var refresh_token: String
+  var scope: String
+  var created_at: Int
+}
+
 class LoginViewController: UIViewController {
+	
+	var tokenita = Token(access_token: "", token_type: "", expires_in: 1, refresh_token: "", scope: "", created_at: 1)
+	
+	lazy var usersButton: UIButton = {
+		let button = UIButton()
+		button.bounds.size = CGSize(width: 200, height: 50)
+		button.backgroundColor = .green
+		button.addTarget(self, action: #selector(getMe), for: .touchUpInside)
+		return (button)
+	}()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+		view.addSubview(usersButton)
+		usersButton.center = view.center
+		login()
 	}
 	
-<<<<<<< HEAD
+	@objc func getMe() {
+		let url = createURLWithComponents(path: "/v2/users/aa")
+		guard let url = url else {
+			print("Can't create URL")
+			return
+		}
+		var request = URLRequest(url: url)
+		request.httpMethod = "GET"
+		request.setValue("Bearer \(tokenita.access_token)", forHTTPHeaderField: "Authorization")
+		let sessions = URLSession.shared.dataTask(with: request) { data, response, error in
+			guard let response = response as? HTTPURLResponse else {
+			  print("Failed reequest")
+			  return
+			}
+			guard error == nil, let data = data else {
+			  print("error or data nil")
+			  return
+			}
+//			var jsonData: [Any]?
+//			do {
+//				jsonData = try JSONSerialization.jsonObject(with: data, options: []) as? [Any]
+//			} catch {
+//				print("JSON ERROR \(error)")
+//			}
+//			print(jsonData)
+			print("data- ",data)
+			if let object = try? JSONDecoder().decode(User.self, from: data) {
+				print(object)
+			}
+			  
+		  }
+		sessions.resume()
+	}
 	
-=======
 	func login() {
 		guard let signInURL = createSignInURL() else {
 			print("Can't create signIn URL")
@@ -51,14 +151,51 @@ class LoginViewController: UIViewController {
 				print("An error occurred when attempting to sign in.")
 				return
 			}
-			
-			
+			self?.networking(codeExchangeUrl: codeExchangeURL, completionHandler: { result in
+				switch result {
+				case .success:
+					print("SUCCESS")
+				case .fail:
+					print("FAIL")
+				}
+			})
+		}
+		authenticationSession.presentationContextProvider = self
+		authenticationSession.prefersEphemeralWebBrowserSession = true
+		
+		if !authenticationSession.start() {
+		  print("Failed to start ASWebAuthenticationSession")
 		}
 	}
 	
-	func netwirking(codeExchangeUrl: URL, completionHandler: @escaping ((CompleteStatus) -> Void)) {
+	func networking(codeExchangeUrl: URL, completionHandler: @escaping ((CompleteStatus) -> Void)) {
 		var request = URLRequest(url: codeExchangeUrl)
-		
+		request.httpMethod = "POST"
+		let session = URLSession.shared.dataTask(with: request) {[weak self] data, response, error in
+		  guard let response = response as? HTTPURLResponse else {
+			DispatchQueue.main.async {
+			  completionHandler(CompleteStatus.fail)
+			}
+			return
+		  }
+		  guard error == nil, let data = data else {
+			DispatchQueue.main.async {
+			  completionHandler(CompleteStatus.fail)
+			}
+			return
+		  }
+			print(data)
+			let token = try? JSONDecoder().decode(Token.self, from: data)
+			DispatchQueue.main.async {
+				self?.tokenita.access_token = token!.access_token
+				self?.tokenita.refresh_token = token!.refresh_token
+			  print(token!.access_token)
+			  print(token!.refresh_token)
+			  completionHandler(CompleteStatus.success)
+			}
+			return
+		}
+		session.resume()
 	}
 	
 	func createCodeExchangeURL(code: String) -> URL?{
@@ -81,9 +218,8 @@ class LoginViewController: UIViewController {
 		]
 		return (createURLWithComponents(host: Constants.apiHost, path: Constants.authPath, queryItems: queryItems))
 	}
->>>>>>> main
 	
-	func createURLWithComponents(host: String = Constants.host, path: String, queryItems: [URLQueryItem]? = nil) -> URL? {
+	func createURLWithComponents(host: String = Constants.apiHost, path: String, queryItems: [URLQueryItem]? = nil) -> URL? {
 		var urlComponents = URLComponents()
 		urlComponents.scheme = "https"
 		urlComponents.host = host
@@ -94,3 +230,10 @@ class LoginViewController: UIViewController {
 
 }
 
+extension LoginViewController: ASWebAuthenticationPresentationContextProviding {
+  func presentationAnchor(for session: ASWebAuthenticationSession)
+  -> ASPresentationAnchor {
+	let window = UIApplication.shared.windows.first { $0.isKeyWindow }
+	return window ?? ASPresentationAnchor()
+  }
+}
