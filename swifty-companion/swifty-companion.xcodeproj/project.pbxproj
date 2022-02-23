@@ -16,6 +16,8 @@
 		7D74138C27C50BDE00284233 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D74138B27C50BDE00284233 /* UserModel.swift */; };
 		7D74138E27C511B200284233 /* LogInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D74138D27C511B200284233 /* LogInModel.swift */; };
 		7D74139227C5179E00284233 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D74139127C5179E00284233 /* LoginViewModel.swift */; };
+		7DB3622927C624F700885719 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3622827C624F700885719 /* TabBar.swift */; };
+		7DB3622B27C6254300885719 /* SearchUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3622A27C6254300885719 /* SearchUserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		7D74138B27C50BDE00284233 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		7D74138D27C511B200284233 /* LogInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInModel.swift; sourceTree = "<group>"; };
 		7D74139127C5179E00284233 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		7DB3622827C624F700885719 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		7DB3622A27C6254300885719 /* SearchUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +66,7 @@
 		7D72793327C103FE00B2A129 /* swifty-companion */ = {
 			isa = PBXGroup;
 			children = (
-				7D74138A27C50B4400284233 /* FindUserAndYourInfoScreens */,
+				7D74138A27C50B4400284233 /* SearchUserAndYourInfoScreens */,
 				7D74138727C508CC00284233 /* LogInScreen */,
 				7D74138627C508A000284233 /* Delegates */,
 				7D72793D27C1040000B2A129 /* Assets.xcassets */,
@@ -92,12 +96,13 @@
 			path = LogInScreen;
 			sourceTree = "<group>";
 		};
-		7D74138A27C50B4400284233 /* FindUserAndYourInfoScreens */ = {
+		7D74138A27C50B4400284233 /* SearchUserAndYourInfoScreens */ = {
 			isa = PBXGroup;
 			children = (
-				7D74138B27C50BDE00284233 /* UserModel.swift */,
+				7DB3622727C6239E00885719 /* Views */,
+				7DB3622627C6238C00885719 /* Models */,
 			);
-			path = FindUserAndYourInfoScreens;
+			path = SearchUserAndYourInfoScreens;
 			sourceTree = "<group>";
 		};
 		7D74138F27C5121C00284233 /* Models */ = {
@@ -114,6 +119,23 @@
 				7D74139127C5179E00284233 /* LoginViewModel.swift */,
 			);
 			path = LoginViewModel;
+			sourceTree = "<group>";
+		};
+		7DB3622627C6238C00885719 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7D74138B27C50BDE00284233 /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7DB3622727C6239E00885719 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7DB3622827C624F700885719 /* TabBar.swift */,
+				7DB3622A27C6254300885719 /* SearchUserViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,8 +208,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D72793927C103FE00B2A129 /* LoginViewController.swift in Sources */,
+				7DB3622B27C6254300885719 /* SearchUserViewController.swift in Sources */,
 				7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */,
 				7D74138927C5096E00284233 /* API.swift in Sources */,
+				7DB3622927C624F700885719 /* TabBar.swift in Sources */,
 				7D74138E27C511B200284233 /* LogInModel.swift in Sources */,
 				7D74138C27C50BDE00284233 /* UserModel.swift in Sources */,
 				7D72793727C103FE00B2A129 /* SceneDelegate.swift in Sources */,

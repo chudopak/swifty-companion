@@ -8,11 +8,6 @@
 import UIKit
 import AuthenticationServices
 
-enum CompleteStatus {
-	case fail
-	case success
-}
-
 class LoginViewController: UIViewController {
 	
 	private var loginViewModel: LoginViewModelProtocol!
@@ -21,7 +16,7 @@ class LoginViewController: UIViewController {
 		let button = UIButton()
 		button.bounds.size = CGSize(width: 200, height: 50)
 		button.backgroundColor = .green
-		button.addTarget(self, action: #selector(login), for: .touchUpInside)
+		button.addTarget(self, action: #selector(signIn), for: .touchUpInside)
 		return (button)
 	}()
 	
@@ -40,64 +35,44 @@ class LoginViewController: UIViewController {
 		super.init(coder: coder)
 	}
 	
-//	@objc func getMe() {
-//		let url = createURLWithComponents(path: "/v2/users/aa")
-//		guard let url = url else {
-//			print("Can't create URL")
-//			return
-//		}
-//		var request = URLRequest(url: url)
-//		request.httpMethod = "GET"
-//		request.setValue("Bearer \(Token.accessToken!)", forHTTPHeaderField: "Authorization")
-//		let sessions = URLSession.shared.dataTask(with: request) { data, response, error in
-//			guard let response = response as? HTTPURLResponse else {
-//			  print("Failed reequest")
-//			  return
-//			}
-//			guard error == nil, let data = data else {
-//			  print("error or data nil")
-//			  return
-//			}
-//			print("data- ",data)
-//			if let object = try? JSONDecoder().decode(User.self, from: data) {
-//				print(object)
-//			}
-//
-//		  }
-//		sessions.resume()
-//	}
-	
-	@objc private func login() {
+	@objc private func signIn() {
 		guard let signInURL = createSignInURL() else {
-			print("Can't create signIn URL")
+			print("Failed to create signIn URL")
 			return
 		}
 		
 		let authenticationSession = ASWebAuthenticationSession(url: signInURL, callbackURLScheme: API.callbackURL) { [weak self] callbackURL, error in
-			guard error == nil,
-				  let callbackURL = callbackURL,
-				  let queryItems = URLComponents(string: callbackURL.absoluteString)?.queryItems,
-				  let code = queryItems.first(where: {$0.name == "code" })?.value,
-				  let codeExchangeURL = createCodeExchangeURL(code: code)
-			else {
-				print("An error occurred when attempting to sign in.")
-				return
-			}
-			self?.loginViewModel.getToken(codeExchangeURL: codeExchangeURL, completionHandler: { result in
-				switch result {
-				case .success:
-					//place for launching FindUser view controller
-					print("SUCCESS")
-				case .fail:
-					print("FAIL")
-				}
-			})
+			self?.authenticationCompletion(callbackURL: callbackURL, error: error)
 		}
 		authenticationSession.presentationContextProvider = self
 		authenticationSession.prefersEphemeralWebBrowserSession = true
 		
 		if !authenticationSession.start() {
 			print("Failed to start ASWebAuthenticationSession")
+		}
+	}
+	
+	private func authenticationCompletion(callbackURL: URL?, error: Error?) {
+		guard error == nil,
+			  let callbackURL = callbackURL,
+			  let queryItems = URLComponents(string: callbackURL.absoluteString)?.queryItems,
+			  let code = queryItems.first(where: {$0.name == "code" })?.value,
+			  let codeExchangeURL = createCodeExchangeURL(code: code)
+		else {
+			print("An error occurred when attempting to sign in.")
+			return
+		}
+		loginViewModel.getToken(codeExchangeURL: codeExchangeURL) { [weak self] result in
+			switch result {
+			case .success:
+				//place for launching FindUser view controller
+				let tabBar = TabBar()
+				tabBar.modalPresentationStyle = .fullScreen
+				self?.present(tabBar, animated: true, completion: nil)
+				print("SUCCESS")
+			case .fail:
+				print("FAIL")
+			}
 		}
 	}
 }

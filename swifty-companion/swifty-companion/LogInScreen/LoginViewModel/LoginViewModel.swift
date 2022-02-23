@@ -8,7 +8,7 @@
 import UIKit
 
 protocol LoginViewModelProtocol {
-	func getToken(codeExchangeURL: URL, completionHandler: @escaping ((CompleteStatus) -> Void))
+	func getToken(codeExchangeURL: URL, completionHandler: @escaping ((LoginCompleteStatus) -> Void))
 }
 
 final class LoginViewModel: LoginViewModelProtocol {
@@ -16,7 +16,7 @@ final class LoginViewModel: LoginViewModelProtocol {
 	lazy var sessionConfiguration = _setURLSessionConfiguration()
 	lazy var session = URLSession(configuration: sessionConfiguration)
 	
-	func getToken(codeExchangeURL: URL, completionHandler: @escaping ((CompleteStatus) -> Void)) {
+	func getToken(codeExchangeURL: URL, completionHandler: @escaping ((LoginCompleteStatus) -> Void)) {
 		
 		var request = URLRequest(url: codeExchangeURL)
 		request.httpMethod = HTTPMethod.post.rawValue
@@ -26,24 +26,23 @@ final class LoginViewModel: LoginViewModelProtocol {
 				  response.statusCode == 200
 			else {
 				DispatchQueue.main.async {
-					completionHandler(CompleteStatus.fail)
+					completionHandler(LoginCompleteStatus.fail)
 				}
 				return
 			}
 			guard error == nil, let data = data else {
 				DispatchQueue.main.async {
-					completionHandler(CompleteStatus.fail)
+					completionHandler(LoginCompleteStatus.fail)
 				}
 				return
 			}
 			print(data)
 			let token = try? JSONDecoder().decode(Token.self, from: data)
+			Token.accessToken = token!.access_token
+			Token.refreshToken = token!.refresh_token
 			DispatchQueue.main.async {
-				Token.accessToken = token!.access_token
-				Token.refreshToken = token!.refresh_token
-				completionHandler(CompleteStatus.success)
+				completionHandler(LoginCompleteStatus.success)
 			}
-			return
 		}
 		getTokenTask.resume()
 	}
@@ -54,6 +53,4 @@ final class LoginViewModel: LoginViewModelProtocol {
 		configuration.timeoutIntervalForResource = 30
 		return (configuration)
 	}
-	
-	
 }

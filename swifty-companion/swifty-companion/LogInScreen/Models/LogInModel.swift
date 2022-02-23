@@ -37,3 +37,8 @@ struct Token: Codable {
 	var scope: String
 	var created_at: Int
 }
+
+enum LoginCompleteStatus {
+	case fail
+	case success
+}
