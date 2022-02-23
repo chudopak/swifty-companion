@@ -8,34 +8,25 @@
 import UIKit
 import AuthenticationServices
 
-class LoginViewController: UIViewController {
-	
+protocol LoginViewControllerDelegate: AnyObject {
+	func signInDelegate()
+}
+
+class LoginViewController: UIViewController, LoginViewControllerDelegate {
+
 	private var loginViewModel: LoginViewModelProtocol!
-	
-	lazy var usersButton: UIButton = {
-		let button = UIButton()
-		button.bounds.size = CGSize(width: 200, height: 50)
-		button.backgroundColor = .green
-		button.addTarget(self, action: #selector(signIn), for: .touchUpInside)
-		return (button)
-	}()
+	private var loginView: LoginView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.addSubview(usersButton)
-		usersButton.center = view.center
+		loginViewModel = LoginViewModel()
+		loginView = LoginView(delegate: self, frame: view.bounds)
+		view.addSubview(loginView)
+		setViewConstraints()
+		loginView.setUpView()
 	}
 	
-	init(loginViewModel: LoginViewModelProtocol) {
-		self.loginViewModel = loginViewModel
-		super.init(nibName: nil, bundle: nil)
-	}
-	
-	required init?(coder: NSCoder) {
-		super.init(coder: coder)
-	}
-	
-	@objc private func signIn() {
+	func signInDelegate() {
 		guard let signInURL = createSignInURL() else {
 			print("Failed to create signIn URL")
 			return
@@ -65,15 +56,27 @@ class LoginViewController: UIViewController {
 		loginViewModel.getToken(codeExchangeURL: codeExchangeURL) { [weak self] result in
 			switch result {
 			case .success:
-				//place for launching FindUser view controller
-				let tabBar = TabBar()
-				tabBar.modalPresentationStyle = .fullScreen
-				self?.present(tabBar, animated: true, completion: nil)
-				print("SUCCESS")
+				self?.presentSearchUserScreen()
 			case .fail:
 				print("FAIL")
 			}
 		}
+	}
+	
+	private func presentSearchUserScreen() {
+		let tabBar = TabBar()
+		tabBar.modalPresentationStyle = .fullScreen
+		present(tabBar, animated: true, completion: nil)
+		print("SUCCESS")
+	}
+	
+	private func setViewConstraints() {
+		NSLayoutConstraint.activate([
+			loginView.topAnchor.constraint(equalTo: view.topAnchor),
+			loginView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			loginView.leftAnchor.constraint(equalTo: view.leftAnchor),
+			loginView.rightAnchor.constraint(equalTo: view.rightAnchor)
+		])
 	}
 }
 

@@ -18,6 +18,10 @@
 		7D74139227C5179E00284233 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D74139127C5179E00284233 /* LoginViewModel.swift */; };
 		7DB3622927C624F700885719 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3622827C624F700885719 /* TabBar.swift */; };
 		7DB3622B27C6254300885719 /* SearchUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3622A27C6254300885719 /* SearchUserViewController.swift */; };
+		7DB3622E27C650DC00885719 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3622D27C650DC00885719 /* LoginView.swift */; };
+		7DB3623027C6539200885719 /* LoginView+ViewElementsInitialisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3622F27C6539200885719 /* LoginView+ViewElementsInitialisation.swift */; };
+		7DB3623227C6567100885719 /* LoginView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3623127C6567100885719 /* LoginView+Constraints.swift */; };
+		7DB3623527C65D2000885719 /* LoginViewElementSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3623427C65D2000885719 /* LoginViewElementSizes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		7D74139127C5179E00284233 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		7DB3622827C624F700885719 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		7DB3622A27C6254300885719 /* SearchUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewController.swift; sourceTree = "<group>"; };
+		7DB3622D27C650DC00885719 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7DB3622F27C6539200885719 /* LoginView+ViewElementsInitialisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginView+ViewElementsInitialisation.swift"; sourceTree = "<group>"; };
+		7DB3623127C6567100885719 /* LoginView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginView+Constraints.swift"; sourceTree = "<group>"; };
+		7DB3623427C65D2000885719 /* LoginViewElementSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewElementSizes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,9 +97,9 @@
 		7D74138727C508CC00284233 /* LogInScreen */ = {
 			isa = PBXGroup;
 			children = (
+				7DB3622C27C650B600885719 /* View */,
 				7D74139027C5178600284233 /* LoginViewModel */,
 				7D74138F27C5121C00284233 /* Models */,
-				7D72793827C103FE00B2A129 /* LoginViewController.swift */,
 			);
 			path = LogInScreen;
 			sourceTree = "<group>";
@@ -136,6 +144,26 @@
 				7DB3622A27C6254300885719 /* SearchUserViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		7DB3622C27C650B600885719 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DB3623327C6567900885719 /* LoginView */,
+				7D72793827C103FE00B2A129 /* LoginViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7DB3623327C6567900885719 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				7DB3622D27C650DC00885719 /* LoginView.swift */,
+				7DB3622F27C6539200885719 /* LoginView+ViewElementsInitialisation.swift */,
+				7DB3623127C6567100885719 /* LoginView+Constraints.swift */,
+				7DB3623427C65D2000885719 /* LoginViewElementSizes.swift */,
+			);
+			path = LoginView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,10 +240,14 @@
 				7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */,
 				7D74138927C5096E00284233 /* API.swift in Sources */,
 				7DB3622927C624F700885719 /* TabBar.swift in Sources */,
+				7DB3623227C6567100885719 /* LoginView+Constraints.swift in Sources */,
 				7D74138E27C511B200284233 /* LogInModel.swift in Sources */,
+				7DB3623027C6539200885719 /* LoginView+ViewElementsInitialisation.swift in Sources */,
 				7D74138C27C50BDE00284233 /* UserModel.swift in Sources */,
 				7D72793727C103FE00B2A129 /* SceneDelegate.swift in Sources */,
+				7DB3622E27C650DC00885719 /* LoginView.swift in Sources */,
 				7D74139227C5179E00284233 /* LoginViewModel.swift in Sources */,
+				7DB3623527C65D2000885719 /* LoginViewElementSizes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

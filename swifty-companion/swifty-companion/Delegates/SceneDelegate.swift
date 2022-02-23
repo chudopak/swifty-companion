@@ -21,9 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		window = UIWindow(windowScene: windowScene)
 
 		if Token.accessToken == nil || Token.refreshToken == nil {
-			let loginViewModel = LoginViewModel()
-			
-			let loginVC = LoginViewController(loginViewModel: loginViewModel)
+			let loginVC = LoginViewController()
 			window!.rootViewController = loginVC
 			window!.makeKeyAndVisible()
 		} else {
