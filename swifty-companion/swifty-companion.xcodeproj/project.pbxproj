@@ -22,6 +22,7 @@
 		7DB3623027C6539200885719 /* LoginView+ViewElementsInitialisation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3622F27C6539200885719 /* LoginView+ViewElementsInitialisation.swift */; };
 		7DB3623227C6567100885719 /* LoginView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3623127C6567100885719 /* LoginView+Constraints.swift */; };
 		7DB3623527C65D2000885719 /* LoginViewElementSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3623427C65D2000885719 /* LoginViewElementSizes.swift */; };
+		7DCD105A27CD343B00BC709F /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCD105927CD343B00BC709F /* UserInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		7DB3622F27C6539200885719 /* LoginView+ViewElementsInitialisation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginView+ViewElementsInitialisation.swift"; sourceTree = "<group>"; };
 		7DB3623127C6567100885719 /* LoginView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginView+Constraints.swift"; sourceTree = "<group>"; };
 		7DB3623427C65D2000885719 /* LoginViewElementSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewElementSizes.swift; sourceTree = "<group>"; };
+		7DCD105927CD343B00BC709F /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			children = (
 				7DB3622827C624F700885719 /* TabBar.swift */,
 				7DB3622A27C6254300885719 /* SearchUserViewController.swift */,
+				7DCD105927CD343B00BC709F /* UserInfoViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D72793927C103FE00B2A129 /* LoginViewController.swift in Sources */,
+				7DCD105A27CD343B00BC709F /* UserInfoViewController.swift in Sources */,
 				7DB3622B27C6254300885719 /* SearchUserViewController.swift in Sources */,
 				7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */,
 				7D74138927C5096E00284233 /* API.swift in Sources */,

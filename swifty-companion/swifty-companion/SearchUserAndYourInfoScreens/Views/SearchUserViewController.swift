@@ -15,9 +15,11 @@ class SearchUserViewController: UIViewController {
 		label.text = "Hello yo"
 		return label
 	}()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		view.addSubview(helloLabel)
+		view.backgroundColor = .black
 		helloLabel.center = view.center
     }
 	
