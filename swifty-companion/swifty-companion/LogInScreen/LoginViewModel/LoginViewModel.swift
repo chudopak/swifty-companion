@@ -26,22 +26,27 @@ final class LoginViewModel: LoginViewModelProtocol {
 				  response.statusCode == 200
 			else {
 				DispatchQueue.main.async {
-					completionHandler(LoginCompleteStatus.fail)
+					completionHandler(LoginCompleteStatus.fail(.networking))
 				}
 				return
 			}
 			guard error == nil, let data = data else {
 				DispatchQueue.main.async {
-					completionHandler(LoginCompleteStatus.fail)
+					completionHandler(LoginCompleteStatus.fail(.noData))
 				}
 				return
 			}
 			print(data)
-			let token = try? JSONDecoder().decode(Token.self, from: data)
-			Token.accessToken = token!.access_token
-			Token.refreshToken = token!.refresh_token
-			DispatchQueue.main.async {
-				completionHandler(LoginCompleteStatus.success)
+			if let token = try? JSONDecoder().decode(Token.self, from: data) {
+				Token.accessToken = token.access_token
+				Token.refreshToken = token.refresh_token
+				DispatchQueue.main.async {
+					completionHandler(LoginCompleteStatus.success)
+				}
+			} else {
+				DispatchQueue.main.async {
+					completionHandler(LoginCompleteStatus.fail(.wrongDataFormat))
+				}
 			}
 		}
 		getTokenTask.resume()

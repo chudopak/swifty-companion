@@ -7,7 +7,18 @@
 
 import Foundation
 
-struct User: Codable {
+enum FetchStatus {
+	case loading
+	case success(UserData)
+	case failure(FailCode)
+	
+	enum FailCode {
+		case networking
+		case userNotFound
+	}
+}
+
+struct UserData: Codable {
 	var displayname: String?
 	var login: String?
 	var location: String?

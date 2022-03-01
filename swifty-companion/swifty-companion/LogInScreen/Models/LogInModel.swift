@@ -39,6 +39,12 @@ struct Token: Codable {
 }
 
 enum LoginCompleteStatus {
-	case fail
+	case fail(FailCode)
 	case success
+	
+	enum FailCode: String {
+		case networking = "Bad HTTPResponse"
+		case noData = "No Data in response"
+		case wrongDataFormat = "Data in wrong format"
+	}
 }

@@ -23,6 +23,8 @@
 		7DB3623227C6567100885719 /* LoginView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3623127C6567100885719 /* LoginView+Constraints.swift */; };
 		7DB3623527C65D2000885719 /* LoginViewElementSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3623427C65D2000885719 /* LoginViewElementSizes.swift */; };
 		7DCD105A27CD343B00BC709F /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCD105927CD343B00BC709F /* UserInfoViewController.swift */; };
+		7DCFF7C427CE3E1A00FFE12C /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCFF7C327CE3E1A00FFE12C /* LoginButton.swift */; };
+		7DCFF7C727CE401E00FFE12C /* SearchUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCFF7C627CE401E00FFE12C /* SearchUserViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		7DB3623127C6567100885719 /* LoginView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginView+Constraints.swift"; sourceTree = "<group>"; };
 		7DB3623427C65D2000885719 /* LoginViewElementSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewElementSizes.swift; sourceTree = "<group>"; };
 		7DCD105927CD343B00BC709F /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		7DCFF7C327CE3E1A00FFE12C /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		7DCFF7C627CE401E00FFE12C /* SearchUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		7D74138A27C50B4400284233 /* SearchUserAndYourInfoScreens */ = {
 			isa = PBXGroup;
 			children = (
+				7DCFF7C527CE3FF400FFE12C /* ViewModel */,
 				7DB3622727C6239E00885719 /* Views */,
 				7DB3622627C6238C00885719 /* Models */,
 			);
@@ -165,8 +170,17 @@
 				7DB3622F27C6539200885719 /* LoginView+ViewElementsInitialisation.swift */,
 				7DB3623127C6567100885719 /* LoginView+Constraints.swift */,
 				7DB3623427C65D2000885719 /* LoginViewElementSizes.swift */,
+				7DCFF7C327CE3E1A00FFE12C /* LoginButton.swift */,
 			);
 			path = LoginView;
+			sourceTree = "<group>";
+		};
+		7DCFF7C527CE3FF400FFE12C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7DCFF7C627CE401E00FFE12C /* SearchUserViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,11 +257,13 @@
 				7DB3622B27C6254300885719 /* SearchUserViewController.swift in Sources */,
 				7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */,
 				7D74138927C5096E00284233 /* API.swift in Sources */,
+				7DCFF7C727CE401E00FFE12C /* SearchUserViewModel.swift in Sources */,
 				7DB3622927C624F700885719 /* TabBar.swift in Sources */,
 				7DB3623227C6567100885719 /* LoginView+Constraints.swift in Sources */,
 				7D74138E27C511B200284233 /* LogInModel.swift in Sources */,
 				7DB3623027C6539200885719 /* LoginView+ViewElementsInitialisation.swift in Sources */,
 				7D74138C27C50BDE00284233 /* UserModel.swift in Sources */,
+				7DCFF7C427CE3E1A00FFE12C /* LoginButton.swift in Sources */,
 				7D72793727C103FE00B2A129 /* SceneDelegate.swift in Sources */,
 				7DB3622E27C650DC00885719 /* LoginView.swift in Sources */,
 				7D74139227C5179E00284233 /* LoginViewModel.swift in Sources */,

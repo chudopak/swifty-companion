@@ -57,8 +57,8 @@ class LoginViewController: UIViewController, LoginViewControllerDelegate {
 			switch result {
 			case .success:
 				self?.presentSearchUserScreen()
-			case .fail:
-				print("FAIL")
+			case .fail(let val):
+				print("An error is occured while sighing in - \(val.rawValue)")
 			}
 		}
 	}

@@ -19,8 +19,8 @@ extension LoginView {
 		return (imageView)
 	}
 	
-	func makeLoginButton(superView: UIView) -> UIButton {
-		let button = UIButton()
+	func makeLoginButton(superView: UIView) -> LoginButton {
+		let button = LoginButton()
 		button.backgroundColor = UIColor(named: "buttonsGreen")
 		button.layer.cornerRadius = 5
 		button.translatesAutoresizingMaskIntoConstraints = false
