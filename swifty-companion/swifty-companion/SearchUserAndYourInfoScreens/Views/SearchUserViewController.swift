@@ -8,19 +8,10 @@
 import UIKit
 
 class SearchUserViewController: UIViewController {
-
-	lazy var helloLabel: UILabel = {
-		let label = UILabel()
-		label.bounds.size = CGSize(width: 200, height: 50)
-		label.text = "Hello yo"
-		return label
-	}()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		view.addSubview(helloLabel)
 		view.backgroundColor = .black
-		helloLabel.center = view.center
     }
 	
 //	@objc func getMe() {

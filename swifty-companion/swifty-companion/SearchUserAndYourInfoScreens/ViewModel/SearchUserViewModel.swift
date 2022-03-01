@@ -44,12 +44,11 @@ final class SearchUserViewModel: SearchUserViewModelProtocol {
 				}
 			} else {
 				DispatchQueue.main.async {
-					
+					self.updateUserData?(.failure(.userNotFound))
 				}
 			}
-			
-			
 		}
+		getUserData.resume()
 	}
 	
 	private func _setURLSessionConfiguration() -> URLSessionConfiguration {
