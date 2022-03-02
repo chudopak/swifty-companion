@@ -6,11 +6,7 @@
 //
 import UIKit
 
-protocol VerificationViewControllerDelegate: AnyObject {
-	func retryTestConnectionDelegate()
-}
-
-class VerificationViewController: UIViewController, VerificationViewControllerDelegate {
+class VerificationViewController: UIViewController, ErrorViewDelegate {
 	
 	private lazy var backgroundImage: UIImageView = {
 		let imageView = UIImageView()
@@ -110,7 +106,7 @@ class VerificationViewController: UIViewController, VerificationViewControllerDe
 	}
 
 	//MARK: Delegate
-	func retryTestConnectionDelegate() {
+	func retryFetchDelegate() {
 		errorView.isHidden = true
 		activityIndicator.startAnimating()
 		sendTestRequest()

@@ -7,9 +7,13 @@
 
 import UIKit
 
+protocol ErrorViewDelegate: AnyObject {
+	func retryFetchDelegate()
+}
+
 class ErrorView: UIView {
 
-	private weak var delegate: VerificationViewControllerDelegate!
+	private weak var delegate: ErrorViewDelegate!
 	
 	lazy var errorImageView: UIImageView = {
 		let imageView = UIImageView()
@@ -65,7 +69,7 @@ class ErrorView: UIView {
 		return (label)
 	}()
 	
-	init(delegate: VerificationViewControllerDelegate) {
+	init(delegate: ErrorViewDelegate) {
 		super.init(frame: CGRect.zero)
 		self.delegate = delegate
 		translatesAutoresizingMaskIntoConstraints = false
@@ -81,6 +85,6 @@ class ErrorView: UIView {
 	}
 	
 	@objc private func retryTestRequest() {
-		delegate.retryTestConnectionDelegate()
+		delegate.retryFetchDelegate()
 	}
 }

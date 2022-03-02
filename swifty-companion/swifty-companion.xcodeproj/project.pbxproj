@@ -72,9 +72,7 @@
 		7D304CF327CF506600B151CA /* VerificationScreen */ = {
 			isa = PBXGroup;
 			children = (
-				7D304CF627CF7E3100B151CA /* ErrorView.swift */,
-				7D304CF827CF83A400B151CA /* ErrorViewElemetsSize.swift */,
-				7D304CFA27CF9CAC00B151CA /* ErrorView+Constraints.swift */,
+				7D83E67627CFBAFE00766676 /* ErrorView */,
 				7D304CFC27CF9FA300B151CA /* VerificationViewController.swift */,
 			);
 			path = VerificationScreen;
@@ -154,6 +152,16 @@
 				7D74139127C5179E00284233 /* LoginViewModel.swift */,
 			);
 			path = LoginViewModel;
+			sourceTree = "<group>";
+		};
+		7D83E67627CFBAFE00766676 /* ErrorView */ = {
+			isa = PBXGroup;
+			children = (
+				7D304CFA27CF9CAC00B151CA /* ErrorView+Constraints.swift */,
+				7D304CF827CF83A400B151CA /* ErrorViewElemetsSize.swift */,
+				7D304CF627CF7E3100B151CA /* ErrorView.swift */,
+			);
+			path = ErrorView;
 			sourceTree = "<group>";
 		};
 		7DB3622627C6238C00885719 /* Models */ = {
