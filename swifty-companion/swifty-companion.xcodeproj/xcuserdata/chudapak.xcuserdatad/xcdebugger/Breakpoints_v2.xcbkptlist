@@ -68,5 +68,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BC930F03-E6E3-4119-83E9-1DEAE2F101B5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "swifty-companion/VerificationScreen/VerificationViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "sendTestRequest()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BC930F03-E6E3-4119-83E9-1DEAE2F101B5 - 2cdd121f69899f91"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "swifty_companion.VerificationViewController.sendTestRequest() -&gt; ()"
+                  moduleName = "swifty-companion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chudapak/code/SWIFT/SomeProgects/swifty-companion/swifty-companion/swifty-companion/swifty-companion/VerificationScreen/VerificationViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "1221">
+               </Location>
+               <Location
+                  uuid = "BC930F03-E6E3-4119-83E9-1DEAE2F101B5 - ac4d5cca7b43c8e8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in swifty_companion.VerificationViewController.sendTestRequest() -&gt; ()"
+                  moduleName = "swifty-companion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chudapak/code/SWIFT/SomeProgects/swifty-companion/swifty-companion/swifty-companion/swifty-companion/VerificationScreen/VerificationViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "369">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -20,15 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		
 		window = UIWindow(windowScene: windowScene)
 
-		if Token.accessToken == nil || Token.refreshToken == nil {
-			let loginVC = LoginViewController()
-			window!.rootViewController = loginVC
-			window!.makeKeyAndVisible()
-		} else {
-			let tabBar = TabBar()
-			window!.rootViewController = tabBar
-			window!.makeKeyAndVisible()
-		}
+		let verificationVC = VerificationViewController()
+		window!.rootViewController = verificationVC
+		window!.makeKeyAndVisible()
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {

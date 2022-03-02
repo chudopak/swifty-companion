@@ -1,67 +1,89 @@
 //
-//  VerificationViewController.swift
+//  VerificationViewController+Setups.swift
 //  swifty-companion
 //
 //  Created by Stepan Kirillov on 3/2/22.
 //
-
 import UIKit
 
-class VerificationViewController: UIViewController {
+protocol VerificationViewControllerDelegate: AnyObject {
+	func retryTestConnectionDelegate()
+}
+
+class VerificationViewController: UIViewController, VerificationViewControllerDelegate {
 	
 	private lazy var backgroundImage: UIImageView = {
 		let imageView = UIImageView()
 		imageView.image = UIImage(named: "background")
+		imageView.translatesAutoresizingMaskIntoConstraints = false
+		imageView.isUserInteractionEnabled = true
 		return imageView
 	}()
 	
 	private lazy var activityIndicator: UIActivityIndicatorView = {
 		let indic = UIActivityIndicatorView(style: .large)
 		indic.hidesWhenStopped = true
+		indic.translatesAutoresizingMaskIntoConstraints = false
 		indic.color = UIColor(named: "buttonsGreen")
 		return indic
 	}()
 	
-	lazy var sessionConfiguration = _setURLSessionConfiguration()
-	lazy var session = URLSession(configuration: sessionConfiguration)
+	private lazy var sessionConfiguration = _setURLSessionConfiguration()
+	private lazy var session = URLSession(configuration: sessionConfiguration)
 	
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	private lazy var errorView = ErrorView(delegate: self)
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		view.addSubview(backgroundImage)
+		backgroundImage.addSubview(errorView)
+		backgroundImage.addSubview(activityIndicator)
+		errorView.isHidden = true
+		setConstraints()
+		activityIndicator.startAnimating()
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
 		if (Token.accessToken == nil || Token.refreshToken == nil) {
 			presentLoginViewController()
 			return
 		}
 		sendTestRequest()
-		view.addSubview(backgroundImage)
-		backgroundImage.addSubview(activityIndicator)
-		setConstraints()
-		activityIndicator.startAnimating()
-    }
+	}
 	
 	private func sendTestRequest() {
 		guard let url = createURLWithComponents(path: "/v2/me") else {
-			//show error view
 			print("Can't create url")
 			activityIndicator.stopAnimating()
+			showErrorView()
 			return
 		}
-		
 		var request = URLRequest(url: url)
 		request.httpMethod = HTTPMethod.get.rawValue
 		request.setValue("Bearer \(Token.accessToken!)", forHTTPHeaderField: "Authorization")
 		
 		let testRequest = session.dataTask(with: request) { [weak self] data, response, error in
 			
-			self?.activityIndicator.stopAnimating()
-			guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-				//show error view
-				print("HTTP request error")
+			DispatchQueue.main.async {
+				self?.activityIndicator.stopAnimating()
+			}
+			guard let response = response as? HTTPURLResponse,
+				  (200...299).contains(response.statusCode) || response.statusCode == 401
+			else {
+				let response = response as? HTTPURLResponse
+				DispatchQueue.main.async {
+					self?.showErrorView()
+				}
+				print(response?.statusCode ?? 0, "HTTP request error")
 				return
 			}
 			guard error == nil,
 				  let data = data,
 				  let object = try? JSONDecoder().decode(UserData.self, from: data)
 			else {
+				Token.accessToken = nil
+				Token.refreshToken = nil
 				DispatchQueue.main.async {
 					self?.presentLoginViewController()
 				}
@@ -75,16 +97,28 @@ class VerificationViewController: UIViewController {
 		testRequest.resume()
 	}
 	
-	func presentSearchUserScreen() {
+	private func presentSearchUserScreen() {
 		let tabBar = TabBar()
 		tabBar.modalPresentationStyle = .fullScreen
 		present(tabBar, animated: false, completion: nil)
 	}
 	
-	func presentLoginViewController() {
+	private func presentLoginViewController() {
 		let loginVC = LoginViewController()
 		loginVC.modalPresentationStyle = .fullScreen
 		present(loginVC, animated: false, completion: nil)
+	}
+
+	//MARK: Delegate
+	func retryTestConnectionDelegate() {
+		errorView.isHidden = true
+		activityIndicator.startAnimating()
+		sendTestRequest()
+	}
+	
+	private func showErrorView() {
+		errorView.isHidden = false
+		activityIndicator.isHidden = true
 	}
 	
 	private func _setURLSessionConfiguration() -> URLSessionConfiguration {
@@ -93,20 +127,40 @@ class VerificationViewController: UIViewController {
 		configuration.timeoutIntervalForResource = 30
 		return (configuration)
 	}
+}
+
+extension VerificationViewController {
 	
-	private func setConstraints() {
+	fileprivate func setBackgroundImageConstraints() {
 		NSLayoutConstraint.activate([
 			backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
 			backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 			backgroundImage.leftAnchor.constraint(equalTo: view.leftAnchor),
 			backgroundImage.rightAnchor.constraint(equalTo: view.rightAnchor)
 		])
-		
+	}
+	
+	fileprivate func setActivityIndicatorConstraints() {
 		NSLayoutConstraint.activate([
 			activityIndicator.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor),
 			activityIndicator.centerXAnchor.constraint(equalTo: backgroundImage.centerXAnchor),
 			activityIndicator.heightAnchor.constraint(equalToConstant: 50),
 			activityIndicator.widthAnchor.constraint(equalToConstant: 50)
 		])
+	}
+	
+	fileprivate func setErrorViewConstraints() {
+		NSLayoutConstraint.activate([
+			errorView.centerXAnchor.constraint(equalTo: backgroundImage.centerXAnchor),
+			errorView.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor),
+			errorView.heightAnchor.constraint(equalToConstant: errorViewHeight),
+			errorView.widthAnchor.constraint(equalToConstant: errorViewWidth)
+		])
+	}
+	
+	fileprivate func setConstraints() {
+		setBackgroundImageConstraints()
+		setActivityIndicatorConstraints()
+		setErrorViewConstraints()
 	}
 }

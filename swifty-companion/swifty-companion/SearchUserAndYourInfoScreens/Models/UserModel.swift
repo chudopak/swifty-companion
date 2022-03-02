@@ -20,12 +20,12 @@ enum FetchStatus {
 
 struct UserData: Codable {
 	var displayname: String?
-	var login: String?
+	var login: String
 	var location: String?
 	var wallet: Int?
 	var correction_point: Int?
-	var id: Int?
-	var url: String?
+	var id: Int
+	var url: String
 	var image_url: String?
 	var cursus_users: [Cursus]?
 	var projects_users: [Project]?

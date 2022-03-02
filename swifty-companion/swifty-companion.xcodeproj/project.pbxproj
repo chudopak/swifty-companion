@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D304CF527CF508600B151CA /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CF427CF508600B151CA /* VerificationViewController.swift */; };
+		7D304CF727CF7E3100B151CA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CF627CF7E3100B151CA /* ErrorView.swift */; };
+		7D304CF927CF83A400B151CA /* ErrorViewElemetsSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CF827CF83A400B151CA /* ErrorViewElemetsSize.swift */; };
+		7D304CFB27CF9CAC00B151CA /* ErrorView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CFA27CF9CAC00B151CA /* ErrorView+Constraints.swift */; };
+		7D304CFD27CF9FA300B151CA /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CFC27CF9FA300B151CA /* VerificationViewController.swift */; };
 		7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72793427C103FE00B2A129 /* AppDelegate.swift */; };
 		7D72793727C103FE00B2A129 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72793627C103FE00B2A129 /* SceneDelegate.swift */; };
 		7D72793927C103FE00B2A129 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72793827C103FE00B2A129 /* LoginViewController.swift */; };
@@ -29,7 +32,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7D304CF427CF508600B151CA /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
+		7D304CF627CF7E3100B151CA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		7D304CF827CF83A400B151CA /* ErrorViewElemetsSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewElemetsSize.swift; sourceTree = "<group>"; };
+		7D304CFA27CF9CAC00B151CA /* ErrorView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorView+Constraints.swift"; sourceTree = "<group>"; };
+		7D304CFC27CF9FA300B151CA /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		7D72793127C103FE00B2A129 /* swifty-companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swifty-companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D72793427C103FE00B2A129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D72793627C103FE00B2A129 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,7 +72,10 @@
 		7D304CF327CF506600B151CA /* VerificationScreen */ = {
 			isa = PBXGroup;
 			children = (
-				7D304CF427CF508600B151CA /* VerificationViewController.swift */,
+				7D304CF627CF7E3100B151CA /* ErrorView.swift */,
+				7D304CF827CF83A400B151CA /* ErrorViewElemetsSize.swift */,
+				7D304CFA27CF9CAC00B151CA /* ErrorView+Constraints.swift */,
+				7D304CFC27CF9FA300B151CA /* VerificationViewController.swift */,
 			);
 			path = VerificationScreen;
 			sourceTree = "<group>";
@@ -269,15 +278,18 @@
 				7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */,
 				7D74138927C5096E00284233 /* API.swift in Sources */,
 				7DCFF7C727CE401E00FFE12C /* SearchUserViewModel.swift in Sources */,
+				7D304CF927CF83A400B151CA /* ErrorViewElemetsSize.swift in Sources */,
 				7DB3622927C624F700885719 /* TabBar.swift in Sources */,
+				7D304CF727CF7E3100B151CA /* ErrorView.swift in Sources */,
 				7DB3623227C6567100885719 /* LoginView+Constraints.swift in Sources */,
+				7D304CFB27CF9CAC00B151CA /* ErrorView+Constraints.swift in Sources */,
 				7D74138E27C511B200284233 /* LogInModel.swift in Sources */,
 				7DB3623027C6539200885719 /* LoginView+ViewElementsInitialisation.swift in Sources */,
 				7D74138C27C50BDE00284233 /* UserModel.swift in Sources */,
 				7DCFF7C427CE3E1A00FFE12C /* LoginButton.swift in Sources */,
+				7D304CFD27CF9FA300B151CA /* VerificationViewController.swift in Sources */,
 				7D72793727C103FE00B2A129 /* SceneDelegate.swift in Sources */,
 				7DB3622E27C650DC00885719 /* LoginView.swift in Sources */,
-				7D304CF527CF508600B151CA /* VerificationViewController.swift in Sources */,
 				7D74139227C5179E00284233 /* LoginViewModel.swift in Sources */,
 				7DB3623527C65D2000885719 /* LoginViewElementSizes.swift in Sources */,
 			);
