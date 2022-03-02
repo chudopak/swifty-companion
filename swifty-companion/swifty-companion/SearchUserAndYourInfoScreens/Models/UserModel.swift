@@ -65,5 +65,3 @@ struct ProjectDetails: Codable {
 struct Campus: Codable {
 	var name: String
 }
-
-

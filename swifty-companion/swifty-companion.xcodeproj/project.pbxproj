@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D304CF527CF508600B151CA /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CF427CF508600B151CA /* VerificationViewController.swift */; };
 		7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72793427C103FE00B2A129 /* AppDelegate.swift */; };
 		7D72793727C103FE00B2A129 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72793627C103FE00B2A129 /* SceneDelegate.swift */; };
 		7D72793927C103FE00B2A129 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72793827C103FE00B2A129 /* LoginViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D304CF427CF508600B151CA /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		7D72793127C103FE00B2A129 /* swifty-companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swifty-companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D72793427C103FE00B2A129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D72793627C103FE00B2A129 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D304CF327CF506600B151CA /* VerificationScreen */ = {
+			isa = PBXGroup;
+			children = (
+				7D304CF427CF508600B151CA /* VerificationViewController.swift */,
+			);
+			path = VerificationScreen;
+			sourceTree = "<group>";
+		};
 		7D72792827C103FE00B2A129 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +90,7 @@
 		7D72793327C103FE00B2A129 /* swifty-companion */ = {
 			isa = PBXGroup;
 			children = (
+				7D304CF327CF506600B151CA /* VerificationScreen */,
 				7D74138A27C50B4400284233 /* SearchUserAndYourInfoScreens */,
 				7D74138727C508CC00284233 /* LogInScreen */,
 				7D74138627C508A000284233 /* Delegates */,
@@ -266,6 +277,7 @@
 				7DCFF7C427CE3E1A00FFE12C /* LoginButton.swift in Sources */,
 				7D72793727C103FE00B2A129 /* SceneDelegate.swift in Sources */,
 				7DB3622E27C650DC00885719 /* LoginView.swift in Sources */,
+				7D304CF527CF508600B151CA /* VerificationViewController.swift in Sources */,
 				7D74139227C5179E00284233 /* LoginViewModel.swift in Sources */,
 				7DB3623527C65D2000885719 /* LoginViewElementSizes.swift in Sources */,
 			);

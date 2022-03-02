@@ -26,25 +26,25 @@ final class SearchUserViewModel: SearchUserViewModelProtocol {
 		request.httpMethod = HTTPMethod.get.rawValue
 		request.setValue("Bearer \(Token.accessToken!)", forHTTPHeaderField: "Authorization")
 		
-		let getUserData = session.dataTask(with: request) { data, response, error in
+		let getUserData = session.dataTask(with: request) { [weak self] data, response, error in
 			guard let response = response as? HTTPURLResponse,
 				  response.statusCode == 200,
 				  error == nil,
 				  let data = data
 			else {
 				DispatchQueue.main.async {
-					self.updateUserData?(.failure(.networking))
+					self?.updateUserData?(.failure(.networking))
 				}
 				return
 			}
 			print(data)
 			if let token = try? JSONDecoder().decode(UserData.self, from: data) {
 				DispatchQueue.main.async {
-					self.updateUserData?(.success(token))
+					self?.updateUserData?(.success(token))
 				}
 			} else {
 				DispatchQueue.main.async {
-					self.updateUserData?(.failure(.userNotFound))
+					self?.updateUserData?(.failure(.userNotFound))
 				}
 			}
 		}
