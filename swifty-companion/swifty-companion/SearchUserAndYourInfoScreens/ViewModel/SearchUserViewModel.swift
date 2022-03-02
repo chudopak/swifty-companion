@@ -28,7 +28,7 @@ final class SearchUserViewModel: SearchUserViewModelProtocol {
 		
 		let getUserData = session.dataTask(with: request) { [weak self] data, response, error in
 			guard let response = response as? HTTPURLResponse,
-				  response.statusCode == 200,
+				  (200...299).contains(response.statusCode),
 				  error == nil,
 				  let data = data
 			else {

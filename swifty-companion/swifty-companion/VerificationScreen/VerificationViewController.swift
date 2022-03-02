@@ -52,7 +52,7 @@ class VerificationViewController: UIViewController, ErrorViewDelegate {
 		guard let url = createURLWithComponents(path: "/v2/me") else {
 			print("Can't create url")
 			activityIndicator.stopAnimating()
-			showErrorView()
+			showErrorView(errorDescription: "Something went wrong :_(")
 			return
 		}
 		var request = URLRequest(url: url)
@@ -69,7 +69,7 @@ class VerificationViewController: UIViewController, ErrorViewDelegate {
 			else {
 				let response = response as? HTTPURLResponse
 				DispatchQueue.main.async {
-					self?.showErrorView()
+					self?.showErrorView(errorDescription: "Poor internet connection")
 				}
 				print(response?.statusCode ?? 0, "HTTP request error")
 				return
@@ -112,7 +112,8 @@ class VerificationViewController: UIViewController, ErrorViewDelegate {
 		sendTestRequest()
 	}
 	
-	private func showErrorView() {
+	private func showErrorView(errorDescription: String) {
+		errorView.errorDescription = errorDescription
 		errorView.isHidden = false
 		activityIndicator.isHidden = true
 	}

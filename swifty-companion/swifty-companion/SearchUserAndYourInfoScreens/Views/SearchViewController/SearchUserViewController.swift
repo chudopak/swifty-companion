@@ -9,11 +9,40 @@ import UIKit
 
 class SearchUserViewController: UIViewController {
 	
+	private var searchUserViewModel: SearchUserViewModelProtocol!
+	
+	private lazy var searchView = SearchView()
+	
+	init(viewModel: SearchUserViewModelProtocol) {
+		super.init(nibName: nil, bundle: nil)
+		searchUserViewModel = viewModel
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-		view.backgroundColor = .black
+		view.addSubview(searchView)
+		setConstraints()
     }
 	
+}
+
+extension SearchUserViewController {
+	
+	func setConstraints() {
+		NSLayoutConstraint.activate([
+			searchView.topAnchor.constraint(equalTo: view.topAnchor),
+			searchView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			searchView.rightAnchor.constraint(equalTo: view.rightAnchor),
+			searchView.leftAnchor.constraint(equalTo: view.leftAnchor)
+		])
+	}
+}
+
+
 //	@objc func getMe() {
 //		let url = createURLWithComponents(path: "/v2/users/aa")
 //		guard let url = url else {
@@ -39,4 +68,3 @@ class SearchUserViewController: UIViewController {
 //		}
 //		sessions.resume()
 //	}
-}

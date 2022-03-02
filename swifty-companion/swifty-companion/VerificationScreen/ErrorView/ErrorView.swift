@@ -13,6 +13,13 @@ protocol ErrorViewDelegate: AnyObject {
 
 class ErrorView: UIView {
 
+	lazy var errorDescription: String = "" {
+		didSet {
+			errorDescriptionLabel.text = errorDescription
+			setNeedsLayout()
+		}
+	}
+	
 	private weak var delegate: ErrorViewDelegate!
 	
 	lazy var errorImageView: UIImageView = {
@@ -40,7 +47,6 @@ class ErrorView: UIView {
 		label.numberOfLines = 0
 		label.textColor = UIColor(named: "errorTintColorGray")
 		label.textAlignment = .center
-		label.text = "Poor internet connection"
 		label.font = UIFont.systemFont(ofSize: 16, weight: .light)
 		label.adjustsFontSizeToFitWidth = true
 		return (label)

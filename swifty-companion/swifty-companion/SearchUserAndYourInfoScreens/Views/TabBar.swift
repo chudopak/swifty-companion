@@ -9,13 +9,19 @@ import UIKit
 
 class TabBar: UITabBarController {
 
+	private var searchUserViewModel: SearchUserViewModel!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupViewControllers()
+		
     }
 	
 	private func setupViewControllers() {
-		let searchUserVC = SearchUserViewController()
+		
+		searchUserViewModel = SearchUserViewModel()
+		
+		let searchUserVC = SearchUserViewController(viewModel: searchUserViewModel)
 		
 		searchUserVC.title = NSLocalizedString("Explore", comment: "")
 		
