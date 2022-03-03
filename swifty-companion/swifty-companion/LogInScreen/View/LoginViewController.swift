@@ -23,7 +23,6 @@ class LoginViewController: UIViewController, LoginViewControllerDelegate {
 		loginView = LoginView(delegate: self, frame: view.bounds)
 		view.addSubview(loginView)
 		setViewConstraints()
-		loginView.setUpView()
 	}
 	
 	func signInDelegate() {
@@ -69,7 +68,17 @@ class LoginViewController: UIViewController, LoginViewControllerDelegate {
 		present(tabBar, animated: true, completion: nil)
 		print("SUCCESS")
 	}
+}
+
+extension LoginViewController: ASWebAuthenticationPresentationContextProviding {
 	
+	func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+		let window = UIApplication.shared.windows.first { $0.isKeyWindow }
+		return window ?? ASPresentationAnchor()
+	}
+}
+
+extension LoginViewController {
 	private func setViewConstraints() {
 		NSLayoutConstraint.activate([
 			loginView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -77,12 +86,5 @@ class LoginViewController: UIViewController, LoginViewControllerDelegate {
 			loginView.leftAnchor.constraint(equalTo: view.leftAnchor),
 			loginView.rightAnchor.constraint(equalTo: view.rightAnchor)
 		])
-	}
-}
-
-extension LoginViewController: ASWebAuthenticationPresentationContextProviding {
-	func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-		let window = UIApplication.shared.windows.first { $0.isKeyWindow }
-		return window ?? ASPresentationAnchor()
 	}
 }

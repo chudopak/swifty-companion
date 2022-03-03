@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum FetchStatus {
+enum SearchUserStatus {
+	case initial
 	case loading
 	case success(UserData)
 	case failure(FailCode)

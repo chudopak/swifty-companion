@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginButton: UIButton {
+class GreenButton: UIButton {
 
 	override var isHighlighted: Bool {
 		didSet {

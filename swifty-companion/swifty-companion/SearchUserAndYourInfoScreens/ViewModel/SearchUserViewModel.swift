@@ -8,12 +8,12 @@
 import UIKit
 
 protocol SearchUserViewModelProtocol {
-	var updateUserData: ((FetchStatus) -> ())? { get set }
+	var updateUserData: ((SearchUserStatus) -> ())? { get set }
 	func fetchUserData(with url: URL)
 }
 
 final class SearchUserViewModel: SearchUserViewModelProtocol {
-	var updateUserData: ((FetchStatus) -> ())?
+	var updateUserData: ((SearchUserStatus) -> ())?
 	
 	lazy var sessionConfiguration = _setURLSessionConfiguration()
 	lazy var session = URLSession(configuration: sessionConfiguration)
