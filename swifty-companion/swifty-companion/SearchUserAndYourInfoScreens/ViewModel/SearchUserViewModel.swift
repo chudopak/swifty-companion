@@ -27,9 +27,7 @@ final class SearchUserViewModel: SearchUserViewModelProtocol {
 		request.setValue("Bearer \(Token.accessToken!)", forHTTPHeaderField: "Authorization")
 		
 		let getUserData = session.dataTask(with: request) { [weak self] data, response, error in
-			guard let response = response as? HTTPURLResponse,
-				  (200...299).contains(response.statusCode),
-				  error == nil,
+			guard error == nil,
 				  let data = data
 			else {
 				DispatchQueue.main.async {
@@ -37,10 +35,19 @@ final class SearchUserViewModel: SearchUserViewModelProtocol {
 				}
 				return
 			}
-			print(data)
-			if let token = try? JSONDecoder().decode(UserData.self, from: data) {
+			guard let response = response as? HTTPURLResponse,
+				  (200...299).contains(response.statusCode)
+			else {
+				let response = response as? HTTPURLResponse
+				print("Status code", response?.statusCode ?? 0)
 				DispatchQueue.main.async {
-					self?.updateUserData?(.success(token))
+					self?.updateUserData?(.failure(.userNotFound))
+				}
+				return
+			}
+			if let userData = try? JSONDecoder().decode(UserData.self, from: data) {
+				DispatchQueue.main.async {
+					self?.updateUserData?(.success(userData))
 				}
 			} else {
 				DispatchQueue.main.async {

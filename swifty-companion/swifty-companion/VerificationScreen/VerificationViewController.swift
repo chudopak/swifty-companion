@@ -128,7 +128,7 @@ class VerificationViewController: UIViewController, ErrorViewDelegate {
 
 extension VerificationViewController {
 	
-	fileprivate func setBackgroundImageConstraints() {
+	private func setBackgroundImageConstraints() {
 		NSLayoutConstraint.activate([
 			backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
 			backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -137,7 +137,7 @@ extension VerificationViewController {
 		])
 	}
 	
-	fileprivate func setActivityIndicatorConstraints() {
+	private func setActivityIndicatorConstraints() {
 		NSLayoutConstraint.activate([
 			activityIndicator.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor),
 			activityIndicator.centerXAnchor.constraint(equalTo: backgroundImage.centerXAnchor),
@@ -146,7 +146,7 @@ extension VerificationViewController {
 		])
 	}
 	
-	fileprivate func setErrorViewConstraints() {
+	private func setErrorViewConstraints() {
 		NSLayoutConstraint.activate([
 			errorView.centerXAnchor.constraint(equalTo: backgroundImage.centerXAnchor),
 			errorView.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor),
@@ -155,7 +155,7 @@ extension VerificationViewController {
 		])
 	}
 	
-	fileprivate func setConstraints() {
+	private func setConstraints() {
 		setBackgroundImageConstraints()
 		setActivityIndicatorConstraints()
 		setErrorViewConstraints()

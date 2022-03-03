@@ -11,7 +11,7 @@ class SearchUserViewController: UIViewController {
 	
 	private var searchUserViewModel: SearchUserViewModelProtocol!
 	
-	private lazy var searchView = SearchView()
+	private lazy var searchView = SearchView(searchUserViewModel: searchUserViewModel)
 	
 	init(viewModel: SearchUserViewModelProtocol) {
 		super.init(nibName: nil, bundle: nil)
