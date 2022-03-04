@@ -19,12 +19,16 @@ class SearchView: UIView, UITextFieldDelegate, ErrorViewDelegate {
 	}
 	
 	private lazy var backgroundImageView = makeBackgroundImageView()
-	private lazy var stackView = makeStackView()
+	private lazy var searchStackView = makeStackView()
 	private lazy var searchButton = makeSearchButton()
 	private lazy var searchBar = makeTextField()
 	private lazy var errorView = ErrorView(delegate: self)
 	private lazy var activityIndicator = makeActivityIndicator()
+	private lazy var userNotFoundStackView = makeStackView()
+	private lazy var tryAgainButtonn = makeTryAgainButton()
+	private lazy var userNotFoundLabel = makeUserNotFoundLabel()
 	
+	private var lastSearchedUser = ""
 	
 	init(searchUserViewModel: SearchUserViewModelProtocol) {
 		super.init(frame: CGRect.zero)
@@ -52,16 +56,35 @@ class SearchView: UIView, UITextFieldDelegate, ErrorViewDelegate {
 			handleFailure(code: code)
 		case .success(let userData):
 			activityIndicator.stopAnimating()
-			makeVisible(stackView: true)
+			makeVisible(searchStackView: true)
 			print(userData)
 		default:
 			break
 		}
 	}
 	
-	private func makeVisible(stackView stackViewVisibility: Bool = false, errorViewVisibility: Bool = false) {
+	private func makeVisible(searchStackView stackViewVisibility: Bool = false,
+							 errorViewVisibility: Bool = false,
+							 userNotFoundStackView userNotFoundVisibility: Bool = false) {
 		errorView.isHidden = !errorViewVisibility
-		stackView.isHidden = !stackViewVisibility
+		searchStackView.isHidden = !stackViewVisibility
+		userNotFoundStackView.isHidden = !userNotFoundVisibility
+	}
+	
+	private func handleFailure(code: SearchUserStatus.FailCode) {
+		switch code {
+		case .networking:
+			errorView.errorDescription = code.rawValue
+			makeVisible(errorViewVisibility: true)
+		case .userNotFound:
+			if lastSearchedUser.count > 13 {
+				let cut = lastSearchedUser.prefix(10) + "..."
+				userNotFoundLabel.text = "User \"\(cut)\" not found."
+			} else {
+				userNotFoundLabel.text = "User \"\(lastSearchedUser)\" not found."
+			}
+			makeVisible(userNotFoundStackView: true)
+		}
 	}
 	
 	@objc private func startSearching() {
@@ -69,6 +92,7 @@ class SearchView: UIView, UITextFieldDelegate, ErrorViewDelegate {
 		if username == "" {
 			return
 		}
+		lastSearchedUser = username
 		guard let url = createURLWithComponents(path: "/v2/users/\(username)") else {
 			errorView.errorDescription = "Unexpected error. We are sorry :("
 			makeVisible(errorViewVisibility: true)
@@ -81,20 +105,12 @@ class SearchView: UIView, UITextFieldDelegate, ErrorViewDelegate {
 		searchBar.resignFirstResponder()
 	}
 	
-	private func handleFailure(code: SearchUserStatus.FailCode) {
-		switch code {
-		case .networking:
-			errorView.errorDescription = code.rawValue
-			makeVisible(errorViewVisibility: true)
-		case .userNotFound:
-			//make custom UserNotFoundView
-			errorView.errorDescription = code.rawValue
-			makeVisible(errorViewVisibility: true)
-		}
+	@objc private func tryAgainFindUser() {
+		makeVisible(searchStackView: true)
 	}
 	
 	func retryFetchDelegate() {
-		makeVisible(stackView: true)
+		makeVisible(searchStackView: true)
 	}
 	
 	private func setupViews() {
@@ -102,10 +118,16 @@ class SearchView: UIView, UITextFieldDelegate, ErrorViewDelegate {
 		addSubview(backgroundImageView)
 		backgroundImageView.addSubview(errorView)
 		errorView.isHidden = true
-		backgroundImageView.addSubview(stackView)
 		backgroundImageView.addSubview(activityIndicator)
-		stackView.addArrangedSubview(searchBar)
-		stackView.addArrangedSubview(searchButton)
+
+		backgroundImageView.addSubview(searchStackView)
+		searchStackView.addArrangedSubview(searchBar)
+		searchStackView.addArrangedSubview(searchButton)
+		
+		backgroundImageView.addSubview(userNotFoundStackView)
+		userNotFoundStackView.addArrangedSubview(userNotFoundLabel)
+		userNotFoundStackView.addArrangedSubview(tryAgainButtonn)
+		userNotFoundStackView.isHidden = true
 		setConstraints()
 	}
 	
@@ -142,8 +164,29 @@ extension SearchView {
 		view.translatesAutoresizingMaskIntoConstraints = false
 		return (view)
 	}
+
+	private func makeTryAgainButton() -> GreenButton {
+		let button = GreenButton()
+		button.setTitle("Try Again", for: .normal)
+		button.backgroundColor = UIColor(named: "buttonsGreen")
+		button.layer.cornerRadius = buttonCornerRadius
+		button.translatesAutoresizingMaskIntoConstraints = false
+		button.addTarget(self, action: #selector(tryAgainFindUser), for: .touchUpInside)
+		return button
+	}
 	
-	private func makeSearchButton() -> UIButton {
+	private func makeUserNotFoundLabel() -> UILabel {
+		let label = UILabel()
+		label.translatesAutoresizingMaskIntoConstraints = false
+		label.numberOfLines = 0
+		label.textColor = .white
+		label.textAlignment = .center
+		label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+		label.adjustsFontSizeToFitWidth = true
+		return (label)
+	}
+	
+	private func makeSearchButton() -> GreenButton {
 		let searchButton = GreenButton()
 		searchButton.setTitle("Search", for: .normal)
 		searchButton.backgroundColor = UIColor(named: "buttonsGreen")
@@ -214,7 +257,8 @@ extension SearchView {
 	
 	private func setConstraints() {
 		setBackgroudConstraints(for: backgroundImageView)
-		setStackViewConstraints(for: stackView, with: backgroundImageView)
+		setStackViewConstraints(for: searchStackView, with: backgroundImageView)
+		setStackViewConstraints(for: userNotFoundStackView, with: backgroundImageView)
 		setErrorViewConstraints(for: errorView, with: backgroundImageView)
 		setActivityIndicatorConstraints(for: activityIndicator, with: backgroundImageView)
 	}

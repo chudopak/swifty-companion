@@ -15,7 +15,7 @@ enum SearchUserStatus {
 	
 	enum FailCode: String {
 		case networking = "Loading Error. Check internet connection and reload app."
-		case userNotFound = "User Not Found"
+		case userNotFound
 	}
 }
 
