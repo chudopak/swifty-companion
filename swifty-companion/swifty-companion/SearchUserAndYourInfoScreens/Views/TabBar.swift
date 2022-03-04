@@ -9,12 +9,12 @@ import UIKit
 
 class TabBar: UITabBarController {
 
-	private var searchUserViewModel: SearchUserViewModel!
+	private var searchUserViewModel: SearchDataViewModel!
 	private var userData: UserData?
 	
 	init(userData: UserData) {
-		super.init(nibName: nil, bundle: nil)
 		self.userData = userData
+		super.init(nibName: nil, bundle: nil)
 	}
 	
 	init() {
@@ -33,20 +33,25 @@ class TabBar: UITabBarController {
 	
 	private func setupViewControllers() {
 		
-		searchUserViewModel = SearchUserViewModel()
-		
-		let searchUserVC = SearchUserViewController(viewModel: searchUserViewModel)
+		let searchUserVC = SearchUserViewController()
+		let userProfileVC: UserProfileViewController
+		if let userData = userData {
+			userProfileVC = UserProfileViewController(userData: userData)
+		} else {
+			userProfileVC = UserProfileViewController()
+		}
 		
 		searchUserVC.title = NSLocalizedString("Explore", comment: "")
+		userProfileVC.title = NSLocalizedString("Home", comment: "")
 		
-		setViewControllers([searchUserVC], animated: false)
+		setViewControllers([searchUserVC, userProfileVC], animated: false)
 		
 		guard let items = tabBar.items else {
-			print("Failed to get tabBar items")
-			return
+			fatalError("Failed to get tabBar items")
 		}
 		
 		items[0].image = UIImage(systemName: "magnifyingglass")
+		items[1].image = UIImage(systemName: "house")
 	}
     
 }

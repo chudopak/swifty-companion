@@ -9,7 +9,8 @@ import UIKit
 
 class SearchView: UIView, UITextFieldDelegate, ErrorViewDelegate {
 
-	private var searchUserViewModel: SearchUserViewModelProtocol!
+	private var searchUserViewModel: SearchUserProtocol!
+	private weak var delegate: SearchUserViewControllerDelegate!
 	
 	private var searchUserStatus: SearchUserStatus = SearchUserStatus.initial {
 		didSet {
@@ -30,12 +31,13 @@ class SearchView: UIView, UITextFieldDelegate, ErrorViewDelegate {
 	
 	private var lastSearchedUser = ""
 	
-	init(searchUserViewModel: SearchUserViewModelProtocol) {
+	init(searchUserViewModel: SearchUserProtocol, delegate: SearchUserViewControllerDelegate) {
 		super.init(frame: CGRect.zero)
 		self.searchUserViewModel = searchUserViewModel
 		self.searchUserViewModel.updateUserData = { [weak self] status in
 			self?.searchUserStatus = status
 		}
+		self.delegate = delegate
 		setupViews()
 		setGestures()
 	}
@@ -58,6 +60,7 @@ class SearchView: UIView, UITextFieldDelegate, ErrorViewDelegate {
 			activityIndicator.stopAnimating()
 			makeVisible(searchStackView: true)
 			//delete it later
+			delegate.openUserProfileViewController(userData: userData)
 			printData(data: userData)
 		default:
 			break

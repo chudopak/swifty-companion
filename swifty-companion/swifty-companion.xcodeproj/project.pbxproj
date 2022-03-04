@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D28DE0127D2774F00924C9F /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D28DE0027D2774F00924C9F /* JSONDecoder.swift */; };
+		7D28DE0427D27E9C00924C9F /* UIImageView+downloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D28DE0327D27E9C00924C9F /* UIImageView+downloadImage.swift */; };
 		7D304CF727CF7E3100B151CA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CF627CF7E3100B151CA /* ErrorView.swift */; };
 		7D304CF927CF83A400B151CA /* ErrorViewElemetsSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CF827CF83A400B151CA /* ErrorViewElemetsSize.swift */; };
 		7D304CFD27CF9FA300B151CA /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CFC27CF9FA300B151CA /* VerificationViewController.swift */; };
@@ -27,10 +29,12 @@
 		7DB3623527C65D2000885719 /* LoginViewElementSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3623427C65D2000885719 /* LoginViewElementSizes.swift */; };
 		7DCD105A27CD343B00BC709F /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCD105927CD343B00BC709F /* UserProfileViewController.swift */; };
 		7DCFF7C427CE3E1A00FFE12C /* GreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCFF7C327CE3E1A00FFE12C /* GreenButton.swift */; };
-		7DCFF7C727CE401E00FFE12C /* SearchUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCFF7C627CE401E00FFE12C /* SearchUserViewModel.swift */; };
+		7DCFF7C727CE401E00FFE12C /* SearchDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCFF7C627CE401E00FFE12C /* SearchDataViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D28DE0027D2774F00924C9F /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
+		7D28DE0327D27E9C00924C9F /* UIImageView+downloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+downloadImage.swift"; sourceTree = "<group>"; };
 		7D304CF627CF7E3100B151CA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		7D304CF827CF83A400B151CA /* ErrorViewElemetsSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewElemetsSize.swift; sourceTree = "<group>"; };
 		7D304CFC27CF9FA300B151CA /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
@@ -53,7 +57,7 @@
 		7DB3623427C65D2000885719 /* LoginViewElementSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewElementSizes.swift; sourceTree = "<group>"; };
 		7DCD105927CD343B00BC709F /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		7DCFF7C327CE3E1A00FFE12C /* GreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButton.swift; sourceTree = "<group>"; };
-		7DCFF7C627CE401E00FFE12C /* SearchUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewModel.swift; sourceTree = "<group>"; };
+		7DCFF7C627CE401E00FFE12C /* SearchDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D28DDFF27D2299000924C9F /* UserProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				7DCD105927CD343B00BC709F /* UserProfileViewController.swift */,
+			);
+			path = UserProfileScreen;
+			sourceTree = "<group>";
+		};
+		7D28DE0227D27E7F00924C9F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7D28DE0327D27E9C00924C9F /* UIImageView+downloadImage.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		7D304CF327CF506600B151CA /* VerificationScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +123,7 @@
 		7D72793327C103FE00B2A129 /* swifty-companion */ = {
 			isa = PBXGroup;
 			children = (
+				7D28DE0227D27E7F00924C9F /* Utils */,
 				7D6BE00A27D0C5320040507E /* GeneralViews */,
 				7D304CF327CF506600B151CA /* VerificationScreen */,
 				7D74138A27C50B4400284233 /* SearchUserAndYourInfoScreens */,
@@ -112,6 +133,7 @@
 				7D72793F27C1040000B2A129 /* LaunchScreen.storyboard */,
 				7D72794227C1040000B2A129 /* Info.plist */,
 				7D74138827C5096E00284233 /* API.swift */,
+				7D28DE0027D2774F00924C9F /* JSONDecoder.swift */,
 			);
 			path = "swifty-companion";
 			sourceTree = "<group>";
@@ -170,13 +192,13 @@
 			path = ErrorView;
 			sourceTree = "<group>";
 		};
-		7D83E67927CFD36A00766676 /* SearchViewController */ = {
+		7D83E67927CFD36A00766676 /* SearchViewScreen */ = {
 			isa = PBXGroup;
 			children = (
 				7D83E67E27CFDC0100766676 /* SearchView */,
 				7DB3622A27C6254300885719 /* SearchUserViewController.swift */,
 			);
-			path = SearchViewController;
+			path = SearchViewScreen;
 			sourceTree = "<group>";
 		};
 		7D83E67E27CFDC0100766676 /* SearchView */ = {
@@ -199,9 +221,9 @@
 		7DB3622727C6239E00885719 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7D83E67927CFD36A00766676 /* SearchViewController */,
+				7D28DDFF27D2299000924C9F /* UserProfileScreen */,
+				7D83E67927CFD36A00766676 /* SearchViewScreen */,
 				7DB3622827C624F700885719 /* TabBar.swift */,
-				7DCD105927CD343B00BC709F /* UserProfileViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -227,7 +249,7 @@
 		7DCFF7C527CE3FF400FFE12C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				7DCFF7C627CE401E00FFE12C /* SearchUserViewModel.swift */,
+				7DCFF7C627CE401E00FFE12C /* SearchDataViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -307,12 +329,14 @@
 				7D6BE00927D0C2CE0040507E /* SearchViewElementSizes.swift in Sources */,
 				7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */,
 				7D74138927C5096E00284233 /* API.swift in Sources */,
-				7DCFF7C727CE401E00FFE12C /* SearchUserViewModel.swift in Sources */,
+				7DCFF7C727CE401E00FFE12C /* SearchDataViewModel.swift in Sources */,
 				7D304CF927CF83A400B151CA /* ErrorViewElemetsSize.swift in Sources */,
 				7DB3622927C624F700885719 /* TabBar.swift in Sources */,
 				7D304CF727CF7E3100B151CA /* ErrorView.swift in Sources */,
 				7D83E67B27CFD3AE00766676 /* SearchView.swift in Sources */,
 				7D74138E27C511B200284233 /* LogInModel.swift in Sources */,
+				7D28DE0427D27E9C00924C9F /* UIImageView+downloadImage.swift in Sources */,
+				7D28DE0127D2774F00924C9F /* JSONDecoder.swift in Sources */,
 				7D74138C27C50BDE00284233 /* UserModel.swift in Sources */,
 				7DCFF7C427CE3E1A00FFE12C /* GreenButton.swift in Sources */,
 				7D304CFD27CF9FA300B151CA /* VerificationViewController.swift in Sources */,

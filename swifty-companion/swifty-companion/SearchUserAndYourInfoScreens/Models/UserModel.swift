@@ -67,6 +67,17 @@ struct Campus: Codable {
 	var name: String
 }
 
+enum SearchCoalitionStatus {
+	case initial
+	case success(CoalitionData)
+	case failure
+}
+
+struct CoalitionData: Codable {
+	var name: String
+	var image_url: String
+}
+
 //TEMPERARY
 func printData(data: UserData) {
 	print("DisplayName -- \(data.displayname ?? "")")
