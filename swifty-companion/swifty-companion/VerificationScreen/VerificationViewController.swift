@@ -85,16 +85,16 @@ class VerificationViewController: UIViewController, ErrorViewDelegate {
 				}
 				return
 			}
-			print(object)
+			printData(data: object)
 			DispatchQueue.main.async {
-				self?.presentSearchUserScreen()
+				self?.presentSearchUserScreen(userData: object)
 			}
 		}
 		testRequest.resume()
 	}
 	
-	private func presentSearchUserScreen() {
-		let tabBar = TabBar()
+	private func presentSearchUserScreen(userData: UserData) {
+		let tabBar = TabBar(userData: userData)
 		tabBar.modalPresentationStyle = .fullScreen
 		present(tabBar, animated: false, completion: nil)
 	}

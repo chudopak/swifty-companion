@@ -66,3 +66,42 @@ struct ProjectDetails: Codable {
 struct Campus: Codable {
 	var name: String
 }
+
+//TEMPERARY
+func printData(data: UserData) {
+	print("DisplayName -- \(data.displayname ?? "")")
+	print()
+	print("login -- \(data.login)")
+	print()
+	print("Location -- \(data.location ?? "")")
+	print()
+	print("Wallet -- \(data.wallet ?? -1)")
+	print()
+	print("Evaluation points -- \(data.correction_point ?? 0)")
+	print()
+	print("ID -- \(data.id)")
+	print()
+	print("url -- \(data.url)")
+	print()
+	print("image url -- \(data.image_url ?? "")")
+	print()
+	print("Cursus user -- \(data.cursus_users ?? [Cursus]())")
+	print()
+	print("Progect user -- ")
+	if let proj = data.projects_users {
+		printProjects(projects: proj)
+	}
+	print()
+	print("Campus -- \(data.campus ?? [Campus]())")
+}
+
+func printProjects(projects: [Project]) {
+	for proj in projects {
+		print("Progect name - \(proj.project.name)")
+		print("Progect ID - \(proj.project.id)")
+		print("Progect Status - \(proj.status)")
+		print("Final mark \(proj.final_mark ?? -1)")
+		print("Cursus ids - \(proj.cursus_ids)")
+		print()
+	}
+}

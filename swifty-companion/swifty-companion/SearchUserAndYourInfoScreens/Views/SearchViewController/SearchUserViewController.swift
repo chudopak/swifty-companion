@@ -27,7 +27,6 @@ class SearchUserViewController: UIViewController {
 		view.addSubview(searchView)
 		setConstraints()
     }
-	
 }
 
 extension SearchUserViewController {

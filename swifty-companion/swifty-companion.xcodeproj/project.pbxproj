@@ -25,7 +25,7 @@
 		7DB3622B27C6254300885719 /* SearchUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3622A27C6254300885719 /* SearchUserViewController.swift */; };
 		7DB3622E27C650DC00885719 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3622D27C650DC00885719 /* LoginView.swift */; };
 		7DB3623527C65D2000885719 /* LoginViewElementSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3623427C65D2000885719 /* LoginViewElementSizes.swift */; };
-		7DCD105A27CD343B00BC709F /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCD105927CD343B00BC709F /* UserInfoViewController.swift */; };
+		7DCD105A27CD343B00BC709F /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCD105927CD343B00BC709F /* UserProfileViewController.swift */; };
 		7DCFF7C427CE3E1A00FFE12C /* GreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCFF7C327CE3E1A00FFE12C /* GreenButton.swift */; };
 		7DCFF7C727CE401E00FFE12C /* SearchUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCFF7C627CE401E00FFE12C /* SearchUserViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -51,7 +51,7 @@
 		7DB3622A27C6254300885719 /* SearchUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewController.swift; sourceTree = "<group>"; };
 		7DB3622D27C650DC00885719 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7DB3623427C65D2000885719 /* LoginViewElementSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewElementSizes.swift; sourceTree = "<group>"; };
-		7DCD105927CD343B00BC709F /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		7DCD105927CD343B00BC709F /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		7DCFF7C327CE3E1A00FFE12C /* GreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButton.swift; sourceTree = "<group>"; };
 		7DCFF7C627CE401E00FFE12C /* SearchUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,7 +201,7 @@
 			children = (
 				7D83E67927CFD36A00766676 /* SearchViewController */,
 				7DB3622827C624F700885719 /* TabBar.swift */,
-				7DCD105927CD343B00BC709F /* UserInfoViewController.swift */,
+				7DCD105927CD343B00BC709F /* UserProfileViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -302,7 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D72793927C103FE00B2A129 /* LoginViewController.swift in Sources */,
-				7DCD105A27CD343B00BC709F /* UserInfoViewController.swift in Sources */,
+				7DCD105A27CD343B00BC709F /* UserProfileViewController.swift in Sources */,
 				7DB3622B27C6254300885719 /* SearchUserViewController.swift in Sources */,
 				7D6BE00927D0C2CE0040507E /* SearchViewElementSizes.swift in Sources */,
 				7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */,

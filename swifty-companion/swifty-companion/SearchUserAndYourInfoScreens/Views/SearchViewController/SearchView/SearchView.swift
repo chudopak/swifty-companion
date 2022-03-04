@@ -57,7 +57,8 @@ class SearchView: UIView, UITextFieldDelegate, ErrorViewDelegate {
 		case .success(let userData):
 			activityIndicator.stopAnimating()
 			makeVisible(searchStackView: true)
-			print(userData)
+			//delete it later
+			printData(data: userData)
 		default:
 			break
 		}
