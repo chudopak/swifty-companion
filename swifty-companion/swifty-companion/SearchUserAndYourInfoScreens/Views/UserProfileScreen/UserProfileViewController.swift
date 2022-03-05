@@ -39,10 +39,6 @@ class UserProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		view.addSubview(backgroundImageView)
-		backgroundImageView.bounds.size.width = view.bounds.size.height
-		backgroundImageView.bounds.size.height = view.bounds.size.width
-		backgroundImageView.center = view.center
-		backgroundImageView.transform = CGAffineTransform(rotationAngle: .pi / 2)
 		setNetworkClosures()
 		findCoalition(userId: String(userData!.id))
 		view.backgroundColor = .black
@@ -56,10 +52,10 @@ class UserProfileViewController: UIViewController {
 			break
 		case .success(let result):
 			print(result.image_url)
+			print(result.name)
 			backgroundImageView.download(from: result.image_url, defaultImageName: "background", contentMode: .scaleToFill)
 		case .failure:
 			backgroundImageView.image = UIImage(named: "background")
-			break
 		}
 	}
 	
@@ -92,9 +88,11 @@ extension UserProfileViewController {
 	
 	private func makeBackgroundImageView() -> UIImageView {
 		let imageView = UIImageView()
-		imageView.translatesAutoresizingMaskIntoConstraints = false
 		imageView.isUserInteractionEnabled = true
-		imageView.backgroundColor = .black
+		imageView.bounds.size.width = view.bounds.size.height
+		imageView.bounds.size.height = view.bounds.size.width
+		imageView.center = view.center
+		imageView.transform = CGAffineTransform(rotationAngle: .pi / 2)
 		return (imageView)
 	}
 }
@@ -102,15 +100,6 @@ extension UserProfileViewController {
 extension UserProfileViewController {
 	
 	private func setConstraints() {
-//		setBackgroudConstraints(for: backgroundImageView)
-	}
-	
-	private func setBackgroudConstraints(for background: UIView) {
-		NSLayoutConstraint.activate([
-			background.leftAnchor.constraint(equalTo: view.leftAnchor),
-			background.rightAnchor.constraint(equalTo: view.rightAnchor),
-			background.topAnchor.constraint(equalTo: view.topAnchor),
-			background.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-		])
+		
 	}
 }
