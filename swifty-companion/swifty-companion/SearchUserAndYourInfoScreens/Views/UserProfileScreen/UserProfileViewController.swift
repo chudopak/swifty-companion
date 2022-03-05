@@ -38,11 +38,14 @@ class UserProfileViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		view.addSubview(backgroundImageView)
+		backgroundImageView.bounds.size.width = view.bounds.size.height
+		backgroundImageView.bounds.size.height = view.bounds.size.width
+		backgroundImageView.center = view.center
+		backgroundImageView.transform = CGAffineTransform(rotationAngle: .pi / 2)
 		setNetworkClosures()
 		findCoalition(userId: String(userData!.id))
-		view.translatesAutoresizingMaskIntoConstraints = false
 		view.backgroundColor = .black
-		view.addSubview(backgroundImageView)
 		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(close))
 		setConstraints()
     }
@@ -56,6 +59,7 @@ class UserProfileViewController: UIViewController {
 			backgroundImageView.download(from: result.image_url, defaultImageName: "background", contentMode: .scaleToFill)
 		case .failure:
 			backgroundImageView.image = UIImage(named: "background")
+			break
 		}
 	}
 	
@@ -90,6 +94,7 @@ extension UserProfileViewController {
 		let imageView = UIImageView()
 		imageView.translatesAutoresizingMaskIntoConstraints = false
 		imageView.isUserInteractionEnabled = true
+		imageView.backgroundColor = .black
 		return (imageView)
 	}
 }
@@ -97,7 +102,7 @@ extension UserProfileViewController {
 extension UserProfileViewController {
 	
 	private func setConstraints() {
-		setBackgroudConstraints(for: backgroundImageView)
+//		setBackgroudConstraints(for: backgroundImageView)
 	}
 	
 	private func setBackgroudConstraints(for background: UIView) {
