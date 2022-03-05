@@ -12,6 +12,7 @@
 		7D304CF727CF7E3100B151CA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CF627CF7E3100B151CA /* ErrorView.swift */; };
 		7D304CF927CF83A400B151CA /* ErrorViewElemetsSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CF827CF83A400B151CA /* ErrorViewElemetsSize.swift */; };
 		7D304CFD27CF9FA300B151CA /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CFC27CF9FA300B151CA /* VerificationViewController.swift */; };
+		7D4E4B7327D36AC300C13CAC /* ConstantElementsSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4E4B7227D36AC300C13CAC /* ConstantElementsSizes.swift */; };
 		7D6BE00927D0C2CE0040507E /* SearchViewElementSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6BE00827D0C2CE0040507E /* SearchViewElementSizes.swift */; };
 		7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72793427C103FE00B2A129 /* AppDelegate.swift */; };
 		7D72793727C103FE00B2A129 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72793627C103FE00B2A129 /* SceneDelegate.swift */; };
@@ -38,6 +39,7 @@
 		7D304CF627CF7E3100B151CA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		7D304CF827CF83A400B151CA /* ErrorViewElemetsSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewElemetsSize.swift; sourceTree = "<group>"; };
 		7D304CFC27CF9FA300B151CA /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
+		7D4E4B7227D36AC300C13CAC /* ConstantElementsSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantElementsSizes.swift; sourceTree = "<group>"; };
 		7D6BE00827D0C2CE0040507E /* SearchViewElementSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewElementSizes.swift; sourceTree = "<group>"; };
 		7D72793127C103FE00B2A129 /* swifty-companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swifty-companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D72793427C103FE00B2A129 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				7D72794227C1040000B2A129 /* Info.plist */,
 				7D74138827C5096E00284233 /* API.swift */,
 				7D28DE0027D2774F00924C9F /* JSONDecoder.swift */,
+				7D4E4B7227D36AC300C13CAC /* ConstantElementsSizes.swift */,
 			);
 			path = "swifty-companion";
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				7DB3622927C624F700885719 /* TabBar.swift in Sources */,
 				7D304CF727CF7E3100B151CA /* ErrorView.swift in Sources */,
 				7D83E67B27CFD3AE00766676 /* SearchView.swift in Sources */,
+				7D4E4B7327D36AC300C13CAC /* ConstantElementsSizes.swift in Sources */,
 				7D74138E27C511B200284233 /* LogInModel.swift in Sources */,
 				7D28DE0427D27E9C00924C9F /* UIImageView+downloadImage.swift in Sources */,
 				7D28DE0127D2774F00924C9F /* JSONDecoder.swift in Sources */,

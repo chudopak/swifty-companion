@@ -141,8 +141,8 @@ extension VerificationViewController {
 		NSLayoutConstraint.activate([
 			activityIndicator.centerYAnchor.constraint(equalTo: backgroundImage.centerYAnchor),
 			activityIndicator.centerXAnchor.constraint(equalTo: backgroundImage.centerXAnchor),
-			activityIndicator.heightAnchor.constraint(equalToConstant: 50),
-			activityIndicator.widthAnchor.constraint(equalToConstant: 50)
+			activityIndicator.heightAnchor.constraint(equalToConstant: activityIndicatorSize),
+			activityIndicator.widthAnchor.constraint(equalToConstant: activityIndicatorSize)
 		])
 	}
 	

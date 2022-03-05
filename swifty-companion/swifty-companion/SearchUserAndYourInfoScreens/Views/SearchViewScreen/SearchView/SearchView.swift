@@ -254,8 +254,8 @@ extension SearchView {
 		NSLayoutConstraint.activate([
 			view.centerYAnchor.constraint(equalTo: superView.centerYAnchor),
 			view.centerXAnchor.constraint(equalTo: superView.centerXAnchor),
-			view.heightAnchor.constraint(equalToConstant: 50),
-			view.widthAnchor.constraint(equalToConstant: 50)
+			view.heightAnchor.constraint(equalToConstant: activityIndicatorSize),
+			view.widthAnchor.constraint(equalToConstant: activityIndicatorSize)
 		])
 	}
 	

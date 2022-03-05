@@ -80,7 +80,6 @@ final class SearchDataViewModel: SearchUserProtocol, SearchCoalitionProtocol {
 			if let coalitionData = CoalitionJSONDecoder.decodeCoalitionInfo(data: data) {
 				self?.dispatchMainAsync(status: SearchCoalitionStatus.success(coalitionData))
 			} else {
-				print("Here ERORRORRORORO")
 				self?.dispatchMainAsync(status: SearchCoalitionStatus.failure)
 			}
 		}
