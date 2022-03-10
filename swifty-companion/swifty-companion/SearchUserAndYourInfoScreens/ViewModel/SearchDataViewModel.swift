@@ -43,7 +43,7 @@ final class SearchDataViewModel: SearchUserProtocol, SearchCoalitionProtocol {
 				self?.dispatchMainAsync(status: SearchUserStatus.failure(.networking))
 				return
 			}
-			guard let htttpResponse = response as? HTTPURLResponse, (200...299).contains(htttpResponse.statusCode) else {
+			guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
 				let htttpResponse = response as? HTTPURLResponse
 				print("Status code", htttpResponse?.statusCode ?? 0)
 				self?.dispatchMainAsync(status: SearchUserStatus.failure(.userNotFound))

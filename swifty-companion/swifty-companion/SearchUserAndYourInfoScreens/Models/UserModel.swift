@@ -20,11 +20,11 @@ enum SearchUserStatus {
 }
 
 struct UserData: Codable {
-	var displayname: String?
+	var displayname: String
 	var login: String
 	var location: String?
-	var wallet: Int?
-	var correction_point: Int?
+	var wallet: Int
+	var correction_point: Int
 	var id: Int
 	var url: String
 	var image_url: String?
@@ -76,6 +76,29 @@ enum SearchCoalitionStatus {
 struct CoalitionData: Codable {
 	var name: String
 	var image_url: String
+}
+
+struct PrimaryUserInfo {
+	var displayName: String
+	var wallet: Int
+	var correction_point: Int
+	var campus: String
+	var image_url: String?
+	
+	init() {
+		displayName = ""
+		wallet = -1
+		correction_point = -1
+		campus = "None"
+	}
+	
+	init(userData: UserData) {
+		displayName = userData.displayname
+		wallet = userData.wallet
+		correction_point = userData.correction_point
+		campus = userData.campus?[0].name ?? "None"
+		image_url = userData.image_url
+	}
 }
 
 //TEMPERARY

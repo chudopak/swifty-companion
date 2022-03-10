@@ -22,6 +22,8 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 	private lazy var backgroundImageView = makeBackgroundImageView()
 	private lazy var activityIndicator = makeActivityIndicator()
 	private lazy var errorView = ErrorView(delegate: self)
+	private lazy var scrollView = makeScrollView()
+	private lazy var primaryUserInfoView = PrimaryUserInfoView()
 	
 	init() {
 		super.init(nibName: nil, bundle: nil)
@@ -43,6 +45,29 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		setView()
 		setNetworkClosures()
 		setConstraints()
+		
+//		var previousLab : UILabel? = nil
+//		for i in 0 ..< 30 {
+//			let lab = UILabel()
+//			lab.backgroundColor = .red
+//			lab.translatesAutoresizingMaskIntoConstraints = false
+//			lab.text = "T \(i+1)"
+//			scrollView.addSubview(lab)
+//			lab.leadingAnchor.constraint(
+//				equalTo: scrollView.leadingAnchor, constant: 10).isActive = true
+//			lab.topAnchor.constraint(
+//				// first one, pin to top; all others, pin to previous
+//				equalTo: previousLab?.bottomAnchor ?? scrollView.topAnchor,
+//				constant: 10).isActive = true
+//			previousLab = lab
+//		}
+//		scrollView.bottomAnchor.constraint(
+//				equalTo: previousLab!.bottomAnchor, constant: 10).isActive = true
+//		previousLab!.trailingAnchor.constraint(
+//				equalTo:scrollView.trailingAnchor).isActive = true
+//		scrollView.bottomAnchor.constraint(
+//						equalTo: primaryUserInfoView.bottomAnchor, constant: 10).isActive = true
+
 		if (userData != nil) {
 			showUserProfile()
 		} else {
@@ -53,11 +78,22 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 	private func showUserProfile() {
 		guard let userDataUnwrapped = userData else {
 			errorView.errorDescription = "We are sorry :( Please reload app."
-			isProfileVisible(to: false)
+			changeViewsVisibility(profile: false, error: true)
 			print("UserProfileViewController (showUserProfile) userData somehow nil")
 			return
 		}
 		findCoalition(userId: String(userDataUnwrapped.id))
+		primaryUserInfoView.primaryUserInfo = PrimaryUserInfo(userData: userDataUnwrapped)
+	}
+	
+	private func getMyData() {
+		guard let url = createURLWithComponents(path: "/v2/me") else {
+			errorView.errorDescription = "We are sorry :( Please reload app."
+			changeViewsVisibility(profile: false, error: true)
+			print("UserProfileViewController (viewDidLoad) - Can't create url")
+			return
+		}
+		searchUser.fetchUserData(with: url)
 	}
 	
 	private func setCoalitionImage() {
@@ -80,7 +116,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		searchUser.updateUserData = { [weak self] data in
 			switch data {
 			case .loading:
-				self?.isProfileVisible(to: true)
+				self?.changeViewsVisibility(profile: false, error: false)
 				self?.activityIndicator.startAnimating()
 				print("Loading")
 			case .success(let uData):
@@ -95,7 +131,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 	private func searchUserSuccessCase(uData: UserData) {
 		userData = uData
 		activityIndicator.stopAnimating()
-		isProfileVisible(to: true)
+		changeViewsVisibility(profile: true, error: false)
 		showUserProfile()
 	}
 	
@@ -107,7 +143,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		case .networking:
 			errorView.errorDescription = code.rawValue
 		}
-		isProfileVisible(to: false)
+		changeViewsVisibility(profile: false, error: true)
 		print(code.rawValue)
 	}
 	
@@ -124,22 +160,13 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 	}
 	
 	func retryFetchDelegate() {
-		//we doesn't hide errorView here because it will hide when loading starts
+		//we don't hide errorView here because it will hide when loading starts
 		getMyData()
 	}
 	
-	private func isProfileVisible(to value: Bool) {
-		errorView.isHidden = value
-	}
-	
-	private func getMyData() {
-		guard let url = createURLWithComponents(path: "/v2/me") else {
-			errorView.errorDescription = "We are sorry :( Please reload app."
-			isProfileVisible(to: false)
-			print("UserProfileViewController (viewDidLoad) - Can't create url")
-			return
-		}
-		searchUser.fetchUserData(with: url)
+	private func changeViewsVisibility(profile: Bool = false, error: Bool = false) {
+		errorView.isHidden = !error
+		scrollView.isHidden = !profile
 	}
 }
 
@@ -148,8 +175,10 @@ extension UserProfileViewController {
 	private func setView() {
 		view.addSubview(backgroundImageView)
 		view.addSubview(activityIndicator)
+		view.addSubview(scrollView)
 		view.addSubview(errorView)
 		errorView.isHidden = true
+		scrollView.addSubview(primaryUserInfoView)
 		view.backgroundColor = .black
 		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(close))
 	}
@@ -178,6 +207,13 @@ extension UserProfileViewController {
 		indic.color = UIColor(named: "buttonsGreen")
 		return (indic)
 	}
+	
+	private func makeScrollView() -> UIScrollView {
+		let scrollView = UIScrollView()
+		scrollView.translatesAutoresizingMaskIntoConstraints = false
+//		scrollView.background = 
+		return (scrollView)
+	}
 }
 
 extension UserProfileViewController {
@@ -185,6 +221,8 @@ extension UserProfileViewController {
 	private func setConstraints() {
 		setActivityIndicatorConstraints(for: activityIndicator, superView: view)
 		setErrorViewConstraints(for: errorView, superView: view)
+		setScrollViewConstrsints(for: scrollView, superView: view)
+		setPrimaryUserInfoViewConstraints(for: primaryUserInfoView, superView: scrollView)
 	}
 	
 	private func setActivityIndicatorConstraints(for view: UIView, superView: UIView) {
@@ -202,6 +240,26 @@ extension UserProfileViewController {
 			view.centerYAnchor.constraint(equalTo: superView.centerYAnchor),
 			view.heightAnchor.constraint(equalToConstant: errorViewHeight),
 			view.widthAnchor.constraint(equalToConstant: errorViewWidth)
+		])
+	}
+	
+	private func setScrollViewConstrsints(for view: UIView, superView: UIView) {
+		let guide = superView.safeAreaLayoutGuide
+		let margins = superView.layoutMarginsGuide
+		NSLayoutConstraint.activate([
+			view.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0),
+			view.bottomAnchor.constraint(equalTo: superView.bottomAnchor),
+			view.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+			view.trailingAnchor.constraint(equalTo: margins.trailingAnchor)
+		])
+	}
+	
+	private func setPrimaryUserInfoViewConstraints(for view: UIView, superView: UIScrollView) {
+		NSLayoutConstraint.activate([
+			view.topAnchor.constraint(equalTo: superView.topAnchor),
+			view.leadingAnchor.constraint(equalTo: superView.frameLayoutGuide.leadingAnchor),
+			view.trailingAnchor.constraint(equalTo: superView.frameLayoutGuide.trailingAnchor),
+			view.heightAnchor.constraint(equalToConstant: profileViewHeight)
 		])
 	}
 }

@@ -31,6 +31,8 @@
 		7DCD105A27CD343B00BC709F /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCD105927CD343B00BC709F /* UserProfileViewController.swift */; };
 		7DCFF7C427CE3E1A00FFE12C /* GreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCFF7C327CE3E1A00FFE12C /* GreenButton.swift */; };
 		7DCFF7C727CE401E00FFE12C /* SearchDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCFF7C627CE401E00FFE12C /* SearchDataViewModel.swift */; };
+		7DDA815C27D9FAF000542017 /* PrimaryUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDA815B27D9FAF000542017 /* PrimaryUserInfoView.swift */; };
+		7DDA815E27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDA815D27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		7DCD105927CD343B00BC709F /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		7DCFF7C327CE3E1A00FFE12C /* GreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButton.swift; sourceTree = "<group>"; };
 		7DCFF7C627CE401E00FFE12C /* SearchDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataViewModel.swift; sourceTree = "<group>"; };
+		7DDA815B27D9FAF000542017 /* PrimaryUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryUserInfoView.swift; sourceTree = "<group>"; };
+		7DDA815D27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryUserInfoElementsSizes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,7 @@
 		7D28DDFF27D2299000924C9F /* UserProfileScreen */ = {
 			isa = PBXGroup;
 			children = (
+				7DDA815A27D9FACC00542017 /* PrimaryUserInfo */,
 				7DCD105927CD343B00BC709F /* UserProfileViewController.swift */,
 			);
 			path = UserProfileScreen;
@@ -257,6 +262,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		7DDA815A27D9FACC00542017 /* PrimaryUserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				7DDA815B27D9FAF000542017 /* PrimaryUserInfoView.swift */,
+				7DDA815D27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift */,
+			);
+			path = PrimaryUserInfo;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -329,6 +343,7 @@
 				7D72793927C103FE00B2A129 /* LoginViewController.swift in Sources */,
 				7DCD105A27CD343B00BC709F /* UserProfileViewController.swift in Sources */,
 				7DB3622B27C6254300885719 /* SearchUserViewController.swift in Sources */,
+				7DDA815E27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift in Sources */,
 				7D6BE00927D0C2CE0040507E /* SearchViewElementSizes.swift in Sources */,
 				7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */,
 				7D74138927C5096E00284233 /* API.swift in Sources */,
@@ -339,6 +354,7 @@
 				7D83E67B27CFD3AE00766676 /* SearchView.swift in Sources */,
 				7D4E4B7327D36AC300C13CAC /* ConstantElementsSizes.swift in Sources */,
 				7D74138E27C511B200284233 /* LogInModel.swift in Sources */,
+				7DDA815C27D9FAF000542017 /* PrimaryUserInfoView.swift in Sources */,
 				7D28DE0427D27E9C00924C9F /* UIImageView+downloadImage.swift in Sources */,
 				7D28DE0127D2774F00924C9F /* JSONDecoder.swift in Sources */,
 				7D74138C27C50BDE00284233 /* UserModel.swift in Sources */,

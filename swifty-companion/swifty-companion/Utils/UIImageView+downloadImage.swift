@@ -9,7 +9,7 @@ import UIKit
 
 extension UIImageView {
 
-	func download(from url: URL, defaultImageName: String, contentMode mode: ContentMode = .scaleAspectFill) {
+	func download(from url: URL, defaultImageName: String = "", contentMode mode: ContentMode = .scaleAspectFill) {
 		contentMode = mode
 		URLSession.shared.dataTask(with: url) { data, response, error in
 			guard
@@ -30,7 +30,7 @@ extension UIImageView {
 		}.resume()
 	}
 
-	func download(from link: String, defaultImageName: String, contentMode mode: ContentMode = .scaleAspectFit) {
+	func download(from link: String, defaultImageName: String = "", contentMode mode: ContentMode = .scaleAspectFit) {
 		guard let url = URL(string: link) else {
 			print("Error - can't create URL for profile image")
 			return
