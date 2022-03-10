@@ -7,7 +7,7 @@
 
 import UIKit
 
-let profileViewSideOffset: CGFloat = 16
+let profileViewSideOffset: CGFloat = 10
 let profileViewHeight: CGFloat = profilePictureSize
 let profileViewWidth: CGFloat = UIScreen.main.bounds.size.width - 2 * profileViewSideOffset
 

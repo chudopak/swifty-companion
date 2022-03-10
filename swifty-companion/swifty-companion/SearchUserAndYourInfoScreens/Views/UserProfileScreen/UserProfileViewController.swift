@@ -244,21 +244,21 @@ extension UserProfileViewController {
 	}
 	
 	private func setScrollViewConstrsints(for view: UIView, superView: UIView) {
-		let guide = superView.safeAreaLayoutGuide
-		let margins = superView.layoutMarginsGuide
 		NSLayoutConstraint.activate([
-			view.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0),
+			view.topAnchor.constraint(equalTo: superView.topAnchor),
 			view.bottomAnchor.constraint(equalTo: superView.bottomAnchor),
-			view.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-			view.trailingAnchor.constraint(equalTo: margins.trailingAnchor)
+			view.leadingAnchor.constraint(equalTo: superView.leadingAnchor),
+			view.trailingAnchor.constraint(equalTo: superView.trailingAnchor)
 		])
 	}
 	
 	private func setPrimaryUserInfoViewConstraints(for view: UIView, superView: UIScrollView) {
+		let guide = superView.safeAreaLayoutGuide
 		NSLayoutConstraint.activate([
-			view.topAnchor.constraint(equalTo: superView.topAnchor),
-			view.leadingAnchor.constraint(equalTo: superView.frameLayoutGuide.leadingAnchor),
-			view.trailingAnchor.constraint(equalTo: superView.frameLayoutGuide.trailingAnchor),
+			view.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0),
+//			view.topAnchor.constraint(equalTo: superView.topAnchor),
+			view.leadingAnchor.constraint(equalTo: superView.layoutMarginsGuide.leadingAnchor),
+			view.trailingAnchor.constraint(equalTo: superView.layoutMarginsGuide.trailingAnchor),
 			view.heightAnchor.constraint(equalToConstant: profileViewHeight)
 		])
 	}
