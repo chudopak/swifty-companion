@@ -115,6 +115,7 @@ func printProjects(projects: [Project]) {
 		print("Progect Status - \(proj.status)")
 		print("Final mark \(proj.final_mark ?? -1)")
 		print("Cursus ids - \(proj.cursus_ids)")
+//		print("Validated - \(proj.validated)")
 		print()
 	}
 }

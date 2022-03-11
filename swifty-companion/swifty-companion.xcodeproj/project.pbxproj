@@ -38,6 +38,8 @@
 		7DE9955827DB48100002E3B8 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9955727DB48100002E3B8 /* LevelView.swift */; };
 		7DE9955B27DB500B0002E3B8 /* LocationInClasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9955A27DB500B0002E3B8 /* LocationInClasterView.swift */; };
 		7DE9955F27DB61A10002E3B8 /* LevelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9955E27DB61A10002E3B8 /* LevelInfo.swift */; };
+		7DE9956127DBA4590002E3B8 /* ProjectLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9956027DBA4590002E3B8 /* ProjectLists.swift */; };
+		7DE9956327DBAB6F0002E3B8 /* String+isNumeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9956227DBAB6F0002E3B8 /* String+isNumeric.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,8 @@
 		7DE9955727DB48100002E3B8 /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
 		7DE9955A27DB500B0002E3B8 /* LocationInClasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInClasterView.swift; sourceTree = "<group>"; };
 		7DE9955E27DB61A10002E3B8 /* LevelInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelInfo.swift; sourceTree = "<group>"; };
+		7DE9956027DBA4590002E3B8 /* ProjectLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectLists.swift; sourceTree = "<group>"; };
+		7DE9956227DBAB6F0002E3B8 /* String+isNumeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+isNumeric.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,7 @@
 			children = (
 				7D28DE0327D27E9C00924C9F /* UIImageView+downloadImage.swift */,
 				7DE9955227DB361E0002E3B8 /* UIColor+HexConversion.swift */,
+				7DE9956227DBAB6F0002E3B8 /* String+isNumeric.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 				7D74138B27C50BDE00284233 /* UserModel.swift */,
 				7DE9955427DB47200002E3B8 /* PrimaryUserInfo.swift */,
 				7DE9955E27DB61A10002E3B8 /* LevelInfo.swift */,
+				7DE9956027DBA4590002E3B8 /* ProjectLists.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -395,11 +401,13 @@
 				7D28DE0127D2774F00924C9F /* JSONDecoder.swift in Sources */,
 				7D74138C27C50BDE00284233 /* UserModel.swift in Sources */,
 				7DCFF7C427CE3E1A00FFE12C /* GreenButton.swift in Sources */,
+				7DE9956327DBAB6F0002E3B8 /* String+isNumeric.swift in Sources */,
 				7D304CFD27CF9FA300B151CA /* VerificationViewController.swift in Sources */,
 				7D72793727C103FE00B2A129 /* SceneDelegate.swift in Sources */,
 				7DB3622E27C650DC00885719 /* LoginView.swift in Sources */,
 				7D74139227C5179E00284233 /* LoginViewModel.swift in Sources */,
 				7DB3623527C65D2000885719 /* LoginViewElementSizes.swift in Sources */,
+				7DE9956127DBA4590002E3B8 /* ProjectLists.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
