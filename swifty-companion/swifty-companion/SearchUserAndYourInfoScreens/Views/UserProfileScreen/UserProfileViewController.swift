@@ -15,7 +15,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 	private var coalitionData: CoalitionData?
 	private var searchCoalitionStatus = SearchCoalitionStatus.initial {
 		didSet {
-			setCoalitionImage()
+			setCoalitionData()
 		}
 	}
 	
@@ -26,6 +26,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 	private lazy var primaryUserInfoView = PrimaryUserInfoView()
 	private lazy var primaryUserInfoBackgroundView = makePrimaryUserInfoBackgroundView()
 	private lazy var locationInClasterView = LocationInClasterView()
+	private lazy var levelView = LevelView()
 	
 	private var spaceBetweenViews: CGFloat = 15
 	
@@ -89,6 +90,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		findCoalition(userId: String(userDataUnwrapped.id))
 		primaryUserInfoView.primaryUserInfo = PrimaryUserInfo(userData: userDataUnwrapped)
 		locationInClasterView.location = constructLocationInClasterText(location: userDataUnwrapped.location)
+		levelView.levelInfo = LevelInfo(level: getUserLevel(cursus: userDataUnwrapped.cursus_users))
 	}
 	
 	private func getMyData() {
@@ -101,7 +103,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		searchUser.fetchUserData(with: url)
 	}
 	
-	private func setCoalitionImage() {
+	private func setCoalitionData() {
 		switch searchCoalitionStatus {
 		case .initial:
 			break
@@ -110,6 +112,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 			print(result.name)
 			print(result.color)
 			backgroundImageView.download(from: result.image_url, defaultImageName: "background", contentMode: .scaleToFill)
+			levelView.levelInfo = LevelInfo(level: getUserLevel(cursus: userData?.cursus_users), color: result.color)
 		case .failure:
 			print("UserProfileViewController - can't load coalition background")
 		}
@@ -196,6 +199,15 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 					""")
 		}
 	}
+	
+	private func getUserLevel(cursus: [Cursus]?) -> Double {
+		guard let cursus = cursus,
+			  cursus.count != 0
+		else {
+			return (0.0)
+		}
+		return (cursus[cursus.count - 1].level)
+	}
 }
 
 extension UserProfileViewController {
@@ -209,6 +221,7 @@ extension UserProfileViewController {
 		scrollView.addSubview(primaryUserInfoBackgroundView)
 		scrollView.addSubview(primaryUserInfoView)
 		scrollView.addSubview(locationInClasterView)
+		scrollView.addSubview(levelView)
 		view.backgroundColor = .black
 		navigationItem.title = userData?.login
 		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(close))
@@ -263,6 +276,7 @@ extension UserProfileViewController {
 		setPrimaryUserInfoViewConstraints(for: primaryUserInfoView, superView: scrollView)
 		setBackgroundViewConstraints()
 		setLocationInClasterViewConstraints(for: locationInClasterView)
+		setLevelViewConstraints(for: levelView)
 	}
 	
 	private func setActivityIndicatorConstraints(for view: UIView, superView: UIView) {
@@ -319,5 +333,15 @@ extension UserProfileViewController {
 			view.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
 			view.heightAnchor.constraint(equalToConstant: locationInClasterViewHeight)
 		])
+	}
+	
+	private func setLevelViewConstraints(for view: UIView) {
+		NSLayoutConstraint.activate([
+			view.topAnchor.constraint(equalTo: locationInClasterView.bottomAnchor, constant: spaceBetweenViews),
+			view.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
+			view.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
+			view.heightAnchor.constraint(equalToConstant: levelViewHeight)
+		])
+		
 	}
 }

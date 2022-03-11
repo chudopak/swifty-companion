@@ -7,6 +7,9 @@
 
 import UIKit
 
+let locationInClasterViewHeight: CGFloat = 60
+let locationInClasterViewCornerRadius: CGFloat = 7
+
 class LocationInClasterView: UIView {
 
 	var location: String = "" {
@@ -40,7 +43,7 @@ extension LocationInClasterView {
 		label.adjustsFontSizeToFitWidth = true
 		label.text = ""
 		label.textColor = .white
-		label.font = UIFont.boldSystemFont(ofSize: 24)
+		label.font = UIFont.systemFont(ofSize: 24)
 		label.textAlignment = .center
 		return (label)
 	}

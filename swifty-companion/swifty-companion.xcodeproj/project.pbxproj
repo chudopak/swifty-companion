@@ -37,7 +37,7 @@
 		7DE9955527DB47200002E3B8 /* PrimaryUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9955427DB47200002E3B8 /* PrimaryUserInfo.swift */; };
 		7DE9955827DB48100002E3B8 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9955727DB48100002E3B8 /* LevelView.swift */; };
 		7DE9955B27DB500B0002E3B8 /* LocationInClasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9955A27DB500B0002E3B8 /* LocationInClasterView.swift */; };
-		7DE9955D27DB54F70002E3B8 /* LocationInClasterElementsSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9955C27DB54F70002E3B8 /* LocationInClasterElementsSizes.swift */; };
+		7DE9955F27DB61A10002E3B8 /* LevelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9955E27DB61A10002E3B8 /* LevelInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,7 +73,7 @@
 		7DE9955427DB47200002E3B8 /* PrimaryUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryUserInfo.swift; sourceTree = "<group>"; };
 		7DE9955727DB48100002E3B8 /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
 		7DE9955A27DB500B0002E3B8 /* LocationInClasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInClasterView.swift; sourceTree = "<group>"; };
-		7DE9955C27DB54F70002E3B8 /* LocationInClasterElementsSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInClasterElementsSizes.swift; sourceTree = "<group>"; };
+		7DE9955E27DB61A10002E3B8 /* LevelInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +236,7 @@
 			children = (
 				7D74138B27C50BDE00284233 /* UserModel.swift */,
 				7DE9955427DB47200002E3B8 /* PrimaryUserInfo.swift */,
+				7DE9955E27DB61A10002E3B8 /* LevelInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -297,7 +298,6 @@
 			isa = PBXGroup;
 			children = (
 				7DE9955A27DB500B0002E3B8 /* LocationInClasterView.swift */,
-				7DE9955C27DB54F70002E3B8 /* LocationInClasterElementsSizes.swift */,
 			);
 			path = LocationInClasterView;
 			sourceTree = "<group>";
@@ -377,10 +377,10 @@
 				7DE9955527DB47200002E3B8 /* PrimaryUserInfo.swift in Sources */,
 				7DDA815E27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift in Sources */,
 				7D6BE00927D0C2CE0040507E /* SearchViewElementSizes.swift in Sources */,
-				7DE9955D27DB54F70002E3B8 /* LocationInClasterElementsSizes.swift in Sources */,
 				7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */,
 				7D74138927C5096E00284233 /* API.swift in Sources */,
 				7DCFF7C727CE401E00FFE12C /* SearchDataViewModel.swift in Sources */,
+				7DE9955F27DB61A10002E3B8 /* LevelInfo.swift in Sources */,
 				7D304CF927CF83A400B151CA /* ErrorViewElemetsSize.swift in Sources */,
 				7DB3622927C624F700885719 /* TabBar.swift in Sources */,
 				7D304CF727CF7E3100B151CA /* ErrorView.swift in Sources */,
