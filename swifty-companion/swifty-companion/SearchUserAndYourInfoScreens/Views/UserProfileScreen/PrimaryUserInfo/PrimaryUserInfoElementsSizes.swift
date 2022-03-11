@@ -19,3 +19,5 @@ let stackViewWidth: CGFloat = UIScreen.main.bounds.size.width - profilePictureSi
 
 let backgroundCornerRadius: CGFloat = 7
 
+let primaryUserInfoBackgroundViewHeight: CGFloat = 500
+

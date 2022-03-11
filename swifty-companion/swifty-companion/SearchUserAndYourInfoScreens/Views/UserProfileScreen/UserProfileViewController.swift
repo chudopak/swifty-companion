@@ -29,6 +29,9 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 	private lazy var levelView = LevelView()
 	
 	private var spaceBetweenViews: CGFloat = 15
+	private lazy var refreshControll = makeRefreshControll()
+	
+	private lazy var test = makePrimaryUserInfoBackgroundView()
 	
 	init() {
 		super.init(nibName: nil, bundle: nil)
@@ -68,10 +71,10 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 //		}
 //		scrollView.bottomAnchor.constraint(
 //				equalTo: previousLab!.bottomAnchor, constant: 10).isActive = true
-//		previousLab!.trailingAnchor.constraint(
-//				equalTo:scrollView.trailingAnchor).isActive = true
-//		scrollView.bottomAnchor.constraint(
-//						equalTo: primaryUserInfoView.bottomAnchor, constant: 10).isActive = true
+//		test.trailingAnchor.constraint(
+//				equalTo: scrollView.trailingAnchor).isActive = true
+		scrollView.bottomAnchor.constraint(
+						equalTo: test.bottomAnchor, constant: 10).isActive = true
 
 		if (userData != nil) {
 			showUserProfile()
@@ -208,6 +211,17 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		}
 		return (cursus[cursus.count - 1].level)
 	}
+	
+	@objc private func refreshUserData(sender: UIRefreshControl) {
+		guard let userData = userData,
+			  let url = URL(string: userData.url)
+		else {
+			print("Can't refresh page")
+			return
+		}
+		searchUser.fetchUserData(with: url)
+		refreshControll.endRefreshing()
+	}
 }
 
 extension UserProfileViewController {
@@ -218,10 +232,12 @@ extension UserProfileViewController {
 		view.addSubview(scrollView)
 		view.addSubview(errorView)
 		errorView.isHidden = true
+		scrollView.refreshControl = refreshControll
 		scrollView.addSubview(primaryUserInfoBackgroundView)
 		scrollView.addSubview(primaryUserInfoView)
 		scrollView.addSubview(locationInClasterView)
 		scrollView.addSubview(levelView)
+		scrollView.addSubview(test)
 		view.backgroundColor = .black
 		navigationItem.title = userData?.login
 		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(close))
@@ -265,6 +281,12 @@ extension UserProfileViewController {
 		v.layer.cornerRadius = backgroundCornerRadius
 		return (v)
 	}
+	
+	private func makeRefreshControll() -> UIRefreshControl {
+		let control = UIRefreshControl()
+		control.addTarget(self, action: #selector(refreshUserData(sender:)), for: .valueChanged)
+		return (control)
+	}
 }
 
 extension UserProfileViewController {
@@ -277,6 +299,7 @@ extension UserProfileViewController {
 		setBackgroundViewConstraints()
 		setLocationInClasterViewConstraints(for: locationInClasterView)
 		setLevelViewConstraints(for: levelView)
+		setTest(for: test)
 	}
 	
 	private func setActivityIndicatorConstraints(for view: UIView, superView: UIView) {
@@ -307,10 +330,10 @@ extension UserProfileViewController {
 	}
 	
 	private func setPrimaryUserInfoViewConstraints(for view: UIView, superView: UIScrollView) {
-		let guide = superView.safeAreaLayoutGuide
+//		let guide = superView.safeAreaLayoutGuide
 		NSLayoutConstraint.activate([
-			view.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0),
-//			view.topAnchor.constraint(equalTo: superView.topAnchor),
+//			view.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0),
+			view.topAnchor.constraint(equalTo: superView.topAnchor, constant: profileViewSideOffset),
 			view.leadingAnchor.constraint(equalTo: superView.layoutMarginsGuide.leadingAnchor),
 			view.trailingAnchor.constraint(equalTo: superView.layoutMarginsGuide.trailingAnchor),
 			view.heightAnchor.constraint(equalToConstant: profileViewHeight)
@@ -319,7 +342,7 @@ extension UserProfileViewController {
 	
 	private func setBackgroundViewConstraints() {
 		NSLayoutConstraint.activate([
-			primaryUserInfoBackgroundView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+			primaryUserInfoBackgroundView.heightAnchor.constraint(equalToConstant: primaryUserInfoBackgroundViewHeight),
 			primaryUserInfoBackgroundView.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor),
 			primaryUserInfoBackgroundView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor),
 			primaryUserInfoBackgroundView.bottomAnchor.constraint(equalTo: primaryUserInfoView.bottomAnchor, constant: profileViewSideOffset)
@@ -342,6 +365,14 @@ extension UserProfileViewController {
 			view.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
 			view.heightAnchor.constraint(equalToConstant: levelViewHeight)
 		])
-		
+	}
+	
+	private func setTest(for view: UIView) {
+		NSLayoutConstraint.activate([
+			view.topAnchor.constraint(equalTo: levelView.bottomAnchor, constant: spaceBetweenViews),
+			view.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
+			view.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
+			view.heightAnchor.constraint(equalToConstant: 1000)
+		])
 	}
 }

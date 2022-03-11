@@ -16,9 +16,9 @@ class LevelView: UIView {
 		didSet {
 			levelLabel.text = "level \(levelInfo.levelInt) - \(levelInfo.levelPercentString) %"
 			levelIndicator.backgroundColor = UIColor(hexString: levelInfo.color)
-			print(levelInfo.levelPercentCGFloat)
 			replaceWidthConstraint()
-			layoutIfNeeded()
+//			layoutIfNeeded()
+			setNeedsLayout()
 		}
 	}
 	
