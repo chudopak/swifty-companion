@@ -34,6 +34,10 @@
 		7DDA815C27D9FAF000542017 /* PrimaryUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDA815B27D9FAF000542017 /* PrimaryUserInfoView.swift */; };
 		7DDA815E27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDA815D27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift */; };
 		7DE9955327DB361E0002E3B8 /* UIColor+HexConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9955227DB361E0002E3B8 /* UIColor+HexConversion.swift */; };
+		7DE9955527DB47200002E3B8 /* PrimaryUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9955427DB47200002E3B8 /* PrimaryUserInfo.swift */; };
+		7DE9955827DB48100002E3B8 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9955727DB48100002E3B8 /* LevelView.swift */; };
+		7DE9955B27DB500B0002E3B8 /* LocationInClasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9955A27DB500B0002E3B8 /* LocationInClasterView.swift */; };
+		7DE9955D27DB54F70002E3B8 /* LocationInClasterElementsSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9955C27DB54F70002E3B8 /* LocationInClasterElementsSizes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +70,10 @@
 		7DDA815B27D9FAF000542017 /* PrimaryUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryUserInfoView.swift; sourceTree = "<group>"; };
 		7DDA815D27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryUserInfoElementsSizes.swift; sourceTree = "<group>"; };
 		7DE9955227DB361E0002E3B8 /* UIColor+HexConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HexConversion.swift"; sourceTree = "<group>"; };
+		7DE9955427DB47200002E3B8 /* PrimaryUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryUserInfo.swift; sourceTree = "<group>"; };
+		7DE9955727DB48100002E3B8 /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
+		7DE9955A27DB500B0002E3B8 /* LocationInClasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInClasterView.swift; sourceTree = "<group>"; };
+		7DE9955C27DB54F70002E3B8 /* LocationInClasterElementsSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInClasterElementsSizes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +90,8 @@
 		7D28DDFF27D2299000924C9F /* UserProfileScreen */ = {
 			isa = PBXGroup;
 			children = (
+				7DE9955927DB4FE80002E3B8 /* LocationInClasterView */,
+				7DE9955627DB47DE0002E3B8 /* LevelView */,
 				7DDA815A27D9FACC00542017 /* PrimaryUserInfo */,
 				7DCD105927CD343B00BC709F /* UserProfileViewController.swift */,
 			);
@@ -225,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				7D74138B27C50BDE00284233 /* UserModel.swift */,
+				7DE9955427DB47200002E3B8 /* PrimaryUserInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -272,6 +283,23 @@
 				7DDA815D27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift */,
 			);
 			path = PrimaryUserInfo;
+			sourceTree = "<group>";
+		};
+		7DE9955627DB47DE0002E3B8 /* LevelView */ = {
+			isa = PBXGroup;
+			children = (
+				7DE9955727DB48100002E3B8 /* LevelView.swift */,
+			);
+			path = LevelView;
+			sourceTree = "<group>";
+		};
+		7DE9955927DB4FE80002E3B8 /* LocationInClasterView */ = {
+			isa = PBXGroup;
+			children = (
+				7DE9955A27DB500B0002E3B8 /* LocationInClasterView.swift */,
+				7DE9955C27DB54F70002E3B8 /* LocationInClasterElementsSizes.swift */,
+			);
+			path = LocationInClasterView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,8 +374,10 @@
 				7D72793927C103FE00B2A129 /* LoginViewController.swift in Sources */,
 				7DCD105A27CD343B00BC709F /* UserProfileViewController.swift in Sources */,
 				7DB3622B27C6254300885719 /* SearchUserViewController.swift in Sources */,
+				7DE9955527DB47200002E3B8 /* PrimaryUserInfo.swift in Sources */,
 				7DDA815E27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift in Sources */,
 				7D6BE00927D0C2CE0040507E /* SearchViewElementSizes.swift in Sources */,
+				7DE9955D27DB54F70002E3B8 /* LocationInClasterElementsSizes.swift in Sources */,
 				7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */,
 				7D74138927C5096E00284233 /* API.swift in Sources */,
 				7DCFF7C727CE401E00FFE12C /* SearchDataViewModel.swift in Sources */,
@@ -355,7 +385,9 @@
 				7DB3622927C624F700885719 /* TabBar.swift in Sources */,
 				7D304CF727CF7E3100B151CA /* ErrorView.swift in Sources */,
 				7D83E67B27CFD3AE00766676 /* SearchView.swift in Sources */,
+				7DE9955827DB48100002E3B8 /* LevelView.swift in Sources */,
 				7DE9955327DB361E0002E3B8 /* UIColor+HexConversion.swift in Sources */,
+				7DE9955B27DB500B0002E3B8 /* LocationInClasterView.swift in Sources */,
 				7D4E4B7327D36AC300C13CAC /* ConstantElementsSizes.swift in Sources */,
 				7D74138E27C511B200284233 /* LogInModel.swift in Sources */,
 				7DDA815C27D9FAF000542017 /* PrimaryUserInfoView.swift in Sources */,

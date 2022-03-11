@@ -24,7 +24,10 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 	private lazy var errorView = ErrorView(delegate: self)
 	private lazy var scrollView = makeScrollView()
 	private lazy var primaryUserInfoView = PrimaryUserInfoView()
-	private lazy var backgroundView = makeBackgroundView()
+	private lazy var primaryUserInfoBackgroundView = makePrimaryUserInfoBackgroundView()
+	private lazy var locationInClasterView = LocationInClasterView()
+	
+	private var spaceBetweenViews: CGFloat = 15
 	
 	init() {
 		super.init(nibName: nil, bundle: nil)
@@ -85,6 +88,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		}
 		findCoalition(userId: String(userDataUnwrapped.id))
 		primaryUserInfoView.primaryUserInfo = PrimaryUserInfo(userData: userDataUnwrapped)
+		locationInClasterView.location = constructLocationInClasterText(location: userDataUnwrapped.location)
 	}
 	
 	private func getMyData() {
@@ -170,6 +174,28 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		errorView.isHidden = !error
 		scrollView.isHidden = !profile
 	}
+	
+	private func constructLocationInClasterText(location: String?) -> String {
+		if let location = location {
+			if (location != "") {
+				return( """
+						Available
+						\(location)
+						""")
+			} else {
+				return(	"""
+						Unavailable
+						-
+						""")
+			}
+		}
+		else {
+			return ("""
+					Unavailable
+					-
+					""")
+		}
+	}
 }
 
 extension UserProfileViewController {
@@ -180,8 +206,9 @@ extension UserProfileViewController {
 		view.addSubview(scrollView)
 		view.addSubview(errorView)
 		errorView.isHidden = true
-		scrollView.addSubview(backgroundView)
+		scrollView.addSubview(primaryUserInfoBackgroundView)
 		scrollView.addSubview(primaryUserInfoView)
+		scrollView.addSubview(locationInClasterView)
 		view.backgroundColor = .black
 		navigationItem.title = userData?.login
 		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(close))
@@ -218,10 +245,10 @@ extension UserProfileViewController {
 		return (scrollView)
 	}
 	
-	private func makeBackgroundView() -> UIView {
+	private func makePrimaryUserInfoBackgroundView() -> UIView {
 		let v = UIView()
 		v.translatesAutoresizingMaskIntoConstraints = false
-		v.backgroundColor = UIColor(named: "primaryUserInfoViewBackgroundColor")
+		v.backgroundColor = UIColor(named: "UserInfoScreenBackgroundColor")
 		v.layer.cornerRadius = backgroundCornerRadius
 		return (v)
 	}
@@ -235,6 +262,7 @@ extension UserProfileViewController {
 		setScrollViewConstrsints(for: scrollView, superView: view)
 		setPrimaryUserInfoViewConstraints(for: primaryUserInfoView, superView: scrollView)
 		setBackgroundViewConstraints()
+		setLocationInClasterViewConstraints(for: locationInClasterView)
 	}
 	
 	private func setActivityIndicatorConstraints(for view: UIView, superView: UIView) {
@@ -277,10 +305,19 @@ extension UserProfileViewController {
 	
 	private func setBackgroundViewConstraints() {
 		NSLayoutConstraint.activate([
-			backgroundView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-			backgroundView.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor),
-			backgroundView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor),
-			backgroundView.bottomAnchor.constraint(equalTo: primaryUserInfoView.bottomAnchor, constant: profileViewSideOffset)
+			primaryUserInfoBackgroundView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+			primaryUserInfoBackgroundView.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor),
+			primaryUserInfoBackgroundView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor),
+			primaryUserInfoBackgroundView.bottomAnchor.constraint(equalTo: primaryUserInfoView.bottomAnchor, constant: profileViewSideOffset)
+		])
+	}
+	
+	private func setLocationInClasterViewConstraints(for view: UIView) {
+		NSLayoutConstraint.activate([
+			view.topAnchor.constraint(equalTo: primaryUserInfoBackgroundView.bottomAnchor, constant: spaceBetweenViews),
+			view.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
+			view.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
+			view.heightAnchor.constraint(equalToConstant: locationInClasterViewHeight)
 		])
 	}
 }
