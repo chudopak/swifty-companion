@@ -33,6 +33,7 @@
 		7DCFF7C727CE401E00FFE12C /* SearchDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCFF7C627CE401E00FFE12C /* SearchDataViewModel.swift */; };
 		7DDA815C27D9FAF000542017 /* PrimaryUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDA815B27D9FAF000542017 /* PrimaryUserInfoView.swift */; };
 		7DDA815E27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDA815D27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift */; };
+		7DE9955327DB361E0002E3B8 /* UIColor+HexConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9955227DB361E0002E3B8 /* UIColor+HexConversion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		7DCFF7C627CE401E00FFE12C /* SearchDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataViewModel.swift; sourceTree = "<group>"; };
 		7DDA815B27D9FAF000542017 /* PrimaryUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryUserInfoView.swift; sourceTree = "<group>"; };
 		7DDA815D27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryUserInfoElementsSizes.swift; sourceTree = "<group>"; };
+		7DE9955227DB361E0002E3B8 /* UIColor+HexConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HexConversion.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				7D28DE0327D27E9C00924C9F /* UIImageView+downloadImage.swift */,
+				7DE9955227DB361E0002E3B8 /* UIColor+HexConversion.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				7DB3622927C624F700885719 /* TabBar.swift in Sources */,
 				7D304CF727CF7E3100B151CA /* ErrorView.swift in Sources */,
 				7D83E67B27CFD3AE00766676 /* SearchView.swift in Sources */,
+				7DE9955327DB361E0002E3B8 /* UIColor+HexConversion.swift in Sources */,
 				7D4E4B7327D36AC300C13CAC /* ConstantElementsSizes.swift in Sources */,
 				7D74138E27C511B200284233 /* LogInModel.swift in Sources */,
 				7DDA815C27D9FAF000542017 /* PrimaryUserInfoView.swift in Sources */,

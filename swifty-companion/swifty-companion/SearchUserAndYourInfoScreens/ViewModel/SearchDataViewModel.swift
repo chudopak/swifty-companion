@@ -25,7 +25,7 @@ final class SearchDataViewModel: SearchUserProtocol, SearchCoalitionProtocol {
 	lazy var sessionUserDataConfiguration = _setURLSessionConfiguration(timeInterval: 30)
 	lazy var sessionUserData = URLSession(configuration: sessionUserDataConfiguration)
 	
-	lazy var sessionCoalitionDataConfiguration = _setURLSessionConfiguration(timeInterval: 10)
+	lazy var sessionCoalitionDataConfiguration = _setURLSessionConfiguration(timeInterval: 20)
 	lazy var sessionCoalitionData = URLSession(configuration: sessionCoalitionDataConfiguration)
 	
 	func fetchUserData(with url: URL) {

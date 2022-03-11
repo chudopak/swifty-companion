@@ -17,4 +17,5 @@ let spaceBetweenPictureAndStackView: CGFloat = 15
 
 let stackViewWidth: CGFloat = UIScreen.main.bounds.size.width - profilePictureSize - 2 * profileViewSideOffset - spaceBetweenPictureAndStackView
 
+let backgroundCornerRadius: CGFloat = 7
 

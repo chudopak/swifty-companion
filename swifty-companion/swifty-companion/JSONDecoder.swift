@@ -32,7 +32,7 @@ class CoalitionJSONDecoder {
 	}
 	
 	static private func setProperties(mainCoalition: [String: Any]) -> CoalitionData? {
-		var data = CoalitionData(name: "", image_url: "")
+		var data = CoalitionData(name: "", image_url: "", color: "")
 		guard let cover_url = mainCoalition["cover_url"] as? String else {
 			return (nil)
 		}
@@ -41,6 +41,10 @@ class CoalitionJSONDecoder {
 			return (nil)
 		}
 		data.name = name
+		guard let color = mainCoalition["color"] as? String else {
+			return (nil)
+		}
+		data.color = color
 		return (data)
 	}
 }

@@ -76,6 +76,7 @@ enum SearchCoalitionStatus {
 struct CoalitionData: Codable {
 	var name: String
 	var image_url: String
+	var color: String
 }
 
 struct PrimaryUserInfo {

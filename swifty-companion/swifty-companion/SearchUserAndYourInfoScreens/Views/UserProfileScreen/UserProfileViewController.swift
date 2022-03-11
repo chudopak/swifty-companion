@@ -24,6 +24,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 	private lazy var errorView = ErrorView(delegate: self)
 	private lazy var scrollView = makeScrollView()
 	private lazy var primaryUserInfoView = PrimaryUserInfoView()
+	private lazy var backgroundView = makeBackgroundView()
 	
 	init() {
 		super.init(nibName: nil, bundle: nil)
@@ -103,6 +104,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		case .success(let result):
 			print(result.image_url)
 			print(result.name)
+			print(result.color)
 			backgroundImageView.download(from: result.image_url, defaultImageName: "background", contentMode: .scaleToFill)
 		case .failure:
 			print("UserProfileViewController - can't load coalition background")
@@ -178,8 +180,10 @@ extension UserProfileViewController {
 		view.addSubview(scrollView)
 		view.addSubview(errorView)
 		errorView.isHidden = true
+		scrollView.addSubview(backgroundView)
 		scrollView.addSubview(primaryUserInfoView)
 		view.backgroundColor = .black
+		navigationItem.title = userData?.login
 		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(close))
 	}
 	
@@ -211,8 +215,15 @@ extension UserProfileViewController {
 	private func makeScrollView() -> UIScrollView {
 		let scrollView = UIScrollView()
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
-//		scrollView.background = 
 		return (scrollView)
+	}
+	
+	private func makeBackgroundView() -> UIView {
+		let v = UIView()
+		v.translatesAutoresizingMaskIntoConstraints = false
+		v.backgroundColor = UIColor(named: "primaryUserInfoViewBackgroundColor")
+		v.layer.cornerRadius = backgroundCornerRadius
+		return (v)
 	}
 }
 
@@ -223,6 +234,7 @@ extension UserProfileViewController {
 		setErrorViewConstraints(for: errorView, superView: view)
 		setScrollViewConstrsints(for: scrollView, superView: view)
 		setPrimaryUserInfoViewConstraints(for: primaryUserInfoView, superView: scrollView)
+		setBackgroundViewConstraints()
 	}
 	
 	private func setActivityIndicatorConstraints(for view: UIView, superView: UIView) {
@@ -260,6 +272,15 @@ extension UserProfileViewController {
 			view.leadingAnchor.constraint(equalTo: superView.layoutMarginsGuide.leadingAnchor),
 			view.trailingAnchor.constraint(equalTo: superView.layoutMarginsGuide.trailingAnchor),
 			view.heightAnchor.constraint(equalToConstant: profileViewHeight)
+		])
+	}
+	
+	private func setBackgroundViewConstraints() {
+		NSLayoutConstraint.activate([
+			backgroundView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+			backgroundView.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor),
+			backgroundView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor),
+			backgroundView.bottomAnchor.constraint(equalTo: primaryUserInfoView.bottomAnchor, constant: profileViewSideOffset)
 		])
 	}
 }
