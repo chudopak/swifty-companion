@@ -29,6 +29,8 @@ class VerificationViewController: UIViewController, ErrorViewDelegate {
 	
 	private lazy var errorView = ErrorView(delegate: self)
 	
+	private var attempts = 0
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.addSubview(backgroundImage)
@@ -43,6 +45,7 @@ class VerificationViewController: UIViewController, ErrorViewDelegate {
 		super.viewDidAppear(animated)
 		if (Token.accessToken == nil || Token.refreshToken == nil) {
 			presentLoginViewController()
+			print("Presenting Login View Controller at first time")
 			return
 		}
 		sendTestRequest()
@@ -74,14 +77,21 @@ class VerificationViewController: UIViewController, ErrorViewDelegate {
 				print(response?.statusCode ?? 0, "HTTP request error")
 				return
 			}
+			print("Verification response \(response.statusCode)")
 			guard error == nil,
 				  let data = data,
 				  let object = try? JSONDecoder().decode(UserData.self, from: data)
 			else {
-				Token.accessToken = nil
-				Token.refreshToken = nil
-				DispatchQueue.main.async {
-					self?.presentLoginViewController()
+				if (self?.attempts == 0) {
+					self?.attempts += 1
+					print("Attempts")
+					self?.sendTestRequest()
+				} else {
+					Token.accessToken = nil
+					Token.refreshToken = nil
+					DispatchQueue.main.async {
+						self?.presentLoginViewController()
+					}
 				}
 				return
 			}

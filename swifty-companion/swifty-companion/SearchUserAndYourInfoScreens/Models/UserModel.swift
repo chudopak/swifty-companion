@@ -82,15 +82,15 @@ struct CoalitionData: Codable {
 
 //TEMPERARY
 func printData(data: UserData) {
-	print("DisplayName -- \(data.displayname ?? "")")
+	print("DisplayName -- \(data.displayname )")
 	print()
 	print("login -- \(data.login)")
 	print()
 	print("Location -- \(data.location ?? "")")
 	print()
-	print("Wallet -- \(data.wallet ?? -1)")
+	print("Wallet -- \(data.wallet )")
 	print()
-	print("Evaluation points -- \(data.correction_point ?? 0)")
+	print("Evaluation points -- \(data.correction_point )")
 	print()
 	print("ID -- \(data.id)")
 	print()
@@ -101,9 +101,9 @@ func printData(data: UserData) {
 	print("Cursus user -- \(data.cursus_users ?? [Cursus]())")
 	print()
 	print("Progect user -- ")
-	if let proj = data.projects_users {
-		printProjects(projects: proj)
-	}
+//	if let proj = data.projects_users {
+//		printProjects(projects: proj)
+//	}
 	print()
 	print("Campus -- \(data.campus ?? [Campus]())")
 }
@@ -115,7 +115,20 @@ func printProjects(projects: [Project]) {
 		print("Progect Status - \(proj.status)")
 		print("Final mark \(proj.final_mark ?? -1)")
 		print("Cursus ids - \(proj.cursus_ids)")
-//		print("Validated - \(proj.validated)")
+		print("Validated - \(String(describing: proj.validated))")
 		print()
 	}
 }
+
+func printProjectLists(projects: ProjectLists) {
+	for index in projects.projectCursusOrder {
+		print("Cursus - \(index)")
+		for i in projects.projectsLists[index]! {
+			print("Progect name - \(i.projectName)")
+			print("Progect Status - \(i.status)")
+			print("Final mark \(i.finalMark)")
+			print("Validated? - \(i.validated)")
+			print()
+		}
+	}
+ }

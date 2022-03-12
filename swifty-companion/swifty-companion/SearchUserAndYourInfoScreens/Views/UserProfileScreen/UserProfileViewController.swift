@@ -31,7 +31,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 	private var spaceBetweenViews: CGFloat = 15
 	private lazy var refreshControll = makeRefreshControll()
 	
-	private lazy var test = makePrimaryUserInfoBackgroundView()
+//	private lazy var test = makePrimaryUserInfoBackgroundView()
 	
 	init() {
 		super.init(nibName: nil, bundle: nil)
@@ -74,7 +74,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 //		test.trailingAnchor.constraint(
 //				equalTo: scrollView.trailingAnchor).isActive = true
 		scrollView.bottomAnchor.constraint(
-						equalTo: test.bottomAnchor, constant: 10).isActive = true
+						equalTo: levelView.bottomAnchor, constant: 10).isActive = true
 
 		if (userData != nil) {
 			showUserProfile()
@@ -94,6 +94,8 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		primaryUserInfoView.primaryUserInfo = PrimaryUserInfo(userData: userDataUnwrapped)
 		locationInClasterView.location = constructLocationInClasterText(location: userDataUnwrapped.location)
 		levelView.levelInfo = LevelInfo(level: getUserLevel(cursus: userDataUnwrapped.cursus_users))
+		let lst = ProjectLists(userData: userDataUnwrapped.projects_users)
+		printProjectLists(projects: lst)
 	}
 	
 	private func getMyData() {
@@ -237,7 +239,6 @@ extension UserProfileViewController {
 		scrollView.addSubview(primaryUserInfoView)
 		scrollView.addSubview(locationInClasterView)
 		scrollView.addSubview(levelView)
-		scrollView.addSubview(test)
 		view.backgroundColor = .black
 		navigationItem.title = userData?.login
 		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(close))
@@ -299,7 +300,7 @@ extension UserProfileViewController {
 		setBackgroundViewConstraints()
 		setLocationInClasterViewConstraints(for: locationInClasterView)
 		setLevelViewConstraints(for: levelView)
-		setTest(for: test)
+//		setTest(for: test)
 	}
 	
 	private func setActivityIndicatorConstraints(for view: UIView, superView: UIView) {
@@ -367,12 +368,12 @@ extension UserProfileViewController {
 		])
 	}
 	
-	private func setTest(for view: UIView) {
-		NSLayoutConstraint.activate([
-			view.topAnchor.constraint(equalTo: levelView.bottomAnchor, constant: spaceBetweenViews),
-			view.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
-			view.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
-			view.heightAnchor.constraint(equalToConstant: 1000)
-		])
-	}
+//	private func setTest(for view: UIView) {
+//		NSLayoutConstraint.activate([
+//			view.topAnchor.constraint(equalTo: levelView.bottomAnchor, constant: spaceBetweenViews),
+//			view.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
+//			view.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
+//			view.heightAnchor.constraint(equalToConstant: 1000)
+//		])
+//	}
 }
