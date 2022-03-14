@@ -17,8 +17,6 @@ class ProjectsScrollView: UIScrollView {
 	}
 	private var views = [UIView]()
 	
-	private lazy var noProjectsLabel = makeNoProjectsLabel()
-	
 	init() {
 		super.init(frame: .zero)
 		isPagingEnabled = true
@@ -26,9 +24,6 @@ class ProjectsScrollView: UIScrollView {
 		layer.cornerRadius = cornerRadius
 		clipsToBounds = true
 		translatesAutoresizingMaskIntoConstraints = false
-		addSubview(noProjectsLabel)
-		noProjectsLabel.isHidden = true
-		
 	}
 	
 	required init?(coder: NSCoder) {
@@ -36,23 +31,22 @@ class ProjectsScrollView: UIScrollView {
 	}
 	
 	private func configureView() {
-		noProjectsLabel.isHidden = true
 		for view in views {
 			view.removeConstraints(view.constraints)
 		}
-//		removeConstraints(constraints)
 		if (subviews.count != 0) {
 			subviews.forEach({$0.removeFromSuperview()})
 		}
 		views.removeAll()
 		if (projectsLists.projectCursusOrder.count == 0) {
-			noProjectsLabel.isHidden = false
-			setContentLayoutGuideOnLabel()
+			let noProjView = CursusProjectsTableView(projectsData: nil)
+			views.append(noProjView)
+			addSubview(noProjView)
 		} else {
 			views.reserveCapacity(projectsLists.projectCursusOrder.count)
 			addViews()
-			setConstraints()
 		}
+		setConstraints()
 	}
 	
 	private func addViews() {
@@ -77,21 +71,6 @@ class ProjectsScrollView: UIScrollView {
 		if (views.count != 0) {
 			setContentLayoutGuideOnProjectsViews()
 		}
-	}
-}
-
-extension ProjectsScrollView {
-
-	private func makeNoProjectsLabel() -> UILabel {
-		let label = UILabel()
-		label.translatesAutoresizingMaskIntoConstraints = false
-		label.numberOfLines = 1
-		label.textAlignment = .center
-		label.font = UIFont.systemFont(ofSize: 24)
-		label.textColor = .white
-		label.adjustsFontSizeToFitWidth = true
-		label.text = "No Finished Projects"
-		return (label)
 	}
 }
 
@@ -121,24 +100,6 @@ extension ProjectsScrollView {
 			contentLayoutGuide.bottomAnchor.constraint(equalTo: views[0].bottomAnchor),
 			contentLayoutGuide.leadingAnchor.constraint(equalTo: views[0].leadingAnchor),
 			contentLayoutGuide.trailingAnchor.constraint(equalTo: views[views.count - 1].trailingAnchor)
-		])
-	}
-	
-	private func setLabelConstraints(for view: UIView) {
-		NSLayoutConstraint.activate([
-			view.topAnchor.constraint(equalTo: topAnchor, constant: projectsViewNoProjectsLabelTopAnchorOffset),
-			view.leadingAnchor.constraint(equalTo: leadingAnchor),
-			view.widthAnchor.constraint(equalTo: widthAnchor),
-			view.heightAnchor.constraint(equalToConstant: projectsViewNoProjectsLabelHeight)
-		])
-	}
-	
-	private func setContentLayoutGuideOnLabel() {
-		NSLayoutConstraint.activate([
-			contentLayoutGuide.topAnchor.constraint(equalTo: topAnchor),
-			contentLayoutGuide.bottomAnchor.constraint(equalTo: bottomAnchor),
-			contentLayoutGuide.leadingAnchor.constraint(equalTo: leadingAnchor),
-			contentLayoutGuide.trailingAnchor.constraint(equalTo: trailingAnchor)
 		])
 	}
 }

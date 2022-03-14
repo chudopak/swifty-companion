@@ -11,19 +11,25 @@ class CursusProjectsTableView: UIView, UITableViewDelegate, UITableViewDataSourc
 
 	private var projectsData: [ProjectData]!
 	private lazy var tableView = UITableView()
+	private lazy var noProjectsLabel = makeNoProjectsLabel()
 	
-	init(projectsData: [ProjectData]) {
+	init(projectsData: [ProjectData]?) {
 		super.init(frame: .zero)
-		self.projectsData = projectsData
 		translatesAutoresizingMaskIntoConstraints = false
-		tableView.translatesAutoresizingMaskIntoConstraints = false
-		tableView.backgroundColor = .clear
-		tableView.delegate = self
-		tableView.dataSource = self
-		tableView.allowsSelection = false
-		tableView.register(ProjectInfoCell.self, forCellReuseIdentifier: ProjectInfoCell.identifier)
-		addSubview(tableView)
-		setTableViewConstratins(for: tableView)
+		if let data = projectsData {
+			self.projectsData = data
+			tableView.translatesAutoresizingMaskIntoConstraints = false
+			tableView.backgroundColor = .clear
+			tableView.delegate = self
+			tableView.dataSource = self
+			tableView.allowsSelection = false
+			tableView.register(ProjectInfoCell.self, forCellReuseIdentifier: ProjectInfoCell.identifier)
+			addSubview(tableView)
+			setTableViewConstratins(for: tableView)
+		} else {
+			addSubview(noProjectsLabel)
+			setLabelConstraints(for: noProjectsLabel)
+		}
 	}
 	
 	required init?(coder: NSCoder) {
@@ -44,10 +50,21 @@ class CursusProjectsTableView: UIView, UITableViewDelegate, UITableViewDataSourc
 			return (cell)
 		}
 	}
-//	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//		return (70)
-//	}
-	
+}
+
+extension CursusProjectsTableView {
+
+	private func makeNoProjectsLabel() -> UILabel {
+		let label = UILabel()
+		label.translatesAutoresizingMaskIntoConstraints = false
+		label.numberOfLines = 0
+		label.textAlignment = .center
+		label.font = UIFont.systemFont(ofSize: 24)
+		label.textColor = .white
+		label.adjustsFontSizeToFitWidth = true
+		label.text = "No Finished Projects"
+		return (label)
+	}
 }
 
 extension CursusProjectsTableView {
@@ -57,6 +74,15 @@ extension CursusProjectsTableView {
 			view.bottomAnchor.constraint(equalTo: bottomAnchor),
 			view.leadingAnchor.constraint(equalTo: leadingAnchor),
 			view.trailingAnchor.constraint(equalTo: trailingAnchor)
+		])
+	}
+	
+	private func setLabelConstraints(for view: UIView) {
+		NSLayoutConstraint.activate([
+			view.topAnchor.constraint(equalTo: topAnchor),
+			view.leadingAnchor.constraint(equalTo: leadingAnchor),
+			view.widthAnchor.constraint(equalTo: widthAnchor),
+			view.bottomAnchor.constraint(equalTo: bottomAnchor)
 		])
 	}
 }

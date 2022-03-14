@@ -274,8 +274,8 @@
             filePath = "swifty-companion/SearchUserAndYourInfoScreens/Views/UserProfileScreen/ProjectsView/ProjectsScrollView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "configureView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -290,8 +290,8 @@
             filePath = "swifty-companion/SearchUserAndYourInfoScreens/Views/UserProfileScreen/ProjectsView/ProjectsScrollView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "setConstraints()"
             landmarkType = "7">
          </BreakpointContent>
