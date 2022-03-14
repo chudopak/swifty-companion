@@ -23,6 +23,10 @@
 		7D74138C27C50BDE00284233 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D74138B27C50BDE00284233 /* UserModel.swift */; };
 		7D74138E27C511B200284233 /* LogInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D74138D27C511B200284233 /* LogInModel.swift */; };
 		7D74139227C5179E00284233 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D74139127C5179E00284233 /* LoginViewModel.swift */; };
+		7D75E62E27DF27AB0009B39C /* ProjectsScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D75E62D27DF27AB0009B39C /* ProjectsScrollView.swift */; };
+		7D75E63027DF27F70009B39C /* CursusProjectsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D75E62F27DF27F70009B39C /* CursusProjectsTableView.swift */; };
+		7D75E63227DF3B680009B39C /* ProjectInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D75E63127DF3B680009B39C /* ProjectInfoCell.swift */; };
+		7D75E63427DF3C300009B39C /* ProjectViewElementsSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D75E63327DF3C300009B39C /* ProjectViewElementsSizes.swift */; };
 		7D83E67B27CFD3AE00766676 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D83E67A27CFD3AE00766676 /* SearchView.swift */; };
 		7DB3622927C624F700885719 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3622827C624F700885719 /* TabBar.swift */; };
 		7DB3622B27C6254300885719 /* SearchUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3622A27C6254300885719 /* SearchUserViewController.swift */; };
@@ -61,6 +65,10 @@
 		7D74138B27C50BDE00284233 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		7D74138D27C511B200284233 /* LogInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInModel.swift; sourceTree = "<group>"; };
 		7D74139127C5179E00284233 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		7D75E62D27DF27AB0009B39C /* ProjectsScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsScrollView.swift; sourceTree = "<group>"; };
+		7D75E62F27DF27F70009B39C /* CursusProjectsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CursusProjectsTableView.swift; sourceTree = "<group>"; };
+		7D75E63127DF3B680009B39C /* ProjectInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoCell.swift; sourceTree = "<group>"; };
+		7D75E63327DF3C300009B39C /* ProjectViewElementsSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewElementsSizes.swift; sourceTree = "<group>"; };
 		7D83E67A27CFD3AE00766676 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		7DB3622827C624F700885719 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		7DB3622A27C6254300885719 /* SearchUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +102,7 @@
 		7D28DDFF27D2299000924C9F /* UserProfileScreen */ = {
 			isa = PBXGroup;
 			children = (
+				7D75E62A27DF26C80009B39C /* ProjectsView */,
 				7DE9955927DB4FE80002E3B8 /* LocationInClasterView */,
 				7DE9955627DB47DE0002E3B8 /* LevelView */,
 				7DDA815A27D9FACC00542017 /* PrimaryUserInfo */,
@@ -207,6 +216,17 @@
 				7D74139127C5179E00284233 /* LoginViewModel.swift */,
 			);
 			path = LoginViewModel;
+			sourceTree = "<group>";
+		};
+		7D75E62A27DF26C80009B39C /* ProjectsView */ = {
+			isa = PBXGroup;
+			children = (
+				7D75E62D27DF27AB0009B39C /* ProjectsScrollView.swift */,
+				7D75E62F27DF27F70009B39C /* CursusProjectsTableView.swift */,
+				7D75E63127DF3B680009B39C /* ProjectInfoCell.swift */,
+				7D75E63327DF3C300009B39C /* ProjectViewElementsSizes.swift */,
+			);
+			path = ProjectsView;
 			sourceTree = "<group>";
 		};
 		7D83E67627CFBAFE00766676 /* ErrorView */ = {
@@ -378,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D72793927C103FE00B2A129 /* LoginViewController.swift in Sources */,
+				7D75E63227DF3B680009B39C /* ProjectInfoCell.swift in Sources */,
 				7DCD105A27CD343B00BC709F /* UserProfileViewController.swift in Sources */,
 				7DB3622B27C6254300885719 /* SearchUserViewController.swift in Sources */,
 				7DE9955527DB47200002E3B8 /* PrimaryUserInfo.swift in Sources */,
@@ -385,6 +406,7 @@
 				7D6BE00927D0C2CE0040507E /* SearchViewElementSizes.swift in Sources */,
 				7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */,
 				7D74138927C5096E00284233 /* API.swift in Sources */,
+				7D75E63427DF3C300009B39C /* ProjectViewElementsSizes.swift in Sources */,
 				7DCFF7C727CE401E00FFE12C /* SearchDataViewModel.swift in Sources */,
 				7DE9955F27DB61A10002E3B8 /* LevelInfo.swift in Sources */,
 				7D304CF927CF83A400B151CA /* ErrorViewElemetsSize.swift in Sources */,
@@ -395,6 +417,7 @@
 				7DE9955327DB361E0002E3B8 /* UIColor+HexConversion.swift in Sources */,
 				7DE9955B27DB500B0002E3B8 /* LocationInClasterView.swift in Sources */,
 				7D4E4B7327D36AC300C13CAC /* ConstantElementsSizes.swift in Sources */,
+				7D75E62E27DF27AB0009B39C /* ProjectsScrollView.swift in Sources */,
 				7D74138E27C511B200284233 /* LogInModel.swift in Sources */,
 				7DDA815C27D9FAF000542017 /* PrimaryUserInfoView.swift in Sources */,
 				7D28DE0427D27E9C00924C9F /* UIImageView+downloadImage.swift in Sources */,
@@ -402,6 +425,7 @@
 				7D74138C27C50BDE00284233 /* UserModel.swift in Sources */,
 				7DCFF7C427CE3E1A00FFE12C /* GreenButton.swift in Sources */,
 				7DE9956327DBAB6F0002E3B8 /* String+isNumeric.swift in Sources */,
+				7D75E63027DF27F70009B39C /* CursusProjectsTableView.swift in Sources */,
 				7D304CFD27CF9FA300B151CA /* VerificationViewController.swift in Sources */,
 				7D72793727C103FE00B2A129 /* SceneDelegate.swift in Sources */,
 				7DB3622E27C650DC00885719 /* LoginView.swift in Sources */,

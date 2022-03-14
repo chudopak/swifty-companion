@@ -45,7 +45,7 @@ class ProjectLists {
 	
 	private func setOrderAndCountSize(projects: [Project]) {
 		for proj in projects {
-			if (isProgectVisible(project: proj)) {
+			if (isVisibleForUser(project: proj)) {
 				if (!cursusProjectsSize.keys.contains(proj.cursus_ids[0])) {
 					cursusProjectsSize[proj.cursus_ids[0]] = 1
 					projectCursusOrder.append(proj.cursus_ids[0])
@@ -61,7 +61,7 @@ class ProjectLists {
 			projectsLists[projIndex] = Array<ProjectData>(repeating: ProjectData(), count: cursusProjectsSize[projIndex]!)
 			var i = 0
 			for proj in projects {
-				if (isProgectVisible(project: proj)
+				if (isVisibleForUser(project: proj)
 						&& proj.cursus_ids[0] == projIndex
 						&& i < cursusProjectsSize[projIndex]!) {
 					projectsLists[projIndex]![i] = ProjectData(proj: proj)
@@ -79,7 +79,7 @@ class ProjectLists {
 		}
 	}
 	
-	private func isProgectVisible(project: Project) -> Bool {
+	private func isVisibleForUser(project: Project) -> Bool {
 		if (project.cursus_ids.count != 0
 				&& !project.project.name.isNumeric
 				&& project.final_mark != nil

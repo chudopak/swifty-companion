@@ -1,0 +1,144 @@
+//
+//  ProjectsView.swift
+//  swifty-companion
+//
+//  Created by Stepan Kirillov on 3/14/22.
+//
+
+import UIKit
+
+
+class ProjectsScrollView: UIScrollView {
+
+	var projectsLists: ProjectLists! {
+		didSet {
+			configureView()
+		}
+	}
+	private var views = [UIView]()
+	
+	private lazy var noProjectsLabel = makeNoProjectsLabel()
+	
+	init() {
+		super.init(frame: .zero)
+		isPagingEnabled = true
+		backgroundColor = UIColor(named: "UserInfoScreenBackgroundColor")
+		layer.cornerRadius = cornerRadius
+		clipsToBounds = true
+		translatesAutoresizingMaskIntoConstraints = false
+		addSubview(noProjectsLabel)
+		noProjectsLabel.isHidden = true
+		
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
+	private func configureView() {
+		noProjectsLabel.isHidden = true
+		for view in views {
+			view.removeConstraints(view.constraints)
+		}
+//		removeConstraints(constraints)
+		if (subviews.count != 0) {
+			subviews.forEach({$0.removeFromSuperview()})
+		}
+		views.removeAll()
+		if (projectsLists.projectCursusOrder.count == 0) {
+			noProjectsLabel.isHidden = false
+			setContentLayoutGuideOnLabel()
+		} else {
+			views.reserveCapacity(projectsLists.projectCursusOrder.count)
+			addViews()
+			setConstraints()
+		}
+	}
+	
+	private func addViews() {
+		for index in 0..<projectsLists.projectCursusOrder.count {
+			let cursus = projectsLists.projectCursusOrder[index]
+			views.append(CursusProjectsTableView(projectsData: projectsLists.projectsLists[cursus]!))
+		}
+		for view in views {
+			addSubview(view)
+		}
+	}
+	
+	private func setConstraints() {
+		for i in 0..<views.count {
+			if (i == 0) {
+				setFirstViewConstraints(for: views[i])
+			}
+			else {
+				setViwsConstraints(for: views[i], leftView: views[i - 1])
+			}
+		}
+		if (views.count != 0) {
+			setContentLayoutGuideOnProjectsViews()
+		}
+	}
+}
+
+extension ProjectsScrollView {
+
+	private func makeNoProjectsLabel() -> UILabel {
+		let label = UILabel()
+		label.translatesAutoresizingMaskIntoConstraints = false
+		label.numberOfLines = 1
+		label.textAlignment = .center
+		label.font = UIFont.systemFont(ofSize: 24)
+		label.textColor = .white
+		label.adjustsFontSizeToFitWidth = true
+		label.text = "No Finished Projects"
+		return (label)
+	}
+}
+
+extension ProjectsScrollView {
+	
+	private func setFirstViewConstraints(for view: UIView) {
+		NSLayoutConstraint.activate([
+			view.topAnchor.constraint(equalTo: topAnchor),
+			view.leadingAnchor.constraint(equalTo: leadingAnchor),
+			view.widthAnchor.constraint(equalTo: widthAnchor),
+			view.heightAnchor.constraint(equalToConstant: projectsScrollViewHeight)
+		])
+	}
+	
+	private func setViwsConstraints(for view: UIView, leftView: UIView) {
+		NSLayoutConstraint.activate([
+			view.topAnchor.constraint(equalTo: topAnchor),
+			view.heightAnchor.constraint(equalToConstant: projectsScrollViewHeight),
+			view.leadingAnchor.constraint(equalTo: leftView.trailingAnchor),
+			view.widthAnchor.constraint(equalTo: leftView.widthAnchor)
+		])
+	}
+	
+	private func setContentLayoutGuideOnProjectsViews() {
+		NSLayoutConstraint.activate([
+			contentLayoutGuide.topAnchor.constraint(equalTo: views[0].topAnchor),
+			contentLayoutGuide.bottomAnchor.constraint(equalTo: views[0].bottomAnchor),
+			contentLayoutGuide.leadingAnchor.constraint(equalTo: views[0].leadingAnchor),
+			contentLayoutGuide.trailingAnchor.constraint(equalTo: views[views.count - 1].trailingAnchor)
+		])
+	}
+	
+	private func setLabelConstraints(for view: UIView) {
+		NSLayoutConstraint.activate([
+			view.topAnchor.constraint(equalTo: topAnchor, constant: projectsViewNoProjectsLabelTopAnchorOffset),
+			view.leadingAnchor.constraint(equalTo: leadingAnchor),
+			view.widthAnchor.constraint(equalTo: widthAnchor),
+			view.heightAnchor.constraint(equalToConstant: projectsViewNoProjectsLabelHeight)
+		])
+	}
+	
+	private func setContentLayoutGuideOnLabel() {
+		NSLayoutConstraint.activate([
+			contentLayoutGuide.topAnchor.constraint(equalTo: topAnchor),
+			contentLayoutGuide.bottomAnchor.constraint(equalTo: bottomAnchor),
+			contentLayoutGuide.leadingAnchor.constraint(equalTo: leadingAnchor),
+			contentLayoutGuide.trailingAnchor.constraint(equalTo: trailingAnchor)
+		])
+	}
+}

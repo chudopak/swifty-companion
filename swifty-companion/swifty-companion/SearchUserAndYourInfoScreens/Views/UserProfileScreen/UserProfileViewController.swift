@@ -27,6 +27,8 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 	private lazy var primaryUserInfoBackgroundView = makePrimaryUserInfoBackgroundView()
 	private lazy var locationInClasterView = LocationInClasterView()
 	private lazy var levelView = LevelView()
+	private lazy var projectsScrollView = ProjectsScrollView()
+	
 	
 	private var spaceBetweenViews: CGFloat = 15
 	private lazy var refreshControll = makeRefreshControll()
@@ -74,7 +76,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 //		test.trailingAnchor.constraint(
 //				equalTo: scrollView.trailingAnchor).isActive = true
 		scrollView.bottomAnchor.constraint(
-						equalTo: levelView.bottomAnchor, constant: 10).isActive = true
+						equalTo: projectsScrollView.bottomAnchor, constant: 10).isActive = true
 
 		if (userData != nil) {
 			showUserProfile()
@@ -95,7 +97,9 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		locationInClasterView.location = constructLocationInClasterText(location: userDataUnwrapped.location)
 		levelView.levelInfo = LevelInfo(level: getUserLevel(cursus: userDataUnwrapped.cursus_users))
 		let lst = ProjectLists(userData: userDataUnwrapped.projects_users)
+		projectsScrollView.projectsLists = lst
 		printProjectLists(projects: lst)
+//		print(projectsScrollView.widthAnchor)
 	}
 	
 	private func getMyData() {
@@ -239,6 +243,7 @@ extension UserProfileViewController {
 		scrollView.addSubview(primaryUserInfoView)
 		scrollView.addSubview(locationInClasterView)
 		scrollView.addSubview(levelView)
+		scrollView.addSubview(projectsScrollView)
 		view.backgroundColor = .black
 		navigationItem.title = userData?.login
 		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(close))
@@ -300,6 +305,7 @@ extension UserProfileViewController {
 		setBackgroundViewConstraints()
 		setLocationInClasterViewConstraints(for: locationInClasterView)
 		setLevelViewConstraints(for: levelView)
+		setProjectsScrollViewConstraints(for: projectsScrollView)
 //		setTest(for: test)
 	}
 	
@@ -365,6 +371,15 @@ extension UserProfileViewController {
 			view.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
 			view.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
 			view.heightAnchor.constraint(equalToConstant: levelViewHeight)
+		])
+	}
+	
+	private func setProjectsScrollViewConstraints(for view: UIView) {
+		NSLayoutConstraint.activate([
+			view.topAnchor.constraint(equalTo: levelView.bottomAnchor, constant: spaceBetweenViews),
+			view.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
+			view.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
+			view.heightAnchor.constraint(equalToConstant: projectsScrollViewHeight)
 		])
 	}
 	
