@@ -17,9 +17,9 @@ class ProjectInfoCell: UITableViewCell {
 		}
 	}
 	
-	private lazy var name = makeLabel(textSize: 18, alignment: .left)
-	private lazy var score = makeLabel(textSize: 18, alignment: .right)
-	private lazy var mark = makeLabel(textSize: 18, alignment: .right)
+	private lazy var name = makeLabel(textSize: 18, alignment: .left, shouldAdjustFont: false)
+	private lazy var score = makeLabel(textSize: 18, alignment: .right, shouldAdjustFont: true)
+	private lazy var mark = makeLabel(textSize: 18, alignment: .right, shouldAdjustFont: true)
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,13 +36,10 @@ class ProjectInfoCell: UITableViewCell {
 	
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 	
 	private func setProjectInfo() {
@@ -58,19 +55,20 @@ class ProjectInfoCell: UITableViewCell {
 			name.textColor = UIColor(named: "redFailure")
 		}
 		mark.text = projectData.validated ? "✓" : "✗"
+		mark.sizeToFit()
 	}
 
 }
 
 extension ProjectInfoCell {
 	
-	private func makeLabel(textSize: CGFloat, alignment: NSTextAlignment) -> UILabel {
+	private func makeLabel(textSize: CGFloat, alignment: NSTextAlignment, shouldAdjustFont: Bool) -> UILabel {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
-		label.numberOfLines = 1
+		label.numberOfLines = 0
 		label.textAlignment = alignment
 		label.font = UIFont.systemFont(ofSize: textSize)
-		label.adjustsFontSizeToFitWidth = true
+		label.adjustsFontSizeToFitWidth = shouldAdjustFont
 		label.text = ""
 		return (label)
 	}
@@ -88,8 +86,8 @@ extension ProjectInfoCell {
 		NSLayoutConstraint.activate([
 			view.leadingAnchor.constraint(equalTo: leadingAnchor, constant: tableViewLabelsSizeOffset),
 			view.widthAnchor.constraint(equalToConstant: nameLabelWidth),
-			view.heightAnchor.constraint(equalToConstant: projectViewlabelsHeight),
-			view.centerYAnchor.constraint(equalTo: centerYAnchor)
+			view.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+			view.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
 		])
 	}
 	

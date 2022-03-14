@@ -7,7 +7,7 @@
 
 import UIKit
 
-let nameLabelWidth: CGFloat = (UIScreen.main.bounds.size.width - tableViewLabelsSizeOffset * 2) * 0.8
+let nameLabelWidth: CGFloat = (UIScreen.main.bounds.size.width - tableViewLabelsSizeOffset * 2) * 0.7
 
 let scoreLabelWidth: CGFloat = (UIScreen.main.bounds.size.width - tableViewLabelsSizeOffset * 2) * 0.10
 
