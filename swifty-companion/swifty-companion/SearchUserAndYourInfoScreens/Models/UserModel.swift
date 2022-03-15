@@ -34,8 +34,14 @@ struct UserData: Codable {
 }
 
 struct Cursus: Codable {
+	var cursus: CursusInfo
 	var level: Double
 	var skills: [Skill]
+}
+
+struct CursusInfo: Codable {
+	var name: String
+	var id: Int
 }
 
 struct Skill: Codable {

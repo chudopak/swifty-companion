@@ -55,26 +55,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		setView()
 		setNetworkClosures()
 		setConstraints()
-		
-//		var previousLab : UILabel? = nil
-//		for i in 0 ..< 30 {
-//			let lab = UILabel()
-//			lab.backgroundColor = .red
-//			lab.translatesAutoresizingMaskIntoConstraints = false
-//			lab.text = "T \(i+1)"
-//			scrollView.addSubview(lab)
-//			lab.leadingAnchor.constraint(
-//				equalTo: scrollView.leadingAnchor, constant: 10).isActive = true
-//			lab.topAnchor.constraint(
-//				// first one, pin to top; all others, pin to previous
-//				equalTo: previousLab?.bottomAnchor ?? scrollView.topAnchor,
-//				constant: 10).isActive = true
-//			previousLab = lab
-//		}
-//		scrollView.bottomAnchor.constraint(
-//				equalTo: previousLab!.bottomAnchor, constant: 10).isActive = true
-//		test.trailingAnchor.constraint(
-//				equalTo: scrollView.trailingAnchor).isActive = true
+
 		scrollView.bottomAnchor.constraint(
 						equalTo: projectsScrollView.bottomAnchor, constant: 10).isActive = true
 
@@ -96,7 +77,8 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		primaryUserInfoView.primaryUserInfo = PrimaryUserInfo(userData: userDataUnwrapped)
 		locationInClasterView.location = constructLocationInClasterText(location: userDataUnwrapped.location)
 		levelView.levelInfo = LevelInfo(level: getUserLevel(cursus: userDataUnwrapped.cursus_users))
-		let lst = ProjectLists(userData: userDataUnwrapped.projects_users)
+		let lst = ProjectLists(userData: userDataUnwrapped.projects_users,
+							   cursus_user: userDataUnwrapped.cursus_users)
 		projectsScrollView.projectsLists = lst
 		printProjectLists(projects: lst)
 //		print(projectsScrollView.widthAnchor)
@@ -214,6 +196,11 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 			  cursus.count != 0
 		else {
 			return (0.0)
+		}
+		for curs in cursus {
+			if (curs.cursus.id == 21) {
+				return (curs.level)
+			}
 		}
 		return (cursus[cursus.count - 1].level)
 	}

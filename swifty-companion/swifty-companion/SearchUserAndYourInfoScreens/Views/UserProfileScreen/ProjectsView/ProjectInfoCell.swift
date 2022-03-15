@@ -84,7 +84,7 @@ extension ProjectInfoCell {
 	
 	private func setNameConstraints(for view: UIView) {
 		NSLayoutConstraint.activate([
-			view.leadingAnchor.constraint(equalTo: leadingAnchor, constant: tableViewLabelsSizeOffset),
+			view.leadingAnchor.constraint(equalTo: leadingAnchor, constant: projectsViewLabelsSizeOffset),
 			view.widthAnchor.constraint(equalToConstant: nameLabelWidth),
 			view.topAnchor.constraint(equalTo: topAnchor, constant: 10),
 			view.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
@@ -93,7 +93,7 @@ extension ProjectInfoCell {
 	
 	private func setScoreConstraints(for view: UIView) {
 		NSLayoutConstraint.activate([
-			view.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -tableViewLabelsSizeOffset),
+			view.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -projectsViewLabelsSizeOffset),
 			view.widthAnchor.constraint(equalToConstant: scoreLabelWidth),
 			view.heightAnchor.constraint(equalToConstant: projectViewlabelsHeight),
 			view.centerYAnchor.constraint(equalTo: centerYAnchor)

@@ -39,7 +39,7 @@ class ProjectsScrollView: UIScrollView {
 		}
 		views.removeAll()
 		if (projectsLists.projectCursusOrder.count == 0) {
-			let noProjView = CursusProjectsTableView(projectsData: nil)
+			let noProjView = CursusProjectsInfoView(projectsData: nil, cursusName: "")
 			views.append(noProjView)
 			addSubview(noProjView)
 		} else {
@@ -52,7 +52,8 @@ class ProjectsScrollView: UIScrollView {
 	private func addViews() {
 		for index in 0..<projectsLists.projectCursusOrder.count {
 			let cursus = projectsLists.projectCursusOrder[index]
-			views.append(CursusProjectsTableView(projectsData: projectsLists.projectsLists[cursus]!))
+			let name = projectsLists.cursusNames[cursus] ?? "Some Cursus"
+			views.append(CursusProjectsInfoView(projectsData: projectsLists.projectsLists[cursus]!, cursusName: name))
 		}
 		for view in views {
 			addSubview(view)

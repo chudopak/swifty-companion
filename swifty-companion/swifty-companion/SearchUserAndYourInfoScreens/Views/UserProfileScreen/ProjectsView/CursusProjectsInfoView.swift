@@ -7,13 +7,14 @@
 
 import UIKit
 
-class CursusProjectsTableView: UIView, UITableViewDelegate, UITableViewDataSource {
+class CursusProjectsInfoView: UIView, UITableViewDelegate, UITableViewDataSource {
 
 	private var projectsData: [ProjectData]!
 	private lazy var tableView = UITableView()
 	private lazy var noProjectsLabel = makeNoProjectsLabel()
+	private lazy var cursusNameLabel = makeCursusNameLabel()
 	
-	init(projectsData: [ProjectData]?) {
+	init(projectsData: [ProjectData]?, cursusName: String) {
 		super.init(frame: .zero)
 		translatesAutoresizingMaskIntoConstraints = false
 		if let data = projectsData {
@@ -25,7 +26,10 @@ class CursusProjectsTableView: UIView, UITableViewDelegate, UITableViewDataSourc
 			tableView.allowsSelection = false
 			tableView.register(ProjectInfoCell.self, forCellReuseIdentifier: ProjectInfoCell.identifier)
 			addSubview(tableView)
-			setTableViewConstratins(for: tableView)
+			addSubview(cursusNameLabel)
+			cursusNameLabel.text = cursusName
+			setCursusNameLabelConstraints(for: cursusNameLabel)
+			setTableViewConstratins(for: tableView, superView: cursusNameLabel)
 		} else {
 			addSubview(noProjectsLabel)
 			setLabelConstraints(for: noProjectsLabel)
@@ -52,7 +56,7 @@ class CursusProjectsTableView: UIView, UITableViewDelegate, UITableViewDataSourc
 	}
 }
 
-extension CursusProjectsTableView {
+extension CursusProjectsInfoView {
 
 	private func makeNoProjectsLabel() -> UILabel {
 		let label = UILabel()
@@ -65,12 +69,33 @@ extension CursusProjectsTableView {
 		label.text = "No Finished Projects"
 		return (label)
 	}
+	
+	private func makeCursusNameLabel() -> UILabel {
+		let label = UILabel()
+		label.translatesAutoresizingMaskIntoConstraints = false
+		label.numberOfLines = 1
+		label.textAlignment = .left
+		label.font = UIFont.systemFont(ofSize: 24)
+		label.textColor = .white
+		label.adjustsFontSizeToFitWidth = true
+		return (label)
+	}
 }
 
-extension CursusProjectsTableView {
-	private func setTableViewConstratins(for view: UITableView) {
+extension CursusProjectsInfoView {
+	
+	private func setCursusNameLabelConstraints(for view: UILabel) {
 		NSLayoutConstraint.activate([
 			view.topAnchor.constraint(equalTo: topAnchor),
+			view.heightAnchor.constraint(equalToConstant: projectsViewCursusNameHeight),
+			view.leadingAnchor.constraint(equalTo: leadingAnchor, constant: projectsViewLabelsSizeOffset),
+			view.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -projectsViewLabelsSizeOffset)
+		])
+	}
+	
+	private func setTableViewConstratins(for view: UITableView, superView: UIView) {
+		NSLayoutConstraint.activate([
+			view.topAnchor.constraint(equalTo: superView.bottomAnchor),
 			view.bottomAnchor.constraint(equalTo: bottomAnchor),
 			view.leadingAnchor.constraint(equalTo: leadingAnchor),
 			view.trailingAnchor.constraint(equalTo: trailingAnchor)

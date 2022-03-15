@@ -32,12 +32,21 @@ struct ProjectData {
 class ProjectLists {
 	var projectCursusOrder = [Int]()
 	var projectsLists = [Int: [ProjectData]]()
+	var cursusNames = [Int: String]()
 	private var cursusProjectsSize = [Int: Int]()
 	
-	init(userData: [Project]? = nil) {
+	init(userData: [Project]? = nil, cursus_user: [Cursus]? = nil) {
 		guard let projects = userData else {
 			return
 		}
+		if let cursus = cursus_user {
+			for curs in cursus {
+				cursusNames[curs.cursus.id] = curs.cursus.name
+			}
+		}
+		print()
+		print("CuRSUS NAMES", cursusNames)
+		print()
 		setOrderAndCountSize(projects: projects)
 		setProjectsList(projects: projects)
 //		sortLists()
