@@ -29,8 +29,6 @@ class VerificationViewController: UIViewController, ErrorViewDelegate {
 	
 	private lazy var errorView = ErrorView(delegate: self)
 	
-	private var attempts = 0
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.addSubview(backgroundImage)
@@ -82,16 +80,10 @@ class VerificationViewController: UIViewController, ErrorViewDelegate {
 				  let data = data,
 				  let object = try? JSONDecoder().decode(UserData.self, from: data)
 			else {
-				if (self?.attempts == 0) {
-					self?.attempts += 1
-					print("Attempts")
-					self?.sendTestRequest()
-				} else {
-					Token.accessToken = nil
-					Token.refreshToken = nil
-					DispatchQueue.main.async {
-						self?.presentLoginViewController()
-					}
+				Token.accessToken = nil
+				Token.refreshToken = nil
+				DispatchQueue.main.async {
+					self?.presentLoginViewController()
 				}
 				return
 			}

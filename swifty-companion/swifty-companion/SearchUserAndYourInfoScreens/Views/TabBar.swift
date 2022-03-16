@@ -28,7 +28,8 @@ class TabBar: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupViewControllers()
-		
+		tabBar.barTintColor = UIColor(named: "barsColor")
+		tabBar.tintColor = UIColor(named: "barsTintColor")
     }
 	
 	private func setupViewControllers() {

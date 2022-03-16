@@ -14,7 +14,7 @@ let scoreLabelWidth: CGFloat = (UIScreen.main.bounds.size.width - projectsViewLa
 let projectsViewLabelsSizeOffset: CGFloat = 16
 let projectViewlabelsHeight: CGFloat = 30
 
-let projectsScrollViewHeight: CGFloat = UIScreen.main.bounds.size.height * 0.45
+let projectsScrollViewHeight: CGFloat = UIScreen.main.bounds.size.height * 0.40
 
 let projectsViewNoProjectsLabelHeight: CGFloat = 60
 let projectsViewNoProjectsLabelTopAnchorOffset: CGFloat = projectsScrollViewHeight / 2 - projectsViewNoProjectsLabelHeight / 2

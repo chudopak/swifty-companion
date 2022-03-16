@@ -28,6 +28,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 	private lazy var locationInClasterView = LocationInClasterView()
 	private lazy var levelView = LevelView()
 	private lazy var projectsScrollView = ProjectsScrollView()
+	private lazy var skillsChartView = SkillsChartView()
 	
 	
 	private var spaceBetweenViews: CGFloat = 15
@@ -57,7 +58,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		setConstraints()
 
 		scrollView.bottomAnchor.constraint(
-						equalTo: projectsScrollView.bottomAnchor, constant: 10).isActive = true
+						equalTo: skillsChartView.bottomAnchor, constant: 10).isActive = true
 
 		if (userData != nil) {
 			showUserProfile()
@@ -80,8 +81,9 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		let lst = ProjectLists(userData: userDataUnwrapped.projects_users,
 							   cursus_user: userDataUnwrapped.cursus_users)
 		projectsScrollView.projectsLists = lst
+		skillsChartView.cursus = userDataUnwrapped.cursus_users
+		print(projectsScrollView.contentSize.width)
 		printProjectLists(projects: lst)
-//		print(projectsScrollView.widthAnchor)
 	}
 	
 	private func getMyData() {
@@ -231,6 +233,7 @@ extension UserProfileViewController {
 		scrollView.addSubview(locationInClasterView)
 		scrollView.addSubview(levelView)
 		scrollView.addSubview(projectsScrollView)
+		scrollView.addSubview(skillsChartView)
 		view.backgroundColor = .black
 		navigationItem.title = userData?.login
 		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(close))
@@ -293,6 +296,7 @@ extension UserProfileViewController {
 		setLocationInClasterViewConstraints(for: locationInClasterView)
 		setLevelViewConstraints(for: levelView)
 		setProjectsScrollViewConstraints(for: projectsScrollView)
+		setSkillsChartViewConstraint(for: skillsChartView)
 //		setTest(for: test)
 	}
 	
@@ -364,6 +368,16 @@ extension UserProfileViewController {
 	private func setProjectsScrollViewConstraints(for view: UIView) {
 		NSLayoutConstraint.activate([
 			view.topAnchor.constraint(equalTo: levelView.bottomAnchor, constant: spaceBetweenViews),
+			view.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
+			view.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
+			view.heightAnchor.constraint(equalToConstant: projectsScrollViewHeight)
+		])
+	}
+	
+	
+	private func setSkillsChartViewConstraint(for view: UIView) {
+		NSLayoutConstraint.activate([
+			view.topAnchor.constraint(equalTo: projectsScrollView.bottomAnchor, constant: spaceBetweenViews),
 			view.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
 			view.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
 			view.heightAnchor.constraint(equalToConstant: projectsScrollViewHeight)

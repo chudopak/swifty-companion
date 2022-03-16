@@ -29,6 +29,9 @@ class SearchUserViewController: UIViewController, SearchUserViewControllerDelega
 		userProfileVC.modalPresentationStyle = .fullScreen
 		let navController = UINavigationController(rootViewController: userProfileVC)
 		navController.modalPresentationStyle = .fullScreen
+		navController.navigationBar.barTintColor = UIColor(named: "barsColor")
+		navController.navigationBar.tintColor = UIColor(named: "barsTintColor")
+		navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 		present(navController, animated: true, completion: nil)
 	}
 }

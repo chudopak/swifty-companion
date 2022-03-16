@@ -12,6 +12,8 @@
 		7D304CF727CF7E3100B151CA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CF627CF7E3100B151CA /* ErrorView.swift */; };
 		7D304CF927CF83A400B151CA /* ErrorViewElemetsSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CF827CF83A400B151CA /* ErrorViewElemetsSize.swift */; };
 		7D304CFD27CF9FA300B151CA /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D304CFC27CF9FA300B151CA /* VerificationViewController.swift */; };
+		7D367F4227E1FCB300EB1476 /* SkillsChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D367F4127E1FCB300EB1476 /* SkillsChartView.swift */; };
+		7D367F4427E2264B00EB1476 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D367F4327E2264B00EB1476 /* ChartViewController.swift */; };
 		7D4E4B7327D36AC300C13CAC /* ConstantElementsSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4E4B7227D36AC300C13CAC /* ConstantElementsSizes.swift */; };
 		7D6BE00927D0C2CE0040507E /* SearchViewElementSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6BE00827D0C2CE0040507E /* SearchViewElementSizes.swift */; };
 		7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72793427C103FE00B2A129 /* AppDelegate.swift */; };
@@ -52,6 +54,8 @@
 		7D304CF627CF7E3100B151CA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		7D304CF827CF83A400B151CA /* ErrorViewElemetsSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewElemetsSize.swift; sourceTree = "<group>"; };
 		7D304CFC27CF9FA300B151CA /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
+		7D367F4127E1FCB300EB1476 /* SkillsChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsChartView.swift; sourceTree = "<group>"; };
+		7D367F4327E2264B00EB1476 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		7D4E4B7227D36AC300C13CAC /* ConstantElementsSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantElementsSizes.swift; sourceTree = "<group>"; };
 		7D6BE00827D0C2CE0040507E /* SearchViewElementSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewElementSizes.swift; sourceTree = "<group>"; };
 		7D72793127C103FE00B2A129 /* swifty-companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swifty-companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +106,7 @@
 		7D28DDFF27D2299000924C9F /* UserProfileScreen */ = {
 			isa = PBXGroup;
 			children = (
+				7D367F4027E1FBF900EB1476 /* SkillsChartView */,
 				7D75E62A27DF26C80009B39C /* ProjectsView */,
 				7DE9955927DB4FE80002E3B8 /* LocationInClasterView */,
 				7DE9955627DB47DE0002E3B8 /* LevelView */,
@@ -127,6 +132,15 @@
 				7D304CFC27CF9FA300B151CA /* VerificationViewController.swift */,
 			);
 			path = VerificationScreen;
+			sourceTree = "<group>";
+		};
+		7D367F4027E1FBF900EB1476 /* SkillsChartView */ = {
+			isa = PBXGroup;
+			children = (
+				7D367F4127E1FCB300EB1476 /* SkillsChartView.swift */,
+				7D367F4327E2264B00EB1476 /* ChartViewController.swift */,
+			);
+			path = SkillsChartView;
 			sourceTree = "<group>";
 		};
 		7D6BE00A27D0C5320040507E /* GeneralViews */ = {
@@ -402,6 +416,7 @@
 				7DCD105A27CD343B00BC709F /* UserProfileViewController.swift in Sources */,
 				7DB3622B27C6254300885719 /* SearchUserViewController.swift in Sources */,
 				7DE9955527DB47200002E3B8 /* PrimaryUserInfo.swift in Sources */,
+				7D367F4427E2264B00EB1476 /* ChartViewController.swift in Sources */,
 				7DDA815E27D9FB4100542017 /* PrimaryUserInfoElementsSizes.swift in Sources */,
 				7D6BE00927D0C2CE0040507E /* SearchViewElementSizes.swift in Sources */,
 				7D72793527C103FE00B2A129 /* AppDelegate.swift in Sources */,
@@ -416,6 +431,7 @@
 				7DE9955827DB48100002E3B8 /* LevelView.swift in Sources */,
 				7DE9955327DB361E0002E3B8 /* UIColor+HexConversion.swift in Sources */,
 				7DE9955B27DB500B0002E3B8 /* LocationInClasterView.swift in Sources */,
+				7D367F4227E1FCB300EB1476 /* SkillsChartView.swift in Sources */,
 				7D4E4B7327D36AC300C13CAC /* ConstantElementsSizes.swift in Sources */,
 				7D75E62E27DF27AB0009B39C /* ProjectsScrollView.swift in Sources */,
 				7D74138E27C511B200284233 /* LogInModel.swift in Sources */,
