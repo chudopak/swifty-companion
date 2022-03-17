@@ -13,6 +13,7 @@ class SkillsChartView: UIView, UIPageViewControllerDataSource, UIPageViewControl
 	private lazy var pageViewController = UIPageViewController(transitionStyle: .scroll,
 															   navigationOrientation: .horizontal,
 															   options: nil)
+	private lazy var noSkillsLabel = makeNoSkillsLabel()
 	
 	private var chartViewControllers = [ChartViewController]()
 	
@@ -22,8 +23,6 @@ class SkillsChartView: UIView, UIPageViewControllerDataSource, UIPageViewControl
 		}
 	}
 	
-	private var currentView = 0
-	
 	init(cursus: [Cursus]? = nil) {
 		super.init(frame: .zero)
 		translatesAutoresizingMaskIntoConstraints = false
@@ -31,8 +30,13 @@ class SkillsChartView: UIView, UIPageViewControllerDataSource, UIPageViewControl
 		layer.cornerRadius = cornerRadius
 		clipsToBounds = true
 		pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+		pageViewController.delegate = self
+		pageViewController.dataSource = self
 		addSubview(pageViewController.view)
+		addSubview(noSkillsLabel)
+		noSkillsLabel.isHidden = true
 		setPageViewContraints(for: pageViewController.view)
+		setNoSkillsLabelConstraints(for: noSkillsLabel)
 	}
 	
 	required init?(coder: NSCoder) {
@@ -40,18 +44,39 @@ class SkillsChartView: UIView, UIPageViewControllerDataSource, UIPageViewControl
 	}
 	
 	private func setPageViewController() {
-		chartViewControllers.removeAll()
-		pageViewController.delegate = self
-		pageViewController.dataSource = self
-		for i in 0..<4 {
-			let vc = ChartViewController(i: i)
-			chartViewControllers.append(vc)
+		chartViewControllers.removeAll(keepingCapacity: true)
+		let amountOfCharts = countSkillsCharts()
+		guard amountOfCharts != 0, let cursus = cursus else {
+			pageViewController.view.isHidden = true
+			noSkillsLabel.isHidden = false
+			return
+		}
+		chartViewControllers.reserveCapacity(amountOfCharts)
+		for i in 0..<cursus.count {
+			if (cursus[i].skills.count != 0) {
+				let vc = ChartViewController(i: i)
+				chartViewControllers.append(vc)
+			}
 		}
 		guard let first = chartViewControllers.first else {
+			pageViewController.view.isHidden = true
+			noSkillsLabel.isHidden = false
 			return
 		}
 		pageViewController.setViewControllers([first], direction: .forward, animated: true)
-		
+	}
+	
+	private func countSkillsCharts() -> Int {
+		guard let cursus = cursus else {
+			return (0)
+		}
+		var amountOfCharts = 0
+		for curs in cursus {
+			if (curs.skills.count != 0) {
+				amountOfCharts += 1
+			}
+		}
+		return (amountOfCharts)
 	}
 	
 	func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -61,10 +86,9 @@ class SkillsChartView: UIView, UIPageViewControllerDataSource, UIPageViewControl
 			  index > 0 else {
 			return nil
 		}
-		let after = index - 1
-		currentView = after
-		print("CURRENT VIEW BEFORE \(currentView)")
-		return (chartViewControllers[currentView])
+		let before = index - 1
+		print("CURRENT VIEW BEFORE \(before)")
+		return (chartViewControllers[before])
 	}
 	
 	func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -75,9 +99,8 @@ class SkillsChartView: UIView, UIPageViewControllerDataSource, UIPageViewControl
 			return nil
 		}
 		let after = index + 1
-		currentView = after
-		print("CURRENT VIEW AFTER \(currentView)")
-		return (chartViewControllers[currentView])
+		print("CURRENT VIEW AFTER \(after)")
+		return (chartViewControllers[after])
 	}
 	
 	func presentationCount(for pageViewController: UIPageViewController) -> Int {
@@ -85,13 +108,38 @@ class SkillsChartView: UIView, UIPageViewControllerDataSource, UIPageViewControl
 	}
 	
 	func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-		return (currentView)
+		print("PRESENTATION INDEX")
+		return (0)
+	}
+}
+
+extension SkillsChartView {
+	
+	private func makeNoSkillsLabel() -> UILabel {
+		let label = UILabel()
+		label.translatesAutoresizingMaskIntoConstraints = false
+		label.numberOfLines = 0
+		label.textAlignment = .center
+		label.font = UIFont.systemFont(ofSize: 24)
+		label.textColor = .white
+		label.adjustsFontSizeToFitWidth = true
+		label.text = "No Skills Available"
+		return label
 	}
 }
 
 extension SkillsChartView {
 		
 	private func setPageViewContraints(for view: UIView) {
+		NSLayoutConstraint.activate([
+			view.topAnchor.constraint(equalTo: topAnchor),
+			view.bottomAnchor.constraint(equalTo: bottomAnchor),
+			view.leadingAnchor.constraint(equalTo: leadingAnchor),
+			view.trailingAnchor.constraint(equalTo: trailingAnchor)
+		])
+	}
+	
+	private func setNoSkillsLabelConstraints(for view: UIView) {
 		NSLayoutConstraint.activate([
 			view.topAnchor.constraint(equalTo: topAnchor),
 			view.bottomAnchor.constraint(equalTo: bottomAnchor),
