@@ -29,7 +29,7 @@ class TabBar: UITabBarController {
         super.viewDidLoad()
 		setupViewControllers()
 		tabBar.barTintColor = UIColor(named: "barsColor")
-		tabBar.tintColor = UIColor(named: "barsTintColor")
+		tabBar.tintColor = UIColor(named: "buttonsGreen")
     }
 	
 	private func setupViewControllers() {

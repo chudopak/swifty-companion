@@ -27,7 +27,7 @@ class CursusProjectsInfoView: UIView, UITableViewDelegate, UITableViewDataSource
 			tableView.register(ProjectInfoCell.self, forCellReuseIdentifier: ProjectInfoCell.identifier)
 			addSubview(tableView)
 			addSubview(cursusNameLabel)
-			cursusNameLabel.text = cursusName
+			cursusNameLabel.text = "\(cursusName) Projects"
 			setCursusNameLabelConstraints(for: cursusNameLabel)
 			setTableViewConstratins(for: tableView, superView: cursusNameLabel)
 		} else {

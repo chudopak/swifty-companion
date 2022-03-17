@@ -54,7 +54,7 @@ class SkillsChartView: UIView, UIPageViewControllerDataSource, UIPageViewControl
 		chartViewControllers.reserveCapacity(amountOfCharts)
 		for i in 0..<cursus.count {
 			if (cursus[i].skills.count != 0) {
-				let vc = ChartViewController(i: i)
+				let vc = ChartViewController(skills: cursus[i].skills, cursus_name: cursus[i].cursus.name)
 				chartViewControllers.append(vc)
 			}
 		}
@@ -87,7 +87,6 @@ class SkillsChartView: UIView, UIPageViewControllerDataSource, UIPageViewControl
 			return nil
 		}
 		let before = index - 1
-		print("CURRENT VIEW BEFORE \(before)")
 		return (chartViewControllers[before])
 	}
 	
@@ -99,7 +98,6 @@ class SkillsChartView: UIView, UIPageViewControllerDataSource, UIPageViewControl
 			return nil
 		}
 		let after = index + 1
-		print("CURRENT VIEW AFTER \(after)")
 		return (chartViewControllers[after])
 	}
 	
@@ -108,7 +106,6 @@ class SkillsChartView: UIView, UIPageViewControllerDataSource, UIPageViewControl
 	}
 	
 	func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-		print("PRESENTATION INDEX")
 		return (0)
 	}
 }

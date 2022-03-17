@@ -19,6 +19,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		}
 	}
 	
+	private lazy var refreshControll = makeRefreshControll()
 	private lazy var backgroundImageView = makeBackgroundImageView()
 	private lazy var activityIndicator = makeActivityIndicator()
 	private lazy var errorView = ErrorView(delegate: self)
@@ -30,11 +31,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 	private lazy var projectsScrollView = ProjectsScrollView()
 	private lazy var skillsChartView = SkillsChartView()
 	
-	
 	private var spaceBetweenViews: CGFloat = 15
-	private lazy var refreshControll = makeRefreshControll()
-	
-//	private lazy var test = makePrimaryUserInfoBackgroundView()
 	
 	init() {
 		super.init(nibName: nil, bundle: nil)
@@ -83,7 +80,7 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		projectsScrollView.projectsLists = lst
 		skillsChartView.cursus = userDataUnwrapped.cursus_users
 		print(projectsScrollView.contentSize.width)
-		printProjectLists(projects: lst)
+//		printProjectLists(projects: lst)
 	}
 	
 	private func getMyData() {
@@ -328,9 +325,7 @@ extension UserProfileViewController {
 	}
 	
 	private func setPrimaryUserInfoViewConstraints(for view: UIView, superView: UIScrollView) {
-//		let guide = superView.safeAreaLayoutGuide
 		NSLayoutConstraint.activate([
-//			view.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0),
 			view.topAnchor.constraint(equalTo: superView.topAnchor, constant: profileViewSideOffset),
 			view.leadingAnchor.constraint(equalTo: superView.layoutMarginsGuide.leadingAnchor),
 			view.trailingAnchor.constraint(equalTo: superView.layoutMarginsGuide.trailingAnchor),
@@ -380,16 +375,7 @@ extension UserProfileViewController {
 			view.topAnchor.constraint(equalTo: projectsScrollView.bottomAnchor, constant: spaceBetweenViews),
 			view.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
 			view.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
-			view.heightAnchor.constraint(equalToConstant: projectsScrollViewHeight)
+			view.heightAnchor.constraint(equalToConstant: skillsChartsViewHeight)
 		])
 	}
-	
-//	private func setTest(for view: UIView) {
-//		NSLayoutConstraint.activate([
-//			view.topAnchor.constraint(equalTo: levelView.bottomAnchor, constant: spaceBetweenViews),
-//			view.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor),
-//			view.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor),
-//			view.heightAnchor.constraint(equalToConstant: 1000)
-//		])
-//	}
 }

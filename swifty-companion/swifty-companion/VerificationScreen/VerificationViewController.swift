@@ -87,7 +87,7 @@ class VerificationViewController: UIViewController, ErrorViewDelegate {
 				}
 				return
 			}
-			printData(data: object)
+//			printData(data: object)
 			DispatchQueue.main.async {
 				self?.presentSearchUserScreen(userData: object)
 			}
