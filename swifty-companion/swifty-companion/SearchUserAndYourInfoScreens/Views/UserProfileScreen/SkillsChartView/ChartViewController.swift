@@ -156,7 +156,8 @@ class ChartViewController: UIViewController, ChartViewDelegate {
 		skillsChart.xAxis.xOffset = 20.0
 		skillsChart.xAxis.yOffset = 20.0
 		skillsChart.xAxis.labelPosition = .bottom
-		skillsChart.xAxis.labelFont = UIFont.systemFont(ofSize: 7, weight: .light)
+		let fontSize: CGFloat = UIScreen.main.bounds.size.width <= 375 ? 6 : 7
+		skillsChart.xAxis.labelFont = UIFont.systemFont(ofSize: fontSize, weight: .light)
 		
 		skillsChart.rotationEnabled = false
 		skillsChart.legend.enabled = false
