@@ -19,6 +19,9 @@ After two hours, the authorization token expires and a new one is created to con
 	<img src="./Screens/authenticatioin.png" width="100" />
 	<img src="./Screens/searchUserScreen.png" width="100" />
 	<img src="./Screens/user_not_found.png" width="100" />
+</p>
+
+<p align="center">
 	<img src="./Screens/error_network.png" width="100" />
 	<img src="./Screens/home_page.png" width="100" />
 	<img src="./Screens/skills_chart.png" width="100" />
@@ -27,5 +30,5 @@ After two hours, the authorization token expires and a new one is created to con
 
 
 <p align="center">
-	<img src="./Screens/start_screen.png" width="animated" />
+	<img src="./Screens/start_screen.png" alt="animated" width="200" />
 </p>
