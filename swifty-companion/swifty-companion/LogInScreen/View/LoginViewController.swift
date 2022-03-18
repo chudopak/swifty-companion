@@ -27,7 +27,7 @@ class LoginViewController: UIViewController, LoginViewControllerDelegate {
 	
 	func signInDelegate() {
 		guard let signInURL = createSignInURL() else {
-			print("Failed to create signIn URL")
+			print("LoginViewController (signInDelegate) - Failed to create signIn URL")
 			return
 		}
 		
@@ -39,6 +39,7 @@ class LoginViewController: UIViewController, LoginViewControllerDelegate {
 		
 		if !authenticationSession.start() {
 			print("Failed to start ASWebAuthenticationSession")
+			loginView.activateSignInButton()
 		}
 	}
 	
@@ -50,6 +51,7 @@ class LoginViewController: UIViewController, LoginViewControllerDelegate {
 			  let codeExchangeURL = createCodeExchangeURL(code: code)
 		else {
 			print("An error occurred when attempting to sign in.")
+			loginView.activateSignInButton()
 			return
 		}
 		loginViewModel.getToken(codeExchangeURL: codeExchangeURL) { [weak self] result in
@@ -57,6 +59,7 @@ class LoginViewController: UIViewController, LoginViewControllerDelegate {
 			case .success:
 				self?.presentSearchUserScreen()
 			case .fail(let val):
+				self?.loginView.activateSignInButton()
 				print("An error is occured while sighing in - \(val.rawValue)")
 			}
 		}
@@ -66,7 +69,6 @@ class LoginViewController: UIViewController, LoginViewControllerDelegate {
 		let tabBar = TabBar()
 		tabBar.modalPresentationStyle = .fullScreen
 		present(tabBar, animated: true, completion: nil)
-		print("SUCCESS")
 	}
 }
 

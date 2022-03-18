@@ -51,7 +51,7 @@ class VerificationViewController: UIViewController, ErrorViewDelegate {
 	
 	private func sendTestRequest() {
 		guard let url = createURLWithComponents(path: "/v2/me") else {
-			print("Can't create url")
+			print("VerificationViewController (sendTestRequest) - Can't create url")
 			activityIndicator.stopAnimating()
 			showErrorView(errorDescription: "Something went wrong :_(")
 			return
@@ -87,7 +87,6 @@ class VerificationViewController: UIViewController, ErrorViewDelegate {
 				}
 				return
 			}
-//			printData(data: object)
 			DispatchQueue.main.async {
 				self?.presentSearchUserScreen(userData: object)
 			}

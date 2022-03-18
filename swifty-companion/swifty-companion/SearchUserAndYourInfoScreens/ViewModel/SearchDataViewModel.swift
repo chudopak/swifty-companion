@@ -44,14 +44,13 @@ final class SearchDataViewModel: SearchUserProtocol, SearchCoalitionProtocol {
 				return
 			}
 			guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-				let htttpResponse = response as? HTTPURLResponse
-				print("Status code", htttpResponse?.statusCode ?? 0)
-				self?.dispatchMainAsync(status: SearchUserStatus.failure(.userNotFound))
-				return
-			}
-			guard httpResponse.statusCode != 401 else {
-				print("Unathorized - sign out")
-				self?.dispatchMainAsync(status: SearchUserStatus.failure(.unathorized))
+				let httpResponse = response as? HTTPURLResponse
+				print("Status code", httpResponse?.statusCode ?? 0)
+				if httpResponse != nil && httpResponse!.statusCode == 401 {
+					self?.dispatchMainAsync(status: SearchUserStatus.failure(.unathorized))
+				} else {
+					self?.dispatchMainAsync(status: SearchUserStatus.failure(.userNotFound))
+				}
 				return
 			}
 			if let userData = try? JSONDecoder().decode(UserData.self, from: data) {

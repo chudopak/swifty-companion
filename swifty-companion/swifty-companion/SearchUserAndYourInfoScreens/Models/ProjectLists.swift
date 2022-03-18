@@ -44,9 +44,6 @@ class ProjectLists {
 				cursusNames[curs.cursus.id] = curs.cursus.name
 			}
 		}
-		print()
-		print("CuRSUS NAMES", cursusNames)
-		print()
 		setOrderAndCountSize(projects: projects)
 		setProjectsList(projects: projects)
 	}

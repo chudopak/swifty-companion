@@ -23,7 +23,6 @@ class ChartViewController: UIViewController, ChartViewDelegate {
 		super.init(nibName: nil, bundle: nil)
 		self.skills = skills.sorted(by: { $0.name < $1.name })
 		cursusName = cursus_name
-		print("Cursus name \(cursus_name) - \(String(describing: self.skills))")
 	}
 	
 	required init?(coder: NSCoder) {

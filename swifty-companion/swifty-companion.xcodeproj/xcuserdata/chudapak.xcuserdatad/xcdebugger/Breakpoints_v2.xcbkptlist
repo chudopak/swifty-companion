@@ -30,8 +30,8 @@
             filePath = "swifty-companion/LogInScreen/View/LoginView/LoginView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "signIn()"
             landmarkType = "7">
          </BreakpointContent>
@@ -194,8 +194,8 @@
             filePath = "swifty-companion/VerificationScreen/VerificationViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "presentSearchUserScreen(userData:)"
             landmarkType = "7">
          </BreakpointContent>

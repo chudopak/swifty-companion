@@ -32,8 +32,13 @@ class LoginView: UIView {
 	}
 	
 	@objc private func signIn() {
+		loginButton.isEnabled = false
 		delegate.signInDelegate()
-	}	
+	}
+	
+	func activateSignInButton() {
+		loginButton.isEnabled = true
+	}
 }
 
 extension LoginView {
