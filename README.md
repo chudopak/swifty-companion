@@ -15,17 +15,17 @@ After two hours, the authorization token expires and a new one is created to con
 ## App Overview
 #### Screens
 <p align="center">
-	<img src="./Screens/start_screen.png" alt="animated" />
-	<img src="./Screens/authenticatioin.png" alt="animated" />
-	<img src="./Screens/searchUserScreen.png" alt="animated" />
-	<img src="./Screens/user_not_found.png" alt="animated" />
-	<img src="./Screens/error_network.png" alt="animated" />
-	<img src="./Screens/home_page.png" alt="animated" />
-	<img src="./Screens/skills_chart.png" alt="animated" />
-	<img src="./Screens/searched_user_screen.png" alt="animated" />
+	<img src="./Screens/start_screen.png" width="100" />
+	<img src="./Screens/authenticatioin.png" width="100" />
+	<img src="./Screens/searchUserScreen.png" width="100" />
+	<img src="./Screens/user_not_found.png" width="100" />
+	<img src="./Screens/error_network.png" width="100" />
+	<img src="./Screens/home_page.png" width="100" />
+	<img src="./Screens/skills_chart.png" width="100" />
+	<img src="./Screens/searched_user_screen.png" width="100" />
 </p>
 
 
 <p align="center">
-	<img src="./Screens/start_screen.png" alt="animated" />
+	<img src="./Screens/start_screen.png" width="animated" />
 </p>
