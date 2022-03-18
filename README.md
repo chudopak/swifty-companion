@@ -15,17 +15,17 @@ After two hours, the authorization token expires and a new one is created to con
 ## App Overview
 #### Screens
 <p align="center">
-	<img src="./Screens/start_screen.png" width="210" />
-	<img src="./Screens/authenticatioin.png" width="210" />
-	<img src="./Screens/searchUserScreen.png" width="210" />
-	<img src="./Screens/user_not_found.png" width="210" />
+	<img src="./Screens/start_screen.png" width="190" />
+	<img src="./Screens/authenticatioin.png" width="190" />
+	<img src="./Screens/searchUserScreen.png" width="190" />
+	<img src="./Screens/user_not_found.png" width="190" />
 </p>
 
 <p align="center">
-	<img src="./Screens/error_network.png" width="210" />
-	<img src="./Screens/home_page.png" width="210" />
-	<img src="./Screens/skills_chart.png" width="210" />
-	<img src="./Screens/searched_user_screen.png" width="210" />
+	<img src="./Screens/error_network.png" width="190" />
+	<img src="./Screens/home_page.png" width="190" />
+	<img src="./Screens/skills_chart.png" width="190" />
+	<img src="./Screens/searched_user_screen.png" width="190" />
 </p>
 
 
