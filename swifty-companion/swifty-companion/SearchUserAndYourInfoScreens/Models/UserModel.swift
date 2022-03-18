@@ -16,6 +16,7 @@ enum SearchUserStatus {
 	enum FailCode: String {
 		case networking = "Loading Error. Check internet connection and reload app."
 		case userNotFound
+		case unathorized
 	}
 }
 
@@ -86,7 +87,6 @@ struct CoalitionData: Codable {
 }
 
 
-//TEMPERARY
 func printData(data: UserData) {
 	print("DisplayName -- \(data.displayname )")
 	print()

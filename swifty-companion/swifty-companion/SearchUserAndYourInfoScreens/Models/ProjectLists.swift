@@ -49,7 +49,6 @@ class ProjectLists {
 		print()
 		setOrderAndCountSize(projects: projects)
 		setProjectsList(projects: projects)
-//		sortLists()
 	}
 	
 	private func setOrderAndCountSize(projects: [Project]) {

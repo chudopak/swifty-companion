@@ -54,9 +54,6 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		setNetworkClosures()
 		setConstraints()
 
-		scrollView.bottomAnchor.constraint(
-						equalTo: skillsChartView.bottomAnchor, constant: 10).isActive = true
-
 		if (userData != nil) {
 			showUserProfile()
 		} else {
@@ -68,26 +65,23 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		guard let userDataUnwrapped = userData else {
 			errorView.errorDescription = "We are sorry :( Please reload app."
 			changeViewsVisibility(profile: false, error: true)
-			print("UserProfileViewController (showUserProfile) userData somehow nil")
+			print("UserProfileViewController (showUserProfile) - userData somehow nil")
 			return
 		}
 		findCoalition(userId: String(userDataUnwrapped.id))
 		primaryUserInfoView.primaryUserInfo = PrimaryUserInfo(userData: userDataUnwrapped)
 		locationInClasterView.location = constructLocationInClasterText(location: userDataUnwrapped.location)
 		levelView.levelInfo = LevelInfo(level: getUserLevel(cursus: userDataUnwrapped.cursus_users))
-		let lst = ProjectLists(userData: userDataUnwrapped.projects_users,
+		projectsScrollView.projectsLists = ProjectLists(userData: userDataUnwrapped.projects_users,
 							   cursus_user: userDataUnwrapped.cursus_users)
-		projectsScrollView.projectsLists = lst
 		skillsChartView.cursus = userDataUnwrapped.cursus_users
-		print(projectsScrollView.contentSize.width)
-//		printProjectLists(projects: lst)
 	}
 	
 	private func getMyData() {
 		guard let url = createURLWithComponents(path: "/v2/me") else {
 			errorView.errorDescription = "We are sorry :( Please reload app."
 			changeViewsVisibility(profile: false, error: true)
-			print("UserProfileViewController (viewDidLoad) - Can't create url")
+			print("UserProfileViewController (getMyData) - Can't create url")
 			return
 		}
 		searchUser.fetchUserData(with: url)
@@ -98,9 +92,6 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		case .initial:
 			break
 		case .success(let result):
-			print(result.image_url)
-			print(result.name)
-			print(result.color)
 			backgroundImageView.download(from: result.image_url, defaultImageName: "background", contentMode: .scaleToFill)
 			levelView.levelInfo = LevelInfo(level: getUserLevel(cursus: userData?.cursus_users), color: result.color)
 		case .failure:
@@ -117,7 +108,6 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 			case .loading:
 				self?.changeViewsVisibility(profile: false, error: false)
 				self?.activityIndicator.startAnimating()
-				print("Loading")
 			case .success(let uData):
 				self?.searchUserSuccessCase(uData: uData)
 			case .failure(let code):
@@ -141,9 +131,20 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 			errorView.errorDescription = "We Sorry :("
 		case .networking:
 			errorView.errorDescription = code.rawValue
+		case .unathorized:
+			signOutUnathorized()
 		}
 		changeViewsVisibility(profile: false, error: true)
 		print(code.rawValue)
+	}
+	
+	private func signOutUnathorized() {
+		userData = nil
+		Token.accessToken = nil
+		Token.refreshToken = nil
+		let loginVC = LoginViewController()
+		loginVC.modalPresentationStyle = .fullScreen
+		present(loginVC, animated: false, completion: nil)
 	}
 	
 	private func findCoalition(userId: String) {
@@ -208,7 +209,8 @@ class UserProfileViewController: UIViewController, ErrorViewDelegate {
 		guard let userData = userData,
 			  let url = URL(string: userData.url)
 		else {
-			print("Can't refresh page")
+			print("UserProfileViewController (refreshUserData) - Can't refresh page")
+			refreshControll.endRefreshing()
 			return
 		}
 		searchUser.fetchUserData(with: url)
@@ -294,7 +296,7 @@ extension UserProfileViewController {
 		setLevelViewConstraints(for: levelView)
 		setProjectsScrollViewConstraints(for: projectsScrollView)
 		setSkillsChartViewConstraint(for: skillsChartView)
-//		setTest(for: test)
+		scrollView.bottomAnchor.constraint(equalTo: skillsChartView.bottomAnchor, constant: 10).isActive = true
 	}
 	
 	private func setActivityIndicatorConstraints(for view: UIView, superView: UIView) {

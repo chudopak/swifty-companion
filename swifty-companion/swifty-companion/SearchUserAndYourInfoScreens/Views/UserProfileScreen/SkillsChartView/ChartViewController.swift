@@ -8,85 +8,7 @@
 import UIKit
 import Charts
 
-fileprivate let skillsNames: [String] = [
-	"Adaptation & creativity",			"Algorithms & AI",				"Basics",
-	"Company experience",				"DB & Data",					"Functional programming",
-	"Graphics",							"Group & interpersonal",		"Imperative programming",
-	"Network & system administration",	"Object-oriented programming",	"Organization",
-	"Parallel computing",				"Rigor",						"Ruby",
-	"Security",							"Shell",						"Technology integration",
-	"Unix",								"Web"
-]
-
-fileprivate let skillsNamesCompressed: [String] = [
-	"""
-	Adaptation
-	&
-	creativity
-	""",
-	"""
-	Algorithms
-	&
-	AI
-	""", "Basics",
-	"""
-	Company
-	experience
-	""",
-	"""
-	DB
-	&
-	Data
-	""",
-	"""
-	Functional
-	programming
-	""", "Graphics",
-	"""
-	Group &
-	interpersonal
-	""",
-	"""
-	Imperative
-	programming
-	""",
-	"""
-	Network
-	&
-	system
-	administration
-	""",
-	"""
-	Object-
-	oriented
-	programming
-	""",	"Organization",
-	"""
-	Parallel
-	computing
-	""", "Rigor","Ruby", "Security","Shell",
-	"""
-	Technology
-	integration
-	""", "Unix", "Web"
-]
-
-
-struct SkillData {
-	let name: String
-	var level: Double
-	let index: Int
-}
-
-
 class ChartViewController: UIViewController, ChartViewDelegate {
-
-	let color = [
-		UIColor.black,
-		UIColor.green,
-		UIColor.red,
-		UIColor.blue
-	]
 
 	private var cursusName = ""
 	
@@ -145,16 +67,12 @@ class ChartViewController: UIViewController, ChartViewDelegate {
 		
 		skillsChart.yAxis.axisMinimum = 0.0
 		skillsChart.yAxis.axisMaximum = 16.0
-		skillsChart.yAxis.xOffset = 20.0
-		skillsChart.yAxis.yOffset = 20.0
 		skillsChart.yAxis.labelFont = UIFont.systemFont(ofSize: 9, weight: .medium)
 		skillsChart.yAxis.labelTextColor = .white
 		skillsChart.yAxis.drawTopYLabelEntryEnabled = false
 		skillsChart.yAxis.labelCount = 4
 		
 		skillsChart.xAxis.valueFormatter = XAxisFormatter()
-		skillsChart.xAxis.xOffset = 20.0
-		skillsChart.xAxis.yOffset = 20.0
 		skillsChart.xAxis.labelPosition = .bottom
 		let fontSize: CGFloat = UIScreen.main.bounds.size.width <= 375 ? 6 : 7
 		skillsChart.xAxis.labelFont = UIFont.systemFont(ofSize: fontSize, weight: .light)
@@ -180,11 +98,6 @@ class ChartViewController: UIViewController, ChartViewDelegate {
 		dataSet.setDrawHighlightIndicators(false)
 		return (dataSet)
 	}
-	
-	func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-		print("chartValueSelected \(entry)")
-	}
-	
 }
 
 extension ChartViewController {
@@ -235,16 +148,14 @@ extension ChartViewController {
 }
 
 class XAxisFormatter: AxisValueFormatter {
-	
-	let titles = skillsNamesCompressed.map { "\($0)" }
-	
+
 	func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-		return (titles[Int(value) % titles.count])
+		return (skillsNamesCompressed[Int(value) % skillsNamesCompressed.count])
 	}
 }
 
 class YAxisFormatter: AxisValueFormatter {
-	
+
 	func stringForValue(_ value: Double, axis: AxisBase?) -> String {
 		return ("\(Int(value))")
 	}

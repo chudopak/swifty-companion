@@ -17,7 +17,6 @@ class LevelView: UIView {
 			levelLabel.text = "level \(levelInfo.levelInt) - \(levelInfo.levelPercentString) %"
 			levelIndicator.backgroundColor = UIColor(hexString: levelInfo.color)
 			replaceWidthConstraint()
-//			layoutIfNeeded()
 			setNeedsLayout()
 		}
 	}
@@ -84,7 +83,6 @@ extension LevelView {
 			widthConstraint,
 			view.topAnchor.constraint(equalTo: superView.topAnchor),
 			view.leadingAnchor.constraint(equalTo: superView.leadingAnchor),
-//			view.widthAnchor.constraint(equalTo: superView.widthAnchor, multiplier: 0.5),
 			view.heightAnchor.constraint(equalToConstant: levelViewHeight)
 		])
 	}

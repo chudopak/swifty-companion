@@ -9,6 +9,7 @@ import UIKit
 
 protocol SearchUserViewControllerDelegate: AnyObject {
 	func openUserProfileViewController(userData: UserData)
+	func signOutUnathorized()
 }
 
 class SearchUserViewController: UIViewController, SearchUserViewControllerDelegate {
@@ -24,7 +25,7 @@ class SearchUserViewController: UIViewController, SearchUserViewControllerDelega
 		setConstraints()
     }
 	
-	func openUserProfileViewController(userData: UserData) {
+	internal func openUserProfileViewController(userData: UserData) {
 		let userProfileVC = UserProfileViewController(userData: userData)
 		userProfileVC.modalPresentationStyle = .fullScreen
 		let navController = UINavigationController(rootViewController: userProfileVC)
@@ -33,6 +34,14 @@ class SearchUserViewController: UIViewController, SearchUserViewControllerDelega
 		navController.navigationBar.tintColor = UIColor(named: "buttonsGreen")
 		navController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 		present(navController, animated: true, completion: nil)
+	}
+	
+	func signOutUnathorized() {
+		Token.accessToken = nil
+		Token.refreshToken = nil
+		let loginVC = LoginViewController()
+		loginVC.modalPresentationStyle = .fullScreen
+		present(loginVC, animated: false, completion: nil)
 	}
 }
 

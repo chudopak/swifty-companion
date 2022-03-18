@@ -46,11 +46,9 @@ class SearchView: UIView, UITextFieldDelegate, ErrorViewDelegate {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	
 	private func updateView() {
 		switch searchUserStatus {
 		case .loading:
-			print("loading")
 			activityIndicator.startAnimating()
 			makeVisible()
 		case .failure(let code):
@@ -60,7 +58,6 @@ class SearchView: UIView, UITextFieldDelegate, ErrorViewDelegate {
 			activityIndicator.stopAnimating()
 			makeVisible(searchStackView: true)
 			delegate.openUserProfileViewController(userData: userData)
-//			printData(data: userData)
 		default:
 			break
 		}
@@ -87,6 +84,8 @@ class SearchView: UIView, UITextFieldDelegate, ErrorViewDelegate {
 				userNotFoundLabel.text = "User \"\(lastSearchedUser)\" not found."
 			}
 			makeVisible(userNotFoundStackView: true)
+		case .unathorized:
+			delegate.signOutUnathorized()
 		}
 	}
 	
