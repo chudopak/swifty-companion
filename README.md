@@ -30,5 +30,5 @@ After two hours, the authorization token expires and a new one is created to con
 
 
 <p align="center">
-	<img src="./Screens/start_screen.png" alt="animated" width="200" />
+	<img src="./Screens/overview.gif" alt="animated" width="300" />
 </p>
