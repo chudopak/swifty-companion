@@ -12,6 +12,9 @@ After two hours, the authorization token expires and a new one is created to con
 - ASWebAuthentication
 - Cocoapods (Charts)
 
+## Architecture
+MVVM + Data-driven UI
+
 ## App Overview
 #### Screens
 <p align="center">
